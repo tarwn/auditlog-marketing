@@ -1,0 +1,47 @@
+@import "../variables";
+
+.alm-header{
+    padding: 0 10%;
+    background-color: $ws_white; 
+}
+
+.alm-header-content{
+    padding: 2em 0;
+    line-height: 56px;
+}
+
+.alm-logo{
+    display: inline-block;
+    width: 56px;
+
+    & > span {
+        display: none;
+    }
+
+}
+
+.alm-nav{
+    float: right;
+
+    & > a {
+        display: inline-block;
+        padding: .25em 0;
+        font-size: $font-size-larger;
+        color: $text-color-grey;
+        margin-left: 1em;
+        text-decoration: none;
+
+        &.alm-nav-selected{
+            border-bottom: 2px solid $color-accent-1;
+        }
+
+        &:hover{
+            border-bottom: 2px solid $color-accent-2;
+        }
+    }
+
+    & > a.alm-only-large{
+        display: none;
+    }
+}
+

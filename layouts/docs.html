@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>{{ title }}</title>
+    {{> head }}
+</head>
+<body>
+  <header class="dm-docs-header">
+    <div class="dm-nav">
+      <a href="/">Home</a>
+      <a href="/features">Features</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/blog">Blog</a>
+      <a href="/docs" class="dm-nav-selected">Docs</a>
+        <a href="https://app.launchready.co/" class="dm-login">Login</a>
+    </div>
+    <div class="dm-logo">
+        <a href="/" class="dm-logo-link">
+          <img src="/images/WindSockLogo80.png" />
+          <span class="dm-name">{{ productName }}</span>
+        </a>
+    </div>
+  </header>}}
+
+    <nav class="dm-docs-nav">
+
+        Getting Started
+        <ul>
+        {{#each collections.docs_gettingStarted}}
+        <li><a href="/{{ path }}" title="{{ title }}" class="{{#equals path ../path}}dm-docs-nav-selected{{/equals}}">{{ title }}</a> </li>
+        {{/each}}
+        </ul>
+
+        Using the Site
+        <ul>
+        {{#each collections.docs_usingTheService}}
+        <li><a href="/{{ path }}" title="{{ title }}" class="{{#equals path ../path}}dm-docs-nav-selected{{/equals}}">{{ title }}</a> </li>
+        {{/each}}
+        </ul>
+
+        Getting Things Done
+        <ul>
+        {{#each collections.docs_gettingThingsDone}}
+        <li><a href="/{{ path }}" title="{{ title }}" class="{{#equals path ../path}}dm-docs-nav-selected{{/equals}}">{{ title }}</a> </li>
+        {{/each}}
+        </ul>
+
+        Integration
+        <ul>
+        {{#each collections.docs_integration}}
+        <li><a href="/{{ path }}" title="{{ title }}" class="{{#equals path ../path}}dm-docs-nav-selected{{/equals}}">{{ title }}</a> </li>
+        {{/each}}
+        </ul>
+
+    </nav>
+
+    <div class="dm-docs-main">
+      <div class="dm-docs-main-content">
+      {{{ contents }}}
+      </div>
+
+      <footer class="dm-docs-footer">
+        <div class="dm-footer-copyright">
+          <span>&copy; {{ companyName }}</span>
+          <span><a href="/legal">Terms &amp; Privacy </a></span>
+          <span>Have an amazing day!</span>
+        </div>
+      </footer>
+    </div>
+
+    {{> analytics }}
+    
+</body>
+</html>

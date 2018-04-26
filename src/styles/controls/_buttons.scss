@@ -1,0 +1,31 @@
+@import "../variables";
+
+%simple-button-basics {
+    padding: 0.75em 1.75em;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+    border: 0px;
+}
+
+@mixin simple-button($color){
+    @extend %simple-button-basics;
+    color: $ws_white;
+    background-color: $color;
+}
+
+@mixin simple-button-hover($color){
+    background-color: darken($color, 10%);
+}
+
+// .dm-simple-button,
+// .dm-simple-button:visited{
+//     .simple-button(@cs_blue);
+// }
+// .dm-simple-button:hover{
+//     .simple-button-hover(@cs_blue);
+// }
+
+// .dm-shadowed{
+//     box-shadow: 0px 0px 4px @ws_darkgrey;
+// }

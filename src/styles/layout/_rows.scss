@@ -1,0 +1,14 @@
+@import "../variables";
+
+.alm-row{
+    display: flex;
+    flex-direction: column;
+}
+
+.alm-row-item-1{
+    flex: 1 1 auto;
+}
+
+.alm-row-item-1{
+    flex: 3 3 auto;
+}

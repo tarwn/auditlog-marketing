@@ -1,0 +1,24 @@
+---
+layout: blog-listing.html
+navmenu: blog
+blogcategory: product
+
+changefreq: weekly
+priority: 1.0
+---
+
+<section class="dm-blog-listing">
+  <div class="dm-container">
+
+    {{#each collections.blog_product}}
+      <div class="dm-blog-summary">
+        <article class="dm-blog-summary-content">
+          <h2 class="dm-blog-summary-title-header"><a class="dm-blog-summary-title" href="/{{ path }}">{{ title }}</a></h2>
+          <div class="dm-blog-subheading">{{moment date format="MMM DD, YYYY"}} <span class="dm-blog-subheading-sep">{{ blogcategory }}</span></div>
+          <div class="dm-blog-summary-text">{{ excerpt }}</div>
+        </article>
+      </div>
+    {{/each}}
+
+  </div>
+</section>

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>{{ title }} | {{ productName }} Blog</title>
+  {{> head }}
+</head>
+<body>
+
+  {{> header }}
+
+  {{> blogSubMenu }}
+
+  <article class="dm-blog-container">
+    <div class="dm-container">
+      <div class="dm-blog-content">
+        <h2 class="dm-blog-title">{{ title }}</h2>
+        <div class="dm-blog-subheading">{{moment date format="MMM DD, YYYY"}} <span class="dm-blog-subheading-sep">{{ blogcategory }}</span></div>
+        <div class="dm-blog-text">{{{ contents }}}</div>
+        <div class="dm-blog-comments" id="disqus_thread"></div>
+      </div>
+    </div>
+  </article>
+
+  {{> footer }}
+
+  {{> analytics }}
+    
+</body>
+</html>

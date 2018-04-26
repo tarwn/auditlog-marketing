@@ -1,0 +1,38 @@
+@import "../variables";
+
+body{
+    font-size: $font-size-normal;
+    line-height: 1.6;
+    font-weight: 400;
+    font-family:  Raleway, 'Open Sans', sans-serif;
+
+    @media (min-width: $resp-tablet-min-width){
+        font-size: 14px;
+    }
+
+    @media (min-width: $resp-screen-min-width){
+        font-size: 16px;
+    }
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Oxygen", Arial, sans-serif;
+    margin-top: 0;
+    margin-bottom: .75em;
+    font-weight: 300; 
+}
+h1 { font-size: 2.75em; }
+h2 { font-size: 2.00em; }
+h3 { font-size: 1.75em; }
+h4 { font-size: 1.5em; }
+h5 { font-size: 1.25em; }
+h6 { font-size: 1em; }
+  
+.dm-blog-text{
+    h1{ font-size: 1.75em; }
+    h2{ font-size: 1.25em; }
+    h3{ font-size: 1.15em; }
+    h4{ font-size: 1em; }
+    h5{ font-size: 1em; }
+    h6{ font-size: 1em; }    
+}

@@ -1,0 +1,14 @@
+{
+	"version": 3,
+	"file": "docs.css",
+	"sources": [
+		"docs.scss",
+		"_variables.scss"
+	],
+	"sourcesContent": [
+		"@import \"variables\";",
+		"\r\n// cs: color swatch derived - match each other but not logo\r\n$cs_blue: #5bc0eb;          //      91, 192, 235\r\n$cs_green: #9bc53d;\r\n$cs_orange: #f0b83e;\r\n$cs_red: #c3423f;\r\n$cs_darkgrey: #404e4d;\r\n\r\n// ws: website - derived from logo\r\n$ws_orange: #fb9728;        //  \t251, 151, 40\r\n$ws_green: #44af69;         //      68, 175, 105\r\n$ws_white: #FFFFFF;\r\n$ws_lightgrey: #dddddd;\r\n$ws_medgrey: #86807C;\r\n$ws_darkgrey: #26201C;\r\n$ws_lightergrey: #fafbfc;\r\n\r\n$ws_lightblue: #e3f4fc;     //made up from light cs color\r\n\r\n$bg_body: $ws_white;\r\n\r\n$resp-tablet-min-width: 550px;\r\n$resp-screen-min-width: 770px;\r\n\r\n// standards\r\n$color-primary: $cs_green;\r\n$color-accent-1: $cs_blue;\r\n$color-accent-2: $cs_orange;\r\n\r\n$font-size-normal: 13px;\r\n$font-size-larger: 16px;\r\n\r\n$text-color-normal: $ws_darkgrey;\r\n$text-color-grey: $cs_darkgrey;"
+	],
+	"names": [],
+	"mappings": ""
+}
