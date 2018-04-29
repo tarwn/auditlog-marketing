@@ -17,8 +17,6 @@ $ws_lightergrey: #fafbfc;
 
 $ws_lightblue: #e3f4fc;     //made up from light cs color
 
-$bg_body: $ws_white;
-
 $resp-tablet-min-width: 550px;
 $resp-screen-min-width: 770px;
 
@@ -35,4 +33,22 @@ $font-size-larger: 16px;
 
 $text-color-normal: $ws_darkgrey;
 $text-color-grey: $cs_darkgrey;
-$text-color-invert: $ws_white;
+$text-color-inverse: $ws_white;
+
+// Device regions
+//  https://medium.freecodecamp.org/the-100-correct-way-to-do-css-breakpoints-88d6a5ba1862
+@mixin for-phone-only {
+    @media (max-width: 599px) { @content; }
+}
+@mixin for-tablet-portrait-up {
+    @media only screen and (min-width: 600px) { @content; }
+}
+@mixin for-tablet-landscape-up {
+    @media only screen and (min-width: 900px) { @content; }
+}
+@mixin for-desktop-up {
+    @media only screen and (min-width: 1200px) { @content; }
+}
+@mixin for-big-desktop-up {
+    @media only screen and (min-width: 1800px) { @content; }
+}

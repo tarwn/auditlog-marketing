@@ -2,7 +2,46 @@
 
 .alm-footer{
     background-color: $color-background-dark;
-    color: $text-color-invert;
-    padding: 10% 1em;
+    color: $text-color-inverse;
+    padding: 3em 10%;
+
+    // & > .alm-row{
+    //     margin: 0 auto;
+
+    //     @include for-tablet-portrait-up{
+    //         max-width: 580px;
+    //     }
+
+    //     @include for-tablet-landscape-up{
+    //         max-width: 800px;
+    //     }
+
+    //     @include for-desktop-up{
+    //         max-width: 1000px;
+    //     }
+    // }
 }
 
+.alm-footer-column{
+    min-width: 100px;
+    margin: 0 2em;
+
+    &.alm-nonmobile{
+        padding-top: 0.75em;
+    }
+}
+
+.alm-footer h3{
+    margin: 0px;
+
+}
+
+.alm-footer h4{
+    @extend .normal-font-size;
+
+}
+
+.alm-footer ul{
+    list-style-type: none;
+    padding-left: 0px;
+}

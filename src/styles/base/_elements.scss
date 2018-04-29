@@ -2,25 +2,25 @@
 
 
 body{
-    background-color: $bg_body;
-    color: $ws_darkgrey;
+    background-color: $color-background-white;
+    color: $text-color-normal;
 }
 
 //** Anchors
 a, a:visited{
-    color: $ws_green;
+    color: $color-accent-1;
 }
 a:hover{
-    color: darken($ws_green, 10%);
+    color: darken($color-accent-1, 10%);
     text-decoration: none;
 }
 
 a.dm-dark-link,
 a.dm-dark-link:visited{
-    color: darken($ws_green, 10%);
+    color: darken($color-accent-1, 10%);
 }
 a.dm-dark-link:hover{
-    color: darken($ws_green, 20%);
+    color: darken($color-accent-1, 20%);
     text-decoration: none;
 }
 

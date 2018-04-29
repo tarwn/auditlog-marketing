@@ -1,18 +1,27 @@
 @import "../variables";
 
-body{
+.normal-font-size{
     font-size: $font-size-normal;
     line-height: 1.6;
     font-weight: 400;
-    font-family:  Raleway, 'Open Sans', sans-serif;
 
-    @media (min-width: $resp-tablet-min-width){
+    @include for-tablet-portrait-up{
         font-size: 14px;
     }
 
-    @media (min-width: $resp-screen-min-width){
+    @include for-tablet-landscape-up{
         font-size: 16px;
     }
+
+    @include for-desktop-up{
+        font-size: 16px;
+    }
+}
+
+body{
+    font-family:  Raleway, 'Open Sans', sans-serif;
+
+    @extend .normal-font-size;
 }
 
 h1, h2, h3, h4, h5, h6 {

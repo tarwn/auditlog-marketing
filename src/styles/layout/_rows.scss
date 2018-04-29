@@ -3,12 +3,16 @@
 .alm-row{
     display: flex;
     flex-direction: column;
+
+    @include for-tablet-portrait-up{
+        flex-direction: row;
+    }
 }
 
 .alm-row-item-1{
     flex: 1 1 auto;
 }
 
-.alm-row-item-1{
+.alm-row-item-3{
     flex: 3 3 auto;
 }

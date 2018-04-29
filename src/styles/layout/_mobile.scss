@@ -1,0 +1,15 @@
+@import "../variables";
+
+.alm-nonmobile{
+    display: none;
+
+    @include for-tablet-landscape-up{
+        display: initial;
+    }
+}
+
+.alm-mobile-center{
+    @include for-phone-only{
+        text-align: center;
+    }
+}
