@@ -12,20 +12,22 @@ Make changes to the files in:
 
 Run the build once:
 
-`node index.js`
+`npm run build`
 
-Or run it continuously:
+Or run it continuously for development:
 
-`node index.js --watch`
+`npm run local`
 
 The regenerated site goes to the `build` folder.
 
 Local testing
 ------------------
 
-For local testing, include `-serve` to serve the site on port 8888:
+For local testing, the local run uses file watch and serves up the content:
 
-`node index.js --watch --serve`
+`npm run local`
+
+The site is served on http://localhost:8888/
 
 Live Reload
 ------------------

@@ -1,18 +1,27 @@
 @import "../variables";
 
+$logo-height: 56px;
+$menu-item-height: 20px;
+
+
 .alm-header{
-    padding: 0 10%;
+    padding: 0 2em;
     background-color: $ws_white; 
+
+    @include for-tablet-portrait-up{
+        padding: 0 10%;
+    }
 }
 
 .alm-header-content{
     padding: 2em 0;
-    line-height: 56px;
+    line-height: $logo-height
 }
 
 .alm-logo{
-    display: inline-block;
-    width: 56px;
+    float: left;
+    width: $logo-height;
+    height: $logo-height;
     text-decoration: none;
     vertical-align: top;
 
@@ -36,28 +45,54 @@
     }
 }
 
-.alm-nav{
-    float: right;
+@mixin alm-nav-base($floatDefault, $floatTabletUp) {
+    float: $floatDefault;
+    line-height: $menu-item-height;
 
-    & > a {
-        display: inline-block;
-        padding: .25em 0;
+    $onethird: ($logo-height - $menu-item-height)/3;
+    padding: $onethird*2 0 $onethird 0;
+
+    @include for-tablet-portrait-up{
+        float: $floatTabletUp;
+    }
+
+    & > a{
+        margin-left: 1em;
+
+        @include for-tablet-portrait-up{
+            margin-left: 1.5em;
+        }
+    
+        @include for-tablet-landscape-up{
+            margin-left: 2em;
+        }
+    }
+
+    & > .alm-nav-link {
         font-size: $font-size-larger;
         color: $text-color-grey;
-        margin-left: 1em;
+        padding: 0 1px;
         text-decoration: none;
+        border-bottom: 3px solid transparent;
 
         &.alm-nav-selected{
-            border-bottom: 2px solid $color-accent-1;
+            border-bottom-color: $color-accent-2;
         }
 
         &:hover{
-            border-bottom: 2px solid $color-accent-2;
+            border-bottom-color: $color-accent-2;
         }
-    }
-
-    & > a.alm-only-large{
-        display: none;
     }
 }
 
+.alm-nav-1{
+    @include alm-nav-base(right, left);
+}
+
+.alm-nav-2{
+    @include alm-nav-base(right, right);
+}
+
+.alm-header-spacer {
+    clear: both;
+}

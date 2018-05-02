@@ -3,7 +3,11 @@
 .alm-footer{
     background-color: $color-background-dark;
     color: $text-color-inverse;
-    padding: 3em 10%;
+    padding: 3em 2em;
+
+    @include for-tablet-portrait-up{
+        padding: 3em 10%;
+    }
 
     // & > .alm-row{
     //     margin: 0 auto;

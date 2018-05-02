@@ -4,13 +4,15 @@
             <img src="/images/logo56.png" alt="AL" />
             <span>auditlog</span>
         </a>
-        <div class="alm-nav">
-            <a href="/" class="alm-only-large {{#equals navmenu 'home'}}alm-nav-selected{{/equals}}">Home</a>
-            <a href="/features" {{#equals navmenu 'features'}}class="alm-nav-selected"{{/equals}}>Features</a>
-            <a href="/pricing" {{#equals navmenu 'pricing'}}class="alm-nav-selected"{{/equals}}>Pricing</a>
-            <!-- <a href="/blog" {{#equals navmenu 'blog'}}class="alm-nav-selected"{{/equals}}>Blog</a>
-            <a href="/docs" {{#equals navmenu 'docs'}}class="alm-nav-selected"{{/equals}}>Docs</a> -->
-            <a href="https://app.auditlog.co/" class="alm-login">Login</a>
+        <div class="alm-nav-2">
+            <a href="https://app.auditlog.co/" class="alm-nav-link alm-login">Login</a>
+            <a href="https://app.auditlog.co/account/signup" class="alm-cta-light">Sign up</a>
+        </div>
+        <div class="alm-nav-1">
+            <a href="/features" class="alm-nav-link {{#equals navmenu 'features'}}alm-nav-selected{{/equals}}">Features</a>
+            <a href="/pricing" class="alm-nav-link {{#equals navmenu 'pricing'}}alm-nav-selected{{/equals}}">Pricing</a>
+            <a href="/blog" class="alm-nav-link alm-only-large {{#equals navmenu 'blog'}}alm-nav-selected{{/equals}}">Blog</a>
+            <a href="/docs" class="alm-nav-link alm-only-large {{#equals navmenu 'docs'}}alm-nav-selected{{/equals}}">Docs</a>
         </div>
         <div class="alm-header-spacer"></div>
     </div>

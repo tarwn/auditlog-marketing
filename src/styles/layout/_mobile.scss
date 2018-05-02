@@ -13,3 +13,11 @@
         text-align: center;
     }
 }
+
+.alm-only-large{
+    display: none;
+    
+    @include for-desktop-up{
+        display: initial;
+    }
+}

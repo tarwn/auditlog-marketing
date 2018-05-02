@@ -5,12 +5,17 @@ $demo-mobile-height: 220px; //240px;
 $demo-max-height: 380px; //240px;
 
 .alm-hero{
+    text-align: center;
+    color: $text-color-inverse;
+
     h1{
-        text-align: center;
         padding: .5em;
-        color: $text-color-inverse;
         margin-bottom: 0;
         line-height: 1.4;
+    }
+
+    h1 + p {
+        margin-top: -.5em;
     }
 
     //background: url('/images/Hero_4288_czoqgn_c_scale,w_418.jpg') no-repeat center top;
@@ -68,21 +73,24 @@ $demo-max-height: 380px; //240px;
     }
 }
 
-.alm-front-50{
+@mixin percentage-section($small, $medium, $large){
     > *{
         text-align: left;
     }
 
     @include for-tablet-portrait-up{
-        width: 290px;
+        width: $small;
         text-align: center;
     }
 
     @include for-tablet-landscape-up{
-        width: 400px;
+        width: $medium;
     }
 
     @include for-desktop-up{
-        width: 500px;
+        width: $large;
     }
 }
+
+.alm-front-25{ @include percentage-section(145px, 200px, 250px); }
+.alm-front-50{ @include percentage-section(290px, 400px, 500px); }

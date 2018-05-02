@@ -3,6 +3,10 @@
     "version": "0.1.0",
     "description": "This is the marketing site for auditlog (name still not stable). Intent is to include the main site, features, contact, blog, and docs through this site.",
     "homepage": "https://auditlog.co",
+    "scripts": {
+        "local": "node index.js --serve --watch",
+        "build": "node index.js"
+    },
     "dependencies": {
         "handlebars": "4.0.x",
         "handlebars-helpers": "0.8.x",
