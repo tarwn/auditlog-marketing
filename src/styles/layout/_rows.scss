@@ -9,10 +9,18 @@
     }
 }
 
+.alm-row.alm-row-reverse{
+    @include for-tablet-portrait-up{
+        flex-direction: row-reverse;
+    }
+}
+
 .alm-row-item-1{
     flex: 1 1 auto;
+    margin: 0 3%;
 }
 
 .alm-row-item-3{
     flex: 3 3 auto;
+    margin: 0 3%;
 }

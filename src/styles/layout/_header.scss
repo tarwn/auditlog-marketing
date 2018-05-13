@@ -91,6 +91,7 @@ $menu-item-height: 20px;
 
 .alm-nav-2{
     @include alm-nav-base(right, right);
+    padding-top: $logo-height - $menu-item-height - 24; // adjust for button height
 }
 
 .alm-header-spacer {

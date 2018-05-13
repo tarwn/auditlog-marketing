@@ -39,3 +39,5 @@ Resources
 =================
 
 Resources are manually managed right now. The `resources/` folder is not used during the build. Only files manually copied into `src/images/` will be picked up.
+
+- Fonts: http://fontello.com/
