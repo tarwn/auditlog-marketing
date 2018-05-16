@@ -25,7 +25,7 @@ $demo-max-height: 380px; //240px;
     padding-bottom: 80px;
     
     @include for-tablet-portrait-up{
-        padding-bottom: 140px;
+        padding-bottom: 240px;
     }
 }
 
@@ -37,7 +37,7 @@ $demo-max-height: 380px; //240px;
     text-align: center;
 
     @include for-tablet-portrait-up{
-        margin-top: -140px;
+        margin-top: -240px;
     }
 
     &  + .alm-front-section {
@@ -71,7 +71,7 @@ $demo-max-height: 380px; //240px;
     }
 
     @include for-desktop-up{
-        width: 1000px;
+        width: 1200px;
     }
 
     .alm-row{
