@@ -1,0 +1,24 @@
+@import "../variables";
+
+.alm-hero-short{
+    text-align: center;
+    color: $text-color-inverse;
+    padding: 2em;
+
+    h1{
+        padding: 0 0 .5em 0;
+        margin-bottom: 0;
+        line-height: 1.4;
+    }
+
+    h1 + p {
+        margin-top: -.5em;
+    }
+
+    background-color: $color-accent-1;
+
+}
+
+.alm-features > .alm-front-section:first-of-type {
+    margin: 3em auto;
+}

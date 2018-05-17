@@ -1,13 +1,14 @@
 @import "../variables";
 
 .alm-pricing-section{
-    margin: -220px auto 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin: -40px auto 0 auto;
 
     @include for-tablet-portrait-up{
         flex-direction: row;
+        margin: -220px auto 0 auto;
     }
 }
 
@@ -16,12 +17,18 @@
     display: flex;
     flex-direction: column;
     max-width: 300px;
+    min-width: 250px;
     background-color: $color-background-white;
     border-radius: 6px;
-    margin: 0 2em;
+    margin: 1em auto;
+    padding: .5em;
     box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.2);
-    padding: 2em;
     text-align: center;
+
+    @include for-tablet-portrait-up{
+        padding: 2em;
+        margin: 1em 2em;
+    }
 }
 
 .alm-pricing-plan{
@@ -69,11 +76,15 @@
 }
 
 .alm-pricing-faq{
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 6em auto;
     
     > h1{
         text-align: center;
+    }
+    
+    @include for-desktop-up{
+        max-width: 1200px;
     }
 }
 
@@ -81,7 +92,7 @@
     display: flex;
     flex-direction: column;
 
-    @include for-tablet-portrait-up{
+    @include for-tablet-landscape-up{
         flex-direction: row;
     }
 
@@ -89,6 +100,11 @@
 
 .alm-pricing-faq-column{
     flex: 1 0 auto;
-    max-width: 500px;
-    margin: 0 2em;
+    max-width: 400px;
+    margin: 0 auto;
+
+    @include for-desktop-up{
+        margin: 0 2em;
+        max-width: 500px;
+    }
 }
