@@ -9,26 +9,27 @@
     display: inline-block;
 }
 
-@mixin simple-button($color, $borderColor, $textColor){
+@mixin simple-button($color, $hoverColor, $borderColor, $textColor){
     @extend %simple-button-basics;
     color: $textColor;
     background-color: $color;
     border-color: $borderColor;
     white-space: nowrap;
+    transition: all 150ms ease-in-out;
 
     &:hover{
         color: $textColor;
-        background-color: darken($color, 5%);
+        background-color: $hoverColor;
         border-color: $borderColor;
     }
 }
 
 .alm-cta-primary{
-    @include simple-button($color-primary, $color-primary, $text-color-inverse);
+    @include simple-button($color-primary, darken($color-primary, 10%), $color-primary, $text-color-inverse);
 }
 
 .alm-cta-light{
-    @include simple-button(transparent, $color-primary, $color-primary);
+    @include simple-button(transparent, lighten($color-primary, 40%), $color-primary, $color-primary);
 }
 
 // .dm-simple-button,
