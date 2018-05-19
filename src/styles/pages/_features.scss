@@ -22,3 +22,39 @@
 .alm-features > .alm-front-section:first-of-type {
     margin: 3em auto;
 }
+
+.alm-more-features{
+    max-width: 1000px;
+    margin: 0 auto;
+
+    h1{
+        padding: 0 .5em;
+    }
+}
+
+.alm-more-features-list{
+    display: flex;
+    flex-direction: column;
+
+    @include for-tablet-portrait-up{
+        flex-direction: row;
+        flex-wrap: wrap;
+        max-width: 750px;
+        margin: 0 auto;
+    }
+
+    @include for-tablet-landscape-up{
+        max-width: unset;
+    }
+}
+
+.alm-more-features-item{
+    flex: 1 0 auto;
+    width: 300px;
+    padding: 0 1em;
+    margin-bottom: 1em;
+
+    @include for-tablet-landscape-up{
+        width: 400px;
+    }
+}
