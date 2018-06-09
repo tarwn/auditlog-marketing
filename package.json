@@ -27,6 +27,7 @@
         "metalsmith-sass": "^1.5.1",
         "metalsmith-serve": "0.0.x",
         "metalsmith-watch": "1.0.x",
+        "request": "^2.87.0",
         "yargs": "8.0.x"
     }
 }
