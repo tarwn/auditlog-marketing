@@ -19,6 +19,7 @@ var disqus = require('metalsmith-disqus');
 var argv = require('yargs').argv;
 
 var sorter = require('./utility/sorter');
+var swaggerImport = require('./utility/metalsmith-swagger-import');
 
 var baseUrl = "https://www.auditlog.co";
 
@@ -54,6 +55,13 @@ Metalsmith(__dirname)
   .destination('./build')
   .clean(true)
   
+  // swagger for API docs
+  .use(swaggerImport({
+    url: 'https://raw.githubusercontent.com/OAI/OpenAPI-Specification/master/examples/v2.0/json/petstore-expanded.json',
+    cachePath: './data/swagger.json',
+    propertyName: 'api'
+  }))
+
   // css
   // .use(less({
   //   pattern: '**/*.less',
