@@ -29,112 +29,164 @@
     <meta name="msapplication-TileImage" content="/images/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff"></head>
 <body>
-  <header class="alm-header">
-      <div class="alm-header-content">
-          <a href="/" class="alm-logo">
-              <img src="/images/logo56.png" alt="AL" />
-              <span>auditlog</span>
-          </a>
-          <div class="alm-nav-2">
-              <a href="https://app.auditlog.co/" class="alm-nav-link alm-login alm-only-large">Login</a>
-              <a href="https://app.auditlog.co/account/signup" class="alm-cta-light">Sign up</a>
-          </div>
-          <div class="alm-nav-1">
-              <a href="/features" class="alm-nav-link ">Features</a>
-              <a href="/pricing" class="alm-nav-link ">Pricing</a>
-              <a href="/blog" class="alm-nav-link alm-only-large ">Blog</a>
-              <a href="/docs" class="alm-nav-link alm-only-large ">Docs</a>
-          </div>
-          <div class="alm-header-spacer"></div>
-      </div>
-  </header>
-    <nav class="dm-docs-nav">
+  
+<div class="alm-api-area">
 
-        Getting Started
-        <ul>
-        </ul>
-
-        Using the Site
-        <ul>
-        </ul>
-
-        Getting Things Done
-        <ul>
-        </ul>
-
-        Integration
-        <ul>
-        </ul>
-
-    </nav>
-
-    <div class="dm-docs-main">
-      <div class="dm-docs-main-content">
-      
-<div class="alm-api-menu">
-    Topics
-    <ul>
-        <li><a href="#introduction">Introduction</a></li>
-        <li><a href="#authentication">Authentication</a></li>
-        <li><a href="#errors">Errors</a></li>
-        <li><a href="#idempotent">Idempotent Events</a></li>
-        <li><a href="#versioning">API Versioning</a></li>
-    </ul>
-
-    Core Types
-    <ul>
-        <li><a href="#Event">Event</a></li>
-        <li><a href="#Actor">Actor</a></li>
-        <li><a href="#Client">Client</a></li>
-        <li><a href="#View">View</a></li>
-    </ul>
-
-    Reporting Events
-    <ul>
-        <li><a href="#postEvents">Events</a></li>
-    </ul>
-
-    Querying Events
-    <ul>
-        <li><a href="#getView">Views</a></li>
-        <li><a href="#getEVent">Events</a></li>
-    </ul>
-
-    Actors (GDPR)
-    <ul>
-        <li><a href="#searchActor">Search</a></li>
-        <li><a href="#updateActor">Update</a></li>
-        <li><a href="#forgetActor">Forget</a></li>
-    </ul>
-</div>
-<div class="alm-api-main">
-    <div class="alm-api-section">
-        <div class="alm-api-section-left">
-
+    <div class="alm-api-sidebar">
+        <header class="alm-api-header">
+            <a href="/" class="alm-logo">
+                <img src="/images/logo56.png" alt="AL" />
+                <span>auditlog</span>
+            </a>
+        </header>
+        
+        <div class="alm-api-menu">
+            <ul>
+                <li><a href="#api-reference">API Reference</a></li>
+                <li><a href="#authentication">Authentication</a></li>
+                <li><a href="#errors">Errors</a></li>
+                <li><a href="#idempotent">Idempotent Events</a></li>
+                <li><a href="#versioning">API Versioning</a></li>
+                <li>
+                    <a href="#types">Core Types</a>
+                    <ul>
+                            <li><a href="#types-event">Event</a></li>
+                            <li><a href="#types-actor">Actor</a></li>
+                            <li><a href="#types-client">Client</a></li>
+                            <li><a href="#types-view">View</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#event-reporting">Reporting Events</a>
+                    <ul>
+                        <li><a href="#events-api-post">Events</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#event-querying">Querying Events</a>
+                    <ul>
+                        <li><a href="#views-api-get">Views</a></li>
+                        <li><a href="#events-api-get">Events</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="actors-api">Actors API (GDPR)</a>
+                    <ul>
+                        <li><a href="#actors-api-search">Search</a></li>
+                        <li><a href="#actors-api-update">Update</a></li>
+                        <li><a href="#actors-api-forget">Forget</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
-        <div class="alm-api-section-right"></div>
+    </div>
+    <div class="alm-api-main">
+        <div class="alm-api-background">
+            <nav class="alm-api-lang-selector">
+                <a data-language="curl">Curl</a>
+                <a data-language="curl">Coming Soon</a>
+            </nav>
+        </div>
+        <div class="alm-api-sections">
+            <div class="alm-api-section">
+                <div class="alm-api-section-left first">
+                    <h1 id="api-reference"><a href="#api-reference">API Reference</a></h1>
+                    <p>
+                        Welcome to AuditLog's API! The API enables you to <a href="#event-reporting">report Events</a>, 
+                        query customized Views and Events with <a href="#event-querying">Event Queries</a>, and
+                        satisfy privacy needs with the <a href="#actors-api">Actor API</a>.
+                    </p>
+                    <p>
+                        The API is organized around <a href="https://en.wikipedia.org/wiki/Representational_state_transfer" target="_blank">REST</a>. 
+                        All requests should be made over SSL. All request and response bodies, including errors, support JSON and XML. Standard content type 
+                        headers should be used to indicate <code>application/json</code> or <code>text/xml</code>.
+                    </p>
+                    <p>
+                        Authentication to the API is performed via a custom <code>X-API-KEY</code> header and is required for all requests.
+                    </p>
+                </div>
+                <div class="alm-api-section-right first"></div>
+            </div>
+            <div class="alm-api-section">
+                <div class="alm-api-section-left first">
+                    <h1 id="authentication"><a href="#authentication">Authentication</a></h1>
+                    <p>
+                        Authentication is done via the Consumer Id and Secret which can be managed in the
+                        <a href="https://app.auditlog.co/configure/apikeys">Configure API Keys</a> section of
+                        the application.
+                    </p>
+                    <p>
+                        Requests are authentications using a custom <code>X-API-KEY</code> header containing the Consumer Id and 
+                        Secret as a colon-seperated string: <i>{consumer id}</i>:<i>{secret}</i>
+                    </p>
+                    <p>
+                        You can see generated Consumer Id's and create and roll Consumer Secrets from the <a href="https://app.auditlog.co/configure/apikeys">application</a>.
+                    </p>
+                </div>
+                <div class="alm-api-section-right first">
+                    <blockquote class="alm-lang-curl">Authentication using X-API-KEY HTTP Header.</blockquote>
+                    <pre class="highlight shell alm-lang-curl">
+    curl 'https://app.auditlog.co/api/v1/actors/user-123' \
+        -H 'x-api-key: {consumer id}:{secret}'
+        -H 'accept: application/json'</pre>
+                </div>
+            </div>
+            <div class="alm-api-section">
+                <div class="alm-api-section-left">
+                    <h1 id="errors"><a href="#errors">Errors</a></h1>
+                    <p>
+                        The API returns standard HTTP success and error codes. For errors, it will also include 
+                        extra information about what went wrong in structured JSON or XML. Standard HTTP status
+                        codes are listed below and called out on API operations further below.
+                    </p>
+                    <h2>HTTP Status Codes</h2>
+                    <p>
+                        <table>
+                            <tr><th>Code</th><th>Title</th><th>Description</th></tr>
+                            <tr><td>200</td><td>OK</td><td>The request was successful</td></tr>
+                            <tr><td>400</td><td>Bad Request</td><td>Bad request, typically missing or invalid inputs</td></tr>
+                            <tr><td>401</td><td>Unauthorized</td><td>API key details not provided</td></tr>
+                            <tr><td>402</td><td>Over quote</td><td>Your request has been rate limited</td></tr>
+                            <tr><td>403</td><td>Unauthorized</td><td>Could not validate your API key</td></tr>
+                            <tr><td>404</td><td>Not Found</td><td>Requested resource was not found</td></tr>
+                            <tr><td>50x</td><td>Internal Server Error</td><td>An error occurred in our service</td></tr>
+                        </table>
+                    </p>
+                </div>
+            </div>
+            <div class="alm-api-section">
+                <div class="alm-api-section-left">
+                    <h2>ApiError Type</h2>
+                    <p>
+                        Additional details are returned with many errors, encoded in either JSON or XML (per the provided <code>ACCEPTS</code> HTTP header).
+                        <table>
+                            <tr><th>Property</th><th></th><th>Description</th></tr>
+                            <tr><td>statusCode</td><td>int</td><td>HTTP Status code</td></tr>
+                            <tr><td>message</td><td>string</td><td>Human-readable error message</td></tr>
+                            <tr><td>details</td><td>key/values</td><td>Key/value list of additional details</td></tr>
+                        </table>
+                    </p>
+                </div>
+                <div class="alm-api-section-right alm-extra-top-margin">
+                    <blockquote class="alm-lang-curl">Authentication using X-API-KEY HTTP Header.</blockquote>
+                    <pre class="highlight shell alm-lang-curl">
+    curl 'https://app.auditlog.co/api/v1/actors/user-123' \
+        -H 'x-api-key: {consumer id}:{secret}'
+        -H 'accept: application/json'</pre>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-      </div>
 
-      <footer class="dm-docs-footer">
-        <div class="dm-footer-copyright">
-          <span>&copy; LaunchReady Software, LLC</span>
-          <span><a href="/legal">Terms &amp; Privacy </a></span>
-          <span>Have an amazing day!</span>
-        </div>
-      </footer>
-    </div>
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-101987909-2"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'UA-101987909-2');
-    </script>
-    
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-101987909-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-101987909-2');
+  </script>
 </body>
 </html>

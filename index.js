@@ -57,7 +57,7 @@ Metalsmith(__dirname)
   
   // swagger for API docs
   .use(swaggerImport({
-    url: 'https://raw.githubusercontent.com/OAI/OpenAPI-Specification/master/examples/v2.0/json/petstore-expanded.json',
+    url: 'http://localhost:56110/swagger/v1/swagger.json',
     cachePath: './data/swagger.json',
     propertyName: 'api'
   }))

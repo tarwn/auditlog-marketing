@@ -1,0 +1,149 @@
+@import "../variables";
+
+$left-top-padding: 30px;
+$h1-height: 24px;
+$h1-bottom-margin: 12px;
+$right-top-padding: $left-top-padding + $h1-height + $h1-bottom-margin;
+
+.alm-api-area{
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+
+    font-size: 15px;
+
+    h1{
+        font-size: 24px;
+        line-height: $h1-height;
+        margin-bottom: $h1-bottom-margin;
+    }
+
+    h2{
+        font-size: 18px;
+        line-height: $h1-height;
+        margin-bottom: $h1-bottom-margin;
+    }
+
+    th{
+        text-align: left;
+        border-bottom: 1px solid $ws_lightgrey;
+        padding: 5px 10px;
+    }
+
+    td{
+        padding: 10px;
+    }
+
+}
+
+.alm-api-background{
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    width: 55%;
+    background-color: #4c555a;
+}
+
+.alm-api-sidebar{
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    width: 240px;
+    border-right: 1px solid red;
+}
+
+.alm-api-header{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 60px;
+    width: 240px;
+    border-bottom: 1px solid red;
+}
+
+.alm-api-menu{
+    position: absolute;
+    overflow-y: auto;
+    top: 60px;
+    bottom: 0px;
+    left: 0px;
+    width: 240px;
+    border-bottom: 1px solid red;
+}
+
+.alm-api-main{
+    position: absolute;
+    left: 240px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+}
+
+.alm-api-sections{
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    overflow-y: auto;
+}
+
+.alm-api-section{
+    clear: both;
+}
+
+.alm-api-section-left{
+    float: left;
+    width: 45%;
+    padding-top: $left-top-padding;
+
+    &.first{
+        border-top: 1px solid blue;
+    }
+
+    & > p,
+    & > h1,
+    & > h2 {
+        padding: 0 28px;
+    }
+    
+    & > table{
+        margin: 0 28px;
+    }
+
+    & >  p + h1,
+    & > p + h2,{
+        // treat headers inside sections as top padded also
+        padding-top: $left-top-padding;
+    }
+}
+
+.alm-api-section-right{
+    position: relative;
+    margin-left: 45%;
+    padding-top: $right-top-padding;
+
+    &.first{
+        border-top: 1px solid green;
+    }
+
+    &.alm-extra-top-margin{
+        padding-top: $right-top-padding;
+    }
+
+    & > blockquote{
+        margin: 0 2em 8px 2em;
+        color: white;
+    }
+    & > pre{
+        margin: 0 2em 8px 2em;
+        padding: 20px;
+        display: block;
+        color: white;
+        background-color: #212429;
+    }
+}

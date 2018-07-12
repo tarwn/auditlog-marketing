@@ -12,8 +12,9 @@ module.exports = (options) => {
     return function(files, metalsmith, done) {
         request(options.url, (error, response, body) => {
             if(!error){
-                if(typeof body === "string" || body instanceof String){
-                    fs.writeFileSync(options.cachePath, body, 'utf8');
+                if (typeof body === "string" || body instanceof String) {
+                    const niceBody = JSON.stringify(JSON.parse(body), null, 4);
+                    fs.writeFileSync(options.cachePath, niceBody, 'utf8');
                 }
                 else{
                     const readableJSON = JSON.stringify(body, null, 4);
