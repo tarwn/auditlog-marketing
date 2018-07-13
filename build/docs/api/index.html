@@ -27,7 +27,11 @@
     <link rel="manifest" href="/images/favicon/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/images/favicon/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff"></head>
+    <meta name="theme-color" content="#ffffff">    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+</head>
 <body>
   
 <div class="alm-api-area">
@@ -82,10 +86,6 @@
     </div>
     <div class="alm-api-main">
         <div class="alm-api-background">
-            <nav class="alm-api-lang-selector">
-                <a data-language="curl">Curl</a>
-                <a data-language="curl">Coming Soon</a>
-            </nav>
         </div>
         <div class="alm-api-sections">
             <div class="alm-api-section">
@@ -126,7 +126,7 @@
                 <div class="alm-api-section-right first">
                     <blockquote class="alm-lang-curl">Authentication using X-API-KEY HTTP Header.</blockquote>
                     <pre class="highlight shell alm-lang-curl">
-    curl 'https://app.auditlog.co/api/v1/actors/user-123' \
+    curl 'https://app.auditlog.co/api/v1/actors/{user uuid}' \
         -H 'x-api-key: {consumer id}:{secret}'
         -H 'accept: application/json'</pre>
                 </div>
@@ -176,8 +176,61 @@
                 </div>
             </div>
         </div>
+        <nav class="alm-api-lang-selector">
+                <a data-language="curl" href="javascript: void(0);" class="selected">Curl</a>
+                <a data-language="curl2" href="javascript: void(0);" class="selected">Curl</a>
+                <span>More options soon</span>
+        </nav>
     </div>
 </div>
+<script type="text/javascript">
+var currentOptions = {
+    language: ''
+};
+
+function setFromUrl(defaultValue, availableLanguages){
+    var url = window.location.href;
+    var regex =  new RegExp('[?&]([^&#]*)');
+    var match = regex.exec(url);
+    if(match != null && match[1] != null && availableLanguages.indexOf(match[1]) >= 0){
+        currentOptions.language = match[1];
+    }
+    else{
+        currentOptions.language = defaultValue;
+    }
+}
+
+function applySelectedLanguage(){
+    $('a[data-language]').removeClass('selected');
+    $('a[data-language="' + currentOptions.language + '"]').addClass('selected');
+
+    $('.alm-api-section-right blockquote').hide();
+    $('.alm-api-section-right pre').hide();
+    $('.alm-lang-' + currentOptions.language).show();
+
+    history.pushState({}, "AuditLog.co - API: " + currentOptions.language, "?" + currentOptions.language + "#" + (currentOptions.location || ""));
+}
+
+$().ready(function(){
+    var availableOptions = $('a[data-language]');
+    var availableLanguages = [];
+    availableOptions.each(function(i, a) { availableLanguages.push($(a).data('language')); });
+    
+    setFromUrl(availableLanguages[0], availableLanguages);
+
+    applySelectedLanguage();
+
+    availableOptions.click(function(e){
+        var language = $(e.target).data('language');
+        currentOptions.language = language;
+        applySelectedLanguage();
+    });
+});
+
+
+
+
+</script>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-101987909-2"></script>

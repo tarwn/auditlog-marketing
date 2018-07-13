@@ -5,6 +5,17 @@ $h1-height: 24px;
 $h1-bottom-margin: 12px;
 $right-top-padding: $left-top-padding + $h1-height + $h1-bottom-margin;
 
+$middle-column-width: 45%;
+
+.alm-api-header{
+    text-align: center;
+    padding: 10px 0;
+
+    & > .alm-logo{
+        float: unset;
+    }
+}
+
 .alm-api-area{
     position: absolute;
     bottom: 0px;
@@ -43,8 +54,42 @@ $right-top-padding: $left-top-padding + $h1-height + $h1-bottom-margin;
     top: 0px;
     bottom: 0px;
     right: 0px;
-    width: 55%;
-    background-color: #4c555a;
+    width: 100% - $middle-column-width;
+    background-color: $color-background-api-docs;
+}
+
+.alm-api-lang-selector{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 100% - $middle-column-width;
+    background-color: $ws_darkgrey;
+
+    height: 44px;
+    line-height: 44px;
+
+    & > a,
+    & > span{
+        display: block;
+        float: left;
+        text-decoration:none;
+        padding: 5px 10px;
+        margin: 8px;
+        line-height: 20px;
+
+        &.selected{
+            background-color: $color-primary;
+            border-radius: 6px;
+        }
+    }
+
+    & > a{
+        color: $text-color-inverse;
+    }
+
+    & > span{
+        color: $ws_medgrey;
+    }
 }
 
 .alm-api-sidebar{
@@ -53,7 +98,7 @@ $right-top-padding: $left-top-padding + $h1-height + $h1-bottom-margin;
     bottom: 0px;
     left: 0px;
     width: 240px;
-    border-right: 1px solid red;
+    border-right: 1px solid $ws_lightgrey;
 }
 
 .alm-api-header{
@@ -62,7 +107,6 @@ $right-top-padding: $left-top-padding + $h1-height + $h1-bottom-margin;
     left: 0px;
     height: 60px;
     width: 240px;
-    border-bottom: 1px solid red;
 }
 
 .alm-api-menu{
@@ -72,7 +116,6 @@ $right-top-padding: $left-top-padding + $h1-height + $h1-bottom-margin;
     bottom: 0px;
     left: 0px;
     width: 240px;
-    border-bottom: 1px solid red;
 }
 
 .alm-api-main{
@@ -98,12 +141,8 @@ $right-top-padding: $left-top-padding + $h1-height + $h1-bottom-margin;
 
 .alm-api-section-left{
     float: left;
-    width: 45%;
+    width: $middle-column-width;
     padding-top: $left-top-padding;
-
-    &.first{
-        border-top: 1px solid blue;
-    }
 
     & > p,
     & > h1,
@@ -124,12 +163,8 @@ $right-top-padding: $left-top-padding + $h1-height + $h1-bottom-margin;
 
 .alm-api-section-right{
     position: relative;
-    margin-left: 45%;
+    margin-left: $middle-column-width;
     padding-top: $right-top-padding;
-
-    &.first{
-        border-top: 1px solid green;
-    }
 
     &.alm-extra-top-margin{
         padding-top: $right-top-padding;
@@ -144,6 +179,12 @@ $right-top-padding: $left-top-padding + $h1-height + $h1-bottom-margin;
         padding: 20px;
         display: block;
         color: white;
-        background-color: #212429;
+        background-color: $ws_darkgrey;
+    }
+
+    & > blockquote,
+    & > pre {
+        // start invisible - jquery will enable relevant ones
+        display: none;
     }
 }
