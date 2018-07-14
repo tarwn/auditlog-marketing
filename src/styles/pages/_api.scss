@@ -37,6 +37,12 @@ $middle-column-width: 45%;
         margin-bottom: $h1-bottom-margin;
     }
 
+    h1 > a,
+    h2 > a{
+        color: $text-color-normal;
+        text-decoration: none;
+    }
+
     th{
         text-align: left;
         border-bottom: 1px solid $ws_lightgrey;
@@ -46,7 +52,36 @@ $middle-column-width: 45%;
     td{
         padding: 10px;
     }
+}
 
+.alm-api-menu{
+    margin-top: 20px;
+
+    & > ul {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+
+        ul {
+            padding: 0;
+            margin: 0 0 0 1em;
+            list-style-type: none;
+        }
+    }
+
+    a {
+        display: block;
+        padding: .25em 1em;
+        text-decoration: none;
+        font-size: 14px;
+        color: $text-color-normal;
+    }
+    a:hover{
+        text-decoration: underline;
+    }
+    a.selected{
+        background-color: $color-accent-2;
+    }
 }
 
 .alm-api-background{

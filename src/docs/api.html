@@ -31,20 +31,20 @@ layout: api.html
                     </ul>
                 </li>
                 <li>
-                    <a href="#event-reporting">Reporting Events</a>
+                    <a href="#event-reporting">Submitting Data</a>
                     <ul>
                         <li><a href="#events-api-post">Events</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#event-querying">Querying Events</a>
+                    <a href="#event-querying">Querying Data</a>
                     <ul>
                         <li><a href="#views-api-get">Views</a></li>
                         <li><a href="#events-api-get">Events</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="actors-api">Actors API (GDPR)</a>
+                    <a href="actors-api">Users / Actors</a>
                     <ul>
                         <li><a href="#actors-api-search">Search</a></li>
                         <li><a href="#actors-api-update">Update</a></li>
@@ -57,12 +57,12 @@ layout: api.html
     <div class="alm-api-main">
         <div class="alm-api-background">
         </div>
-        <div class="alm-api-sections">
+        <div class="alm-api-sections" id="scrollable-main">
             <div class="alm-api-section">
                 <div class="alm-api-section-left first">
                     <h1 id="api-reference"><a href="#api-reference">API Reference</a></h1>
                     <p>
-                        Welcome to AuditLog's API! The API enables you to <a href="#event-reporting">report Events</a>, 
+                        Welcome to AuditLog's API! The API enables you to <a href="#event-reporting">submit Events</a>, 
                         query customized Views and Events with <a href="#event-querying">Event Queries</a>, and
                         satisfy privacy needs with the <a href="#actors-api">Actor API</a>.
                     </p>
@@ -95,10 +95,10 @@ layout: api.html
                 </div>
                 <div class="alm-api-section-right first">
                     <blockquote class="alm-lang-curl">Authentication using X-API-KEY HTTP Header.</blockquote>
-                    <pre class="highlight shell alm-lang-curl">
-    curl 'https://app.auditlog.co/api/v1/actors/{user uuid}' \
-        -H 'x-api-key: {consumer id}:{secret}'
-        -H 'accept: application/json'</pre>
+                    <pre class="highlight lang-bash alm-lang-curl">
+curl 'https://app.auditlog.co/api/v1/actors/{user uuid}' \
+    -H 'x-api-key: {consumer id}:{secret}'
+    -H 'accept: application/json'</pre>
                 </div>
             </div>
             <div class="alm-api-section">
@@ -116,7 +116,7 @@ layout: api.html
                             <tr><td>200</td><td>OK</td><td>The request was successful</td></tr>
                             <tr><td>400</td><td>Bad Request</td><td>Bad request, typically missing or invalid inputs</td></tr>
                             <tr><td>401</td><td>Unauthorized</td><td>API key details not provided</td></tr>
-                            <tr><td>402</td><td>Over quote</td><td>Your request has been rate limited</td></tr>
+                            <tr><td>402</td><td>Over quota</td><td>Your request has been rate limited</td></tr>
                             <tr><td>403</td><td>Unauthorized</td><td>Could not validate your API key</td></tr>
                             <tr><td>404</td><td>Not Found</td><td>Requested resource was not found</td></tr>
                             <tr><td>50x</td><td>Internal Server Error</td><td>An error occurred in our service</td></tr>
@@ -139,23 +139,24 @@ layout: api.html
                 </div>
                 <div class="alm-api-section-right alm-extra-top-margin">
                     <blockquote class="alm-lang-curl">Authentication using X-API-KEY HTTP Header.</blockquote>
-                    <pre class="highlight shell alm-lang-curl">
-    curl 'https://app.auditlog.co/api/v1/actors/user-123' \
-        -H 'x-api-key: {consumer id}:{secret}'
-        -H 'accept: application/json'</pre>
+                    <pre class="highlight lang-bash alm-lang-curl">
+curl 'https://app.auditlog.co/api/v1/actors/user-123' \
+    -H 'x-api-key: {consumer id}:{secret}'
+    -H 'accept: application/json'</pre>
                 </div>
             </div>
         </div>
         <nav class="alm-api-lang-selector">
-                <a data-language="curl" href="javascript: void(0);" class="selected">Curl</a>
-                <a data-language="curl2" href="javascript: void(0);" class="selected">Curl</a>
+                <a data-language="curl" href="javascript: void(0);">Curl</a>
+                <a data-language="notcurl" href="javascript: void(0);">Curl</a>
                 <span>More options soon</span>
         </nav>
     </div>
 </div>
 <script type="text/javascript">
 var currentOptions = {
-    language: ''
+    language: '',
+    location: undefined
 };
 
 function setFromUrl(defaultValue, availableLanguages){
@@ -168,6 +169,9 @@ function setFromUrl(defaultValue, availableLanguages){
     else{
         currentOptions.language = defaultValue;
     }
+
+    var hash = location.hash.replace(/^#/, '');
+    currentOptions.location = hash;
 }
 
 function applySelectedLanguage(){
@@ -181,6 +185,31 @@ function applySelectedLanguage(){
     history.pushState({}, "AuditLog.co - API: " + currentOptions.language, "?" + currentOptions.language + "#" + (currentOptions.location || ""));
 }
 
+function applyWaypoints(){
+    $('h1[id]').waypoint({
+        handler: function(){ 
+            currentOptions.location = this.element.id;
+            applySelectedLanguage();
+        },
+        context: document.getElementById('scrollable-main'),
+        offset: 25
+    });
+
+    $('h1[id]').waypoint({
+        handler: function(){ 
+            currentOptions.location = this.element.id;
+            applySelectedLanguage();
+        },
+        context: document.getElementById('scrollable-main'),
+        offset: -25
+    });
+}
+
+function hashChanged(){
+    var hash = location.hash.replace(/^#/, '');
+    currentOptions.location = hash;
+}
+
 $().ready(function(){
     var availableOptions = $('a[data-language]');
     var availableLanguages = [];
@@ -189,15 +218,23 @@ $().ready(function(){
     setFromUrl(availableLanguages[0], availableLanguages);
 
     applySelectedLanguage();
+    if(currentOptions.location){
+        var titleLoc = $('#' + currentOptions.location).offset().top;
+        $('#scrollable-main').scrollTop(titleLoc);
+    }
+
+    applyWaypoints();
 
     availableOptions.click(function(e){
         var language = $(e.target).data('language');
         currentOptions.language = language;
         applySelectedLanguage();
     });
+
+    window.addEventListener("hashchange", hashChanged, false);
+
+    $('pre.highlight').each(function(i, block) {
+        hljs.highlightBlock(block);
+    });
 });
-
-
-
-
 </script>
