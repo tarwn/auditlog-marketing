@@ -253,6 +253,754 @@
                 </div>
             </div>
 
+            <div class="alm-api-section">
+                <div class="alm-api-section-left">
+                    <h1 id="types"><a href="#types">Core Types</a></h1>
+                    <p>
+                        There are 4 Core Types of objects used frequently with the AuditLog API. They cover the use
+                        cases of reporting Events from your system, querying for them either for adhoc use or a pre-defined 
+                        Custom View, and interacting with Actor records.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="alm-api-section">
+                <div class="alm-api-section-left">
+                    <h2 id="types-event"><a href="#types-event">Event</a></h2>
+                    <p>
+                        Represents an Event that you are reporting from your system
+to be logged in the AuditLog. 
+
+Events that you receive back from the API will include richer
+information, including a unique Id and Reception Time, but 
+otherwise match the same properties you sent.
+                    </p>
+                    <p class="alm-api-note">
+                        Properties for child objects are shown with dot notation.
+                    </p>
+                    <p>
+                    <table>
+                        <tr>
+                            <td class="alm-api-fieldName">
+                                uuid                                
+                            </td>
+                            <td class="alm-api-description">
+                                <div>
+                                    <span class="alm-api-type">string</span>
+                                        <span class="alm-api-required">required</span>
+                                </div>
+                                <div>
+                                    A unique identifier you generate for the event to ensure idempotent
+storage of the event.
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="alm-api-fieldName">
+                                client                                
+                            </td>
+                            <td class="alm-api-description">
+                                <div>
+                                    <span class="alm-api-type">object</span>
+                                        <span class="alm-api-optional">optional</span>
+                                </div>
+                                <div>
+                                    Information about the Client using your system, assuming users belong to
+more than one installation or customer.
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="alm-api-fieldName">
+                                client.uuid                                
+                            </td>
+                            <td class="alm-api-description">
+                                <div>
+                                    <span class="alm-api-type">string</span>
+                                        <span class="alm-api-required">required</span>
+                                </div>
+                                <div>
+                                    A Unique Identifier for this client that you can map back to your internal systems.
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="alm-api-fieldName">
+                                client.name                                
+                            </td>
+                            <td class="alm-api-description">
+                                <div>
+                                    <span class="alm-api-type">string</span>
+                                        <span class="alm-api-optional">optional</span>
+                                </div>
+                                <div>
+                                    A human-readable description of the client for easy identification at a glance.
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="alm-api-fieldName">
+                                time                                
+                            </td>
+                            <td class="alm-api-description">
+                                <div>
+                                    <span class="alm-api-type">string</span>
+                                        <span class="alm-api-required">required</span>
+                                </div>
+                                <div>
+                                    The time the Event occurred, provided in ISO8601 format.
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="alm-api-fieldName">
+                                action                                
+                            </td>
+                            <td class="alm-api-description">
+                                <div>
+                                    <span class="alm-api-type">string</span>
+                                        <span class="alm-api-required">required</span>
+                                </div>
+                                <div>
+                                    The Action that occurred.
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="alm-api-fieldName">
+                                description                                
+                            </td>
+                            <td class="alm-api-description">
+                                <div>
+                                    <span class="alm-api-type">string</span>
+                                        <span class="alm-api-optional">optional</span>
+                                </div>
+                                <div>
+                                    A human readable description of the action/event.
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="alm-api-fieldName">
+                                url                                
+                            </td>
+                            <td class="alm-api-description">
+                                <div>
+                                    <span class="alm-api-type">string</span>
+                                        <span class="alm-api-optional">optional</span>
+                                </div>
+                                <div>
+                                    A URL to link to a change record or additional information for this Action/Event.
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="alm-api-fieldName">
+                                actor                                
+                            </td>
+                            <td class="alm-api-description">
+                                <div>
+                                    <span class="alm-api-type">object</span>
+                                        <span class="alm-api-optional">optional</span>
+                                </div>
+                                <div>
+                                    The Actor that made the change, either a user or artificial SYSTEM record.
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="alm-api-fieldName">
+                                actor.uuid                                
+                            </td>
+                            <td class="alm-api-description">
+                                <div>
+                                    <span class="alm-api-type">string</span>
+                                        <span class="alm-api-required">required</span>
+                                </div>
+                                <div>
+                                    A universally unique ID you can use to identify the actor against your own records.
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="alm-api-fieldName">
+                                actor.name                                
+                            </td>
+                            <td class="alm-api-description">
+                                <div>
+                                    <span class="alm-api-type">string</span>
+                                        <span class="alm-api-optional">optional</span>
+                                </div>
+                                <div>
+                                    A human-readable name for the Actor for easy identification at a glance.
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="alm-api-fieldName">
+                                actor.email                                
+                            </td>
+                            <td class="alm-api-description">
+                                <div>
+                                    <span class="alm-api-type">string</span>
+                                        <span class="alm-api-optional">optional</span>
+                                </div>
+                                <div>
+                                    A human-readable email address for the Actor for easy identification at a glance.
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="alm-api-fieldName">
+                                context                                
+                            </td>
+                            <td class="alm-api-description">
+                                <div>
+                                    <span class="alm-api-type">object</span>
+                                        <span class="alm-api-required">required</span>
+                                </div>
+                                <div>
+                                    Context from the Actor and your service for additional log detail.
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="alm-api-fieldName">
+                                context.client                                
+                            </td>
+                            <td class="alm-api-description">
+                                <div>
+                                    <span class="alm-api-type">object</span>
+                                        <span class="alm-api-optional">optional</span>
+                                </div>
+                                <div>
+                                    Properties of the Actor&#x27;s client/system for audit purposes.
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="alm-api-fieldName">
+                                context.client.ipAddress                                
+                            </td>
+                            <td class="alm-api-description">
+                                <div>
+                                    <span class="alm-api-type">string</span>
+                                        <span class="alm-api-optional">optional</span>
+                                </div>
+                                <div>
+                                    IP Address that Actor is connecting from, if applicable.
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="alm-api-fieldName">
+                                context.client.browserAgent                                
+                            </td>
+                            <td class="alm-api-description">
+                                <div>
+                                    <span class="alm-api-type">string</span>
+                                        <span class="alm-api-optional">optional</span>
+                                </div>
+                                <div>
+                                    Actor&#x27;s browser User Agent, if applicable.
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="alm-api-fieldName">
+                                context.server                                
+                            </td>
+                            <td class="alm-api-description">
+                                <div>
+                                    <span class="alm-api-type">object</span>
+                                        <span class="alm-api-required">required</span>
+                                </div>
+                                <div>
+                                    Properties of your software/server that they are interacting with.
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="alm-api-fieldName">
+                                context.server.serverId                                
+                            </td>
+                            <td class="alm-api-description">
+                                <div>
+                                    <span class="alm-api-type">string</span>
+                                        <span class="alm-api-required">required</span>
+                                </div>
+                                <div>
+                                    A server Id for the server the Actor is connected to, if applicable.
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="alm-api-fieldName">
+                                context.server.version                                
+                            </td>
+                            <td class="alm-api-description">
+                                <div>
+                                    <span class="alm-api-type">string</span>
+                                        <span class="alm-api-required">required</span>
+                                </div>
+                                <div>
+                                    The version of your software the Actor is connected to, if applicable.
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="alm-api-fieldName">
+                                target                                
+                            </td>
+                            <td class="alm-api-description">
+                                <div>
+                                    <span class="alm-api-type">object</span>
+                                        <span class="alm-api-optional">optional</span>
+                                </div>
+                                <div>
+                                    The Target that the Actor performed the Action against.
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="alm-api-fieldName">
+                                target.type                                
+                            </td>
+                            <td class="alm-api-description">
+                                <div>
+                                    <span class="alm-api-type">string</span>
+                                        <span class="alm-api-required">required</span>
+                                </div>
+                                <div>
+                                    The Type of the Target being affected. There is only one special type &#x27;User&#x27;, all others can be defined custom by you.
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="alm-api-fieldName">
+                                target.uuid                                
+                            </td>
+                            <td class="alm-api-description">
+                                <div>
+                                    <span class="alm-api-type">string</span>
+                                        <span class="alm-api-required">required</span>
+                                </div>
+                                <div>
+                                    A universally unique Id for the Target being affected that you can connect back to the record on your systems.
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="alm-api-fieldName">
+                                target.label                                
+                            </td>
+                            <td class="alm-api-description">
+                                <div>
+                                    <span class="alm-api-type">string</span>
+                                        <span class="alm-api-optional">optional</span>
+                                </div>
+                                <div>
+                                    A human-readable description of the target being affected, for at a glance information. Do not use for &#x27;User&#x27;.
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="alm-api-fieldName">
+                                target.url                                
+                            </td>
+                            <td class="alm-api-description">
+                                <div>
+                                    <span class="alm-api-type">string</span>
+                                        <span class="alm-api-optional">optional</span>
+                                </div>
+                                <div>
+                                    A URL reference back to the target being affected, if useful.
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    </p>
+                </div>
+                <div class="alm-api-section-right alm-extra-top-margin">
+                    <blockquote class="alm-lang-curl">Example Event with all optional fields</blockquote>
+                    <pre class="highlight lang-json alm-lang-curl">
+                        {
+                            "uuid": "sample-event-001",
+                            "client": {
+                                "uuid": "1234567890",
+                                "name": "Great Client"
+                            },
+                            "time": 1522313782,
+                            "action": "user.invite",
+                            "description": "Invited new user, 'QA' role",
+                            "url": "http://blah.example.com/95c102ae-5930-413f-b794-8f0934fdb136",
+                            "actor": {
+                                "uuid": "bd275099-e808-4c1a-bd32-57a589b7cf93",
+                                "name": "Roberta Wharton",
+                                "email": "rwharton@great-client.test"
+                            },
+                            "context": {
+                                "client": {
+                                    "ipAddress": "192.168.105.23",
+                                    "browserAgent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/20.0.1092.0 Safari/536.6"
+                                },
+                                "server": {
+                                    "serverId": "prod-01-us-appfarm",
+                                    "version": "20180325-01"
+                                }
+                            },
+                            "target": {
+                                "type": "user",
+                                "uuid": "95c102ae-5930-413f-b794-8f0934fdb136",
+                                "label": "Salman Randall",
+                                "url": "http://blah.example.com/95c102ae-5930-413f-b794-8f0934fdb136"
+                            }
+                        }
+                    </pre>
+                </div>
+            </div>                
+
+            <div class="alm-api-section">
+                <div class="alm-api-section-left">
+                    <h2 id="types-actor"><a href="#types-actor">Actor</a></h2>
+                    <p>
+                        Represents the latest data for an Actor in the system, including GDPR &quot;Forgotten&quot; status.
+                    </p>
+                    <p class="alm-api-note">
+                        Properties for child objects are shown with dot notation.
+                    </p>
+                    <p>
+                    <table>
+                        <tr>
+                            <td class="alm-api-fieldName">
+                                uuid                                
+                            </td>
+                            <td class="alm-api-description">
+                                <div>
+                                    <span class="alm-api-type">string</span>
+                                        <span class="alm-api-optional">optional</span>
+                                </div>
+                                <div>
+                                    A universally unique Id that identifies the user in your system.
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="alm-api-fieldName">
+                                name                                
+                            </td>
+                            <td class="alm-api-description">
+                                <div>
+                                    <span class="alm-api-type">string</span>
+                                        <span class="alm-api-optional">optional</span>
+                                </div>
+                                <div>
+                                    A human-readable name for at a glance information.
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="alm-api-fieldName">
+                                email                                
+                            </td>
+                            <td class="alm-api-description">
+                                <div>
+                                    <span class="alm-api-type">string</span>
+                                        <span class="alm-api-optional">optional</span>
+                                </div>
+                                <div>
+                                    A human-readable email address for at a glance information.
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="alm-api-fieldName">
+                                isForgotten                                
+                            </td>
+                            <td class="alm-api-description">
+                                <div>
+                                    <span class="alm-api-type">boolean</span>
+                                        <span class="alm-api-optional">optional</span>
+                                </div>
+                                <div>
+                                    Indicator that the personally identifiable information on this record has been redacted.
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    </p>
+                </div>
+                <div class="alm-api-section-right alm-extra-top-margin">
+                    <blockquote class="alm-lang-curl">Example Actor</blockquote>
+                    <pre class="highlight lang-json alm-lang-curl">
+                        {
+                            "uuid": "bd275099-e808-4c1a-bd32-57a589b7cf93",
+                            "name": "Roberta Wharton",
+                            "email": "rwharton@great-client.test",
+                            "isForgotten": false
+                        }
+                    </pre>
+                </div>
+            </div>
+
+            <div class="alm-api-section">
+                <div class="alm-api-section-left">
+                    <h2 id="types-client"><a href="#types-client">Client</a></h2>
+                    <p>
+                        
+                    </p>
+                    <p class="alm-api-note">
+                        Properties for child objects are shown with dot notation.
+                    </p>
+                    <p>
+                    <table>
+                        <tr>
+                            <td class="alm-api-fieldName">
+                                uuid                                
+                            </td>
+                            <td class="alm-api-description">
+                                <div>
+                                    <span class="alm-api-type">string</span>
+                                        <span class="alm-api-required">required</span>
+                                </div>
+                                <div>
+                                    A Unique Identifier for this client that you can map back to your internal systems.
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="alm-api-fieldName">
+                                name                                
+                            </td>
+                            <td class="alm-api-description">
+                                <div>
+                                    <span class="alm-api-type">string</span>
+                                        <span class="alm-api-optional">optional</span>
+                                </div>
+                                <div>
+                                    A human-readable description of the client for easy identification at a glance.
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    </p>
+                </div>
+                <div class="alm-api-section-right alm-extra-top-margin">
+                    <blockquote class="alm-lang-curl">Example Client</blockquote>
+                    <pre class="highlight lang-json alm-lang-curl">
+                        {
+                            "uuid": "1234567890",
+                            "name": "Great Client"
+                        }
+                    </pre>
+                </div>
+            </div>
+
+            <div class="alm-api-section">
+                <div class="alm-api-section-left">
+                    <h2 id="types-view"><a href="#types-view">View</a></h2>
+                    <p>
+                        A paged set of events for a pre-configured View. The view is configured in the
+application to serve data to the drop-in component or your own custom
+component.
+                    </p>
+                    <p class="alm-api-note">
+                        Properties for child objects are shown with dot notation.
+                    </p>
+                    <p>
+                    <table>
+                        <tr>
+                            <td class="alm-api-fieldName">
+                                _id                                
+                            </td>
+                            <td class="alm-api-description">
+                                <div>
+                                    <span class="alm-api-type">object</span>
+                                        <span class="alm-api-optional">optional</span>
+                                </div>
+                                <div>
+                                    A generated &quot;id&quot; that represents this unique response
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="alm-api-fieldName">
+                                _id.timestamp                                
+                            </td>
+                            <td class="alm-api-description">
+                                <div>
+                                    <span class="alm-api-type">string</span>
+                                        <span class="alm-api-optional">optional</span>
+                                </div>
+                                <div>
+                                    Timestamp that the results were put together
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="alm-api-fieldName">
+                                _id.type                                
+                            </td>
+                            <td class="alm-api-description">
+                                <div>
+                                    <span class="alm-api-type">string</span>
+                                        <span class="alm-api-optional">optional</span>
+                                </div>
+                                <div>
+                                    The type of request
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="alm-api-fieldName">
+                                _id.href                                
+                            </td>
+                            <td class="alm-api-description">
+                                <div>
+                                    <span class="alm-api-type">string</span>
+                                        <span class="alm-api-optional">optional</span>
+                                </div>
+                                <div>
+                                    The Href for this specific response
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="alm-api-fieldName">
+                                _id.label                                
+                            </td>
+                            <td class="alm-api-description">
+                                <div>
+                                    <span class="alm-api-type">string</span>
+                                        <span class="alm-api-optional">optional</span>
+                                </div>
+                                <div>
+                                    A human-readable label for an end user looking at this dataset
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="alm-api-fieldName">
+                                _links                                
+                            </td>
+                            <td class="alm-api-description">
+                                <div>
+                                    <span class="alm-api-type">object</span>
+                                        <span class="alm-api-optional">optional</span>
+                                </div>
+                                <div>
+                                    Links to other pages of data you can navigate to from this set.
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="alm-api-fieldName">
+                                entries                                
+                            </td>
+                            <td class="alm-api-description">
+                                <div>
+                                    <span class="alm-api-type">array</span>
+                                        <span class="alm-api-optional">optional</span>
+                                </div>
+                                <div>
+                                    The relevant Event Entries for this View
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    </p>
+                </div>
+                <div class="alm-api-section-right alm-extra-top-margin">
+                    <blockquote class="alm-lang-curl">Example View Response (without Events)</blockquote>
+                    <pre class="highlight lang-json alm-lang-curl">
+                        {
+                            "_id": {
+                                "timestamp": "2018-07-14T22:34:06.7933405Z",
+                                "type": "GET",
+                                "href": "/api/v1/views/bcd2c22b-7e98-4155-b8ee-b91fc81da777/1234567890?page=201807",
+                                "label": "July 2018"
+                            },
+                            "_links": {
+                                "previous": {
+                                    "label": "June 2018",
+                                    "type": "GET",
+                                    "href": "/api/v1/views/bcd2c22b-7e98-4155-b8ee-b91fc81da777/1234567890?page=201806"
+                                }
+                            },
+                            "entries": [ ... ]
+                        }
+                    </pre>
+                </div>
+            </div>
+
+            <!-- 
+            
+                <div class="alm-api-section">
+                    <div class="alm-api-section-left">
+                        <h2 id="types"><a href="#types">Actor</a></h2>
+                        <p>
+                            <table>
+                                <tr><td>uuid</td><td>string</td><td>A universally unique Id that identifies the user in your system.</td></tr>
+                                <tr><td>name</td><td>string</td><td>A human-readable name for at a glance information.</td></tr>
+                                <tr><td>email</td><td>string</td><td>A human-readable email address for at a glance information.</td></tr>
+                                <tr><td>isForgotten</td><td>boolean</td><td>Indicator that the personally identifiable information on this record has been redacted.</td></tr>
+                            </table>
+                        </p>
+                    </div>
+                </div>                
+            
+            
+            
+                <div class="alm-api-section">
+                    <div class="alm-api-section-left">
+                        <h2 id="types"><a href="#types">EventEntry</a></h2>
+                        <p>
+                            <table>
+                                <tr><td>uuid</td><td>string</td><td>A unique identifier you generate for the event to ensure idempotent
+storage of the event.</td></tr>
+                                <tr><td>client</td><td>object</td><td>Information about the Client using your system, assuming users belong to
+more than one installation or customer.</td></tr>
+                                    
+                                    <tr><td></td></tr>
+                                    
+                                <tr><td>time</td><td>string</td><td>The time the Event occurred, provided in ISO8601 format.</td></tr>
+                                <tr><td>action</td><td>string</td><td>The Action that occurred.</td></tr>
+                                <tr><td>description</td><td>string</td><td>A human readable description of the action/event.</td></tr>
+                                <tr><td>url</td><td>string</td><td>A URL to link to a change record or additional information for this Action/Event.</td></tr>
+                                <tr><td>actor</td><td>object</td><td>The Actor that made the change, either a user or artificial SYSTEM record.</td></tr>
+                                    
+                                    <tr><td></td></tr>
+                                    
+                                <tr><td>context</td><td>object</td><td>Context from the Actor and your service for additional log detail.</td></tr>
+                                    
+                                    <tr><td></td></tr>
+                                    
+                                <tr><td>target</td><td>object</td><td>The Target that the Actor performed the Action against.</td></tr>
+                                    
+                                    <tr><td></td></tr>
+                                    
+                            </table>
+                        </p>
+                    </div>
+                </div>                
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             -->
+
         <!-- <div class="alm-api-section">
                 <div class="alm-api-section-left">
                     <h1 id="sample-section"><a href="#sample-section">Sample Section</a></h1>
@@ -325,6 +1073,24 @@ function applyWaypoints(){
     });
 
     $('h1[id]').waypoint({
+        handler: function(){ 
+            currentOptions.location = this.element.id;
+            applySelectedLanguage();
+        },
+        context: document.getElementById('scrollable-main'),
+        offset: -25
+    });
+
+     $('h2[id]').waypoint({
+        handler: function(){ 
+            currentOptions.location = this.element.id;
+            applySelectedLanguage();
+        },
+        context: document.getElementById('scrollable-main'),
+        offset: 25
+    });
+
+    $('h2[id]').waypoint({
         handler: function(){ 
             currentOptions.location = this.element.id;
             applySelectedLanguage();

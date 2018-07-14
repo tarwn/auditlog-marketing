@@ -37,6 +37,29 @@ var helpers = require('handlebars-helpers')({
   handlebars: handlebars
 });
 
+handlebars.registerHelper("apiType", function (topTypeName, context, options) {
+  function injectChildObject(context, obj, typeName, prefix) {
+    var data = context.api.definitions[typeName].properties;
+    for (var key in context.api.definitions[typeName].properties) {
+      if (!data[key].$ref) {
+        obj[prefix + key] = data[key];
+      }
+      else {
+        obj[prefix + key] = data[key];
+        obj[prefix + key].type = 'object';
+        injectChildObject(context, obj, data[key].$ref.replace('#/definitions/', ''), prefix + key + ".");
+      }
+      obj[prefix + key].isRequired = context.api.definitions[typeName].required &&
+        context.api.definitions[typeName].required.indexOf(key) >= 0;
+    }
+  }
+  var newContext = context.api.definitions[topTypeName];
+  newContext.displayableProperties = {};
+  injectChildObject(context, newContext.displayableProperties, topTypeName, "");
+
+  return options.fn(newContext);
+});
+
 Metalsmith(__dirname)
   .metadata({
     title: "auditlog",
@@ -49,7 +72,9 @@ Metalsmith(__dirname)
     // make rss feed happy
     site: {
       url: baseUrl
-    }
+    },
+
+    apiTypes: ['EventEntry','Actor']
   })
   .source('./src')
   .destination('./build')

@@ -679,18 +679,23 @@
             }
         },
         "Actor": {
+            "description": "Represents the latest data for an Actor in the system, including GDPR \"Forgotten\" status.",
             "type": "object",
             "properties": {
                 "uuid": {
+                    "description": "A universally unique Id that identifies the user in your system.",
                     "type": "string"
                 },
                 "name": {
+                    "description": "A human-readable name for at a glance information.",
                     "type": "string"
                 },
                 "email": {
+                    "description": "A human-readable email address for at a glance information.",
                     "type": "string"
                 },
                 "isForgotten": {
+                    "description": "Indicator that the personally identifiable information on this record has been redacted.",
                     "type": "boolean"
                 }
             }
@@ -725,6 +730,7 @@
             }
         },
         "EventEntry": {
+            "description": "Represents an Event that you are reporting from your system\r\nto be logged in the AuditLog. \r\n\r\nEvents that you receive back from the API will include richer\r\ninformation, including a unique Id and Reception Time, but \r\notherwise match the same properties you sent.",
             "required": [
                 "uuid",
                 "time",
@@ -734,40 +740,49 @@
             "type": "object",
             "properties": {
                 "uuid": {
+                    "description": "A unique identifier you generate for the event to ensure idempotent\r\nstorage of the event.",
                     "maxLength": 80,
                     "minLength": 0,
                     "type": "string"
                 },
                 "client": {
-                    "$ref": "#/definitions/EventEntryClient"
+                    "$ref": "#/definitions/EventEntryClient",
+                    "description": "Information about the Client using your system, assuming users belong to\r\nmore than one installation or customer."
                 },
                 "time": {
                     "format": "date-time",
+                    "description": "The time the Event occurred, provided in ISO8601 format.",
                     "type": "string"
                 },
                 "action": {
+                    "description": "The Action that occurred.",
                     "maxLength": 40,
                     "minLength": 0,
                     "type": "string"
                 },
                 "description": {
+                    "description": "A human readable description of the action/event.",
                     "maxLength": 120,
                     "minLength": 0,
                     "type": "string"
                 },
                 "url": {
+                    "description": "A URL to link to a change record or additional information for this Action/Event.",
                     "maxLength": 400,
                     "minLength": 0,
                     "type": "string"
                 },
                 "actor": {
-                    "$ref": "#/definitions/EventEntryActor"
+                    "$ref": "#/definitions/EventEntryActor",
+                    "description": "The Actor that made the change, either a user or artificial SYSTEM record."
                 },
                 "context": {
-                    "$ref": "#/definitions/EventEntryContext"
+                    "$ref": "#/definitions/EventEntryContext",
+                    "description": "Context from the Actor and your service for additional log detail."
                 },
                 "target": {
-                    "$ref": "#/definitions/EventEntryTarget"
+                    "$ref": "#/definitions/EventEntryTarget",
+                    "description": "The Target that the Actor performed the Action against."
                 }
             }
         },
@@ -778,11 +793,13 @@
             "type": "object",
             "properties": {
                 "uuid": {
+                    "description": "A Unique Identifier for this client that you can map back to your internal systems.",
                     "maxLength": 120,
                     "minLength": 0,
                     "type": "string"
                 },
                 "name": {
+                    "description": "A human-readable description of the client for easy identification at a glance.",
                     "maxLength": 120,
                     "minLength": 0,
                     "type": "string"
@@ -790,22 +807,26 @@
             }
         },
         "EventEntryActor": {
+            "description": "The person or service account that initiatied the Action.",
             "required": [
                 "uuid"
             ],
             "type": "object",
             "properties": {
                 "uuid": {
+                    "description": "A universally unique ID you can use to identify the actor against your own records.",
                     "maxLength": 80,
                     "minLength": 0,
                     "type": "string"
                 },
                 "name": {
+                    "description": "A human-readable name for the Actor for easy identification at a glance.",
                     "maxLength": 120,
                     "minLength": 0,
                     "type": "string"
                 },
                 "email": {
+                    "description": "A human-readable email address for the Actor for easy identification at a glance.",
                     "maxLength": 120,
                     "minLength": 0,
                     "type": "string"
@@ -819,10 +840,12 @@
             "type": "object",
             "properties": {
                 "client": {
-                    "$ref": "#/definitions/EventEntryContextClient"
+                    "$ref": "#/definitions/EventEntryContextClient",
+                    "description": "Properties of the Actor's client/system for audit purposes."
                 },
                 "server": {
-                    "$ref": "#/definitions/EventEntryContextServer"
+                    "$ref": "#/definitions/EventEntryContextServer",
+                    "description": "Properties of your software/server that they are interacting with."
                 }
             }
         },
@@ -834,21 +857,25 @@
             "type": "object",
             "properties": {
                 "type": {
+                    "description": "The Type of the Target being affected. There is only one special type 'User', all others can be defined custom by you.",
                     "maxLength": 40,
                     "minLength": 0,
                     "type": "string"
                 },
                 "uuid": {
+                    "description": "A universally unique Id for the Target being affected that you can connect back to the record on your systems.",
                     "maxLength": 80,
                     "minLength": 0,
                     "type": "string"
                 },
                 "label": {
+                    "description": "A human-readable description of the target being affected, for at a glance information. Do not use for 'User'.",
                     "maxLength": 120,
                     "minLength": 0,
                     "type": "string"
                 },
                 "url": {
+                    "description": "A URL reference back to the target being affected, if useful.",
                     "maxLength": 400,
                     "minLength": 0,
                     "type": "string"
@@ -859,12 +886,14 @@
             "type": "object",
             "properties": {
                 "ipAddress": {
+                    "description": "IP Address that Actor is connecting from, if applicable.",
                     "maxLength": 15,
                     "minLength": 0,
                     "pattern": "[012]?\\d?\\d\\.[012]?\\d?\\d\\.[012]?\\d?\\d\\.[012]?\\d?\\d",
                     "type": "string"
                 },
                 "browserAgent": {
+                    "description": "Actor's browser User Agent, if applicable.",
                     "maxLength": 4096,
                     "minLength": 0,
                     "type": "string"
@@ -879,11 +908,13 @@
             "type": "object",
             "properties": {
                 "serverId": {
+                    "description": "A server Id for the server the Actor is connected to, if applicable.",
                     "maxLength": 240,
                     "minLength": 0,
                     "type": "string"
                 },
                 "version": {
+                    "description": "The version of your software the Actor is connected to, if applicable.",
                     "maxLength": 80,
                     "minLength": 0,
                     "type": "string"
@@ -928,19 +959,24 @@
             }
         },
         "EventSearchId": {
+            "description": "Generated id to represent a query for Event Entries",
             "type": "object",
             "properties": {
                 "timestamp": {
                     "format": "date-time",
+                    "description": "Timestamp that the results were put together",
                     "type": "string"
                 },
                 "type": {
+                    "description": "The type of request",
                     "type": "string"
                 },
                 "href": {
+                    "description": "The Href for this specific response",
                     "type": "string"
                 },
                 "label": {
+                    "description": "A human-readable label for an end user looking at this dataset",
                     "type": "string"
                 }
             }
@@ -1023,18 +1059,22 @@
             }
         },
         "PagedViewResult": {
+            "description": "A paged set of events for a pre-configured View. The view is configured in the\r\napplication to serve data to the drop-in component or your own custom\r\ncomponent.",
             "type": "object",
             "properties": {
                 "_id": {
-                    "$ref": "#/definitions/EventSearchId"
+                    "$ref": "#/definitions/EventSearchId",
+                    "description": "A generated \"id\" that represents this unique response"
                 },
                 "_links": {
+                    "description": "Links to other pages of data you can navigate to from this set.",
                     "type": "object",
                     "additionalProperties": {
                         "$ref": "#/definitions/PagedViewLink"
                     }
                 },
                 "entries": {
+                    "description": "The relevant Event Entries for this View",
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/RecordedEvent"

@@ -220,6 +220,269 @@ layout: api.html
                 </div>
             </div>
 
+            <div class="alm-api-section">
+                <div class="alm-api-section-left">
+                    <h1 id="types"><a href="#types">Core Types</a></h1>
+                    <p>
+                        There are 4 Core Types of objects used frequently with the AuditLog API. They cover the use
+                        cases of reporting Events from your system, querying for them either for adhoc use or a pre-defined 
+                        Custom View, and interacting with Actor records.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="alm-api-section">
+                <div class="alm-api-section-left">
+                    <h2 id="types-event"><a href="#types-event">Event</a></h2>
+                    {{#apiType 'EventEntry' this }}
+                    <p>
+                        {{ description }}
+                    </p>
+                    <p class="alm-api-note">
+                        Properties for child objects are shown with dot notation.
+                    </p>
+                    <p>
+                    <table>
+                        {{#each displayableProperties}}
+                        <tr>
+                            <td class="alm-api-fieldName">
+                                {{ @key }}                                
+                            </td>
+                            <td class="alm-api-description">
+                                <div>
+                                    <span class="alm-api-type">{{ type }}</span>
+                                    {{#if isRequired }}
+                                        <span class="alm-api-required">required</span>
+                                    {{else}}
+                                        <span class="alm-api-optional">optional</span>
+                                    {{/if}}
+                                </div>
+                                <div>
+                                    {{ description }}
+                                </div>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </table>
+                    </p>
+                    {{/apiType}}
+                </div>
+                <div class="alm-api-section-right alm-extra-top-margin">
+                    <blockquote class="alm-lang-curl">Example Event with all optional fields</blockquote>
+                    <pre class="highlight lang-json alm-lang-curl">
+                        {
+                            "uuid": "sample-event-001",
+                            "client": {
+                                "uuid": "1234567890",
+                                "name": "Great Client"
+                            },
+                            "time": 1522313782,
+                            "action": "user.invite",
+                            "description": "Invited new user, 'QA' role",
+                            "url": "http://blah.example.com/95c102ae-5930-413f-b794-8f0934fdb136",
+                            "actor": {
+                                "uuid": "bd275099-e808-4c1a-bd32-57a589b7cf93",
+                                "name": "Roberta Wharton",
+                                "email": "rwharton@great-client.test"
+                            },
+                            "context": {
+                                "client": {
+                                    "ipAddress": "192.168.105.23",
+                                    "browserAgent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/20.0.1092.0 Safari/536.6"
+                                },
+                                "server": {
+                                    "serverId": "prod-01-us-appfarm",
+                                    "version": "20180325-01"
+                                }
+                            },
+                            "target": {
+                                "type": "user",
+                                "uuid": "95c102ae-5930-413f-b794-8f0934fdb136",
+                                "label": "Salman Randall",
+                                "url": "http://blah.example.com/95c102ae-5930-413f-b794-8f0934fdb136"
+                            }
+                        }
+                    </pre>
+                </div>
+            </div>                
+
+            <div class="alm-api-section">
+                <div class="alm-api-section-left">
+                    <h2 id="types-actor"><a href="#types-actor">Actor</a></h2>
+                    {{#apiType 'Actor' this }}
+                    <p>
+                        {{ description }}
+                    </p>
+                    <p class="alm-api-note">
+                        Properties for child objects are shown with dot notation.
+                    </p>
+                    <p>
+                    <table>
+                        {{#each displayableProperties}}
+                        <tr>
+                            <td class="alm-api-fieldName">
+                                {{ @key }}                                
+                            </td>
+                            <td class="alm-api-description">
+                                <div>
+                                    <span class="alm-api-type">{{ type }}</span>
+                                    {{#if isRequired }}
+                                        <span class="alm-api-required">required</span>
+                                    {{else}}
+                                        <span class="alm-api-optional">optional</span>
+                                    {{/if}}
+                                </div>
+                                <div>
+                                    {{ description }}
+                                </div>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </table>
+                    </p>
+                    {{/apiType}}
+                </div>
+                <div class="alm-api-section-right alm-extra-top-margin">
+                    <blockquote class="alm-lang-curl">Example Actor</blockquote>
+                    <pre class="highlight lang-json alm-lang-curl">
+                        {
+                            "uuid": "bd275099-e808-4c1a-bd32-57a589b7cf93",
+                            "name": "Roberta Wharton",
+                            "email": "rwharton@great-client.test",
+                            "isForgotten": false
+                        }
+                    </pre>
+                </div>
+            </div>
+
+            <div class="alm-api-section">
+                <div class="alm-api-section-left">
+                    <h2 id="types-client"><a href="#types-client">Client</a></h2>
+                    {{#apiType 'EventEntryClient' this }}
+                    <p>
+                        {{ description }}
+                    </p>
+                    <p class="alm-api-note">
+                        Properties for child objects are shown with dot notation.
+                    </p>
+                    <p>
+                    <table>
+                        {{#each displayableProperties}}
+                        <tr>
+                            <td class="alm-api-fieldName">
+                                {{ @key }}                                
+                            </td>
+                            <td class="alm-api-description">
+                                <div>
+                                    <span class="alm-api-type">{{ type }}</span>
+                                    {{#if isRequired }}
+                                        <span class="alm-api-required">required</span>
+                                    {{else}}
+                                        <span class="alm-api-optional">optional</span>
+                                    {{/if}}
+                                </div>
+                                <div>
+                                    {{ description }}
+                                </div>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </table>
+                    </p>
+                    {{/apiType}}
+                </div>
+                <div class="alm-api-section-right alm-extra-top-margin">
+                    <blockquote class="alm-lang-curl">Example Client</blockquote>
+                    <pre class="highlight lang-json alm-lang-curl">
+                        {
+                            "uuid": "1234567890",
+                            "name": "Great Client"
+                        }
+                    </pre>
+                </div>
+            </div>
+
+            <div class="alm-api-section">
+                <div class="alm-api-section-left">
+                    <h2 id="types-view"><a href="#types-view">View</a></h2>
+                    {{#apiType 'PagedViewResult' this }}
+                    <p>
+                        {{ description }}
+                    </p>
+                    <p class="alm-api-note">
+                        Properties for child objects are shown with dot notation.
+                    </p>
+                    <p>
+                    <table>
+                        {{#each displayableProperties}}
+                        <tr>
+                            <td class="alm-api-fieldName">
+                                {{ @key }}                                
+                            </td>
+                            <td class="alm-api-description">
+                                <div>
+                                    <span class="alm-api-type">{{ type }}</span>
+                                    {{#if isRequired }}
+                                        <span class="alm-api-required">required</span>
+                                    {{else}}
+                                        <span class="alm-api-optional">optional</span>
+                                    {{/if}}
+                                </div>
+                                <div>
+                                    {{ description }}
+                                </div>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </table>
+                    </p>
+                    {{/apiType}}
+                </div>
+                <div class="alm-api-section-right alm-extra-top-margin">
+                    <blockquote class="alm-lang-curl">Example View Response (without Events)</blockquote>
+                    <pre class="highlight lang-json alm-lang-curl">
+                        {
+                            "_id": {
+                                "timestamp": "2018-07-14T22:34:06.7933405Z",
+                                "type": "GET",
+                                "href": "/api/v1/views/bcd2c22b-7e98-4155-b8ee-b91fc81da777/1234567890?page=201807",
+                                "label": "July 2018"
+                            },
+                            "_links": {
+                                "previous": {
+                                    "label": "June 2018",
+                                    "type": "GET",
+                                    "href": "/api/v1/views/bcd2c22b-7e98-4155-b8ee-b91fc81da777/1234567890?page=201806"
+                                }
+                            },
+                            "entries": [ ... ]
+                        }
+                    </pre>
+                </div>
+            </div>
+
+            <!-- {{#each api.definitions}}
+            {{#inArray ../apiTypes @key }}
+                <div class="alm-api-section">
+                    <div class="alm-api-section-left">
+                        <h2 id="types"><a href="#types">{{ @key }}</a></h2>
+                        <p>
+                            <table>
+                            {{#each properties}}
+                                <tr><td>{{ @key }}</td><td>{{ type }}</td><td>{{ description }}</td></tr>
+                                {{#if $ref}}
+                                    
+                                    <tr><td>{{ JSONstringify ../../api.definitions.[(replace $ref "#/definitions/" "")] }}</td></tr>
+                                    
+                                {{/if}}
+                            {{/each}}
+                            </table>
+                        </p>
+                    </div>
+                </div>                
+            {{/inArray}}
+            {{/each}} -->
+
         <!-- <div class="alm-api-section">
                 <div class="alm-api-section-left">
                     <h1 id="sample-section"><a href="#sample-section">Sample Section</a></h1>
@@ -292,6 +555,24 @@ function applyWaypoints(){
     });
 
     $('h1[id]').waypoint({
+        handler: function(){ 
+            currentOptions.location = this.element.id;
+            applySelectedLanguage();
+        },
+        context: document.getElementById('scrollable-main'),
+        offset: -25
+    });
+
+     $('h2[id]').waypoint({
+        handler: function(){ 
+            currentOptions.location = this.element.id;
+            applySelectedLanguage();
+        },
+        context: document.getElementById('scrollable-main'),
+        offset: 25
+    });
+
+    $('h2[id]').waypoint({
         handler: function(){ 
             currentOptions.location = this.element.id;
             applySelectedLanguage();
