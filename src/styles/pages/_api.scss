@@ -169,6 +169,14 @@ $middle-column-width: 45%;
     right: 0px;
     bottom: 0px;
     overflow-y: auto;
+
+    ul {
+        margin: 1em 3em 1em 1em;
+    }
+
+    li{
+        margin: 1em 0;
+    }
 }
 
 .alm-api-section{

@@ -23,7 +23,9 @@
                 "produces": [
                     "text/plain",
                     "application/json",
-                    "text/json"
+                    "text/json",
+                    "application/xml",
+                    "text/xml"
                 ],
                 "parameters": [
                     {
@@ -84,7 +86,9 @@
                 "produces": [
                     "text/plain",
                     "application/json",
-                    "text/json"
+                    "text/json",
+                    "application/xml",
+                    "text/xml"
                 ],
                 "parameters": [
                     {
@@ -150,7 +154,9 @@
                 "produces": [
                     "text/plain",
                     "application/json",
-                    "text/json"
+                    "text/json",
+                    "application/xml",
+                    "text/xml"
                 ],
                 "parameters": [
                     {
@@ -205,7 +211,9 @@
                 "produces": [
                     "text/plain",
                     "application/json",
-                    "text/json"
+                    "text/json",
+                    "application/xml",
+                    "text/xml"
                 ],
                 "parameters": [
                     {
@@ -342,7 +350,9 @@
                 "produces": [
                     "text/plain",
                     "application/json",
-                    "text/json"
+                    "text/json",
+                    "application/xml",
+                    "text/xml"
                 ],
                 "parameters": [
                     {
@@ -558,7 +568,9 @@
                 "produces": [
                     "text/plain",
                     "application/json",
-                    "text/json"
+                    "text/json",
+                    "application/xml",
+                    "text/xml"
                 ],
                 "responses": {
                     "401": {
@@ -593,7 +605,9 @@
                 "produces": [
                     "text/plain",
                     "application/json",
-                    "text/json"
+                    "text/json",
+                    "application/xml",
+                    "text/xml"
                 ],
                 "parameters": [
                     {

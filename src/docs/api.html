@@ -19,7 +19,7 @@ layout: api.html
                 <li><a href="#api-reference">API Reference</a></li>
                 <li><a href="#authentication">Authentication</a></li>
                 <li><a href="#errors">Errors</a></li>
-                <li><a href="#idempotent">Idempotent Events</a></li>
+                <li><a href="#immutable">Immutability and Events</a></li>
                 <li><a href="#versioning">API Versioning</a></li>
                 <li>
                     <a href="#types">Core Types</a>
@@ -96,9 +96,10 @@ layout: api.html
                 <div class="alm-api-section-right first">
                     <blockquote class="alm-lang-curl">Authentication using X-API-KEY HTTP Header.</blockquote>
                     <pre class="highlight lang-bash alm-lang-curl">
-curl 'https://app.auditlog.co/api/v1/actors/{user uuid}' \
-    -H 'x-api-key: {consumer id}:{secret}'
-    -H 'accept: application/json'</pre>
+                    curl 'https://app.auditlog.co/api/v1/actors/{user uuid}' \
+                        -H 'x-api-key: {consumer id}:{secret}'
+                        -H 'accept: application/json'
+                    </pre>
                 </div>
             </div>
             <div class="alm-api-section">
@@ -138,13 +139,101 @@ curl 'https://app.auditlog.co/api/v1/actors/{user uuid}' \
                     </p>
                 </div>
                 <div class="alm-api-section-right alm-extra-top-margin">
-                    <blockquote class="alm-lang-curl">Authentication using X-API-KEY HTTP Header.</blockquote>
-                    <pre class="highlight lang-bash alm-lang-curl">
-curl 'https://app.auditlog.co/api/v1/actors/user-123' \
-    -H 'x-api-key: {consumer id}:{secret}'
-    -H 'accept: application/json'</pre>
+                    <blockquote class="alm-lang-curl">Example response when POSTing without a required field.</blockquote>
+                    <pre class="highlight lang-json alm-lang-curl">
+                    {
+                        "statusCode": 400,
+                        "message": "Bad Request",
+                        "details": {
+                            "[0].uuid": "The UUID field is required."
+                        }
+                    }
+                    </pre>
                 </div>
             </div>
+
+            <div class="alm-api-section">
+                <div class="alm-api-section-left">
+                    <h1 id="immutable"><a href="#immutable">Immutability and Events</a></h1>
+                    <p>
+                        Immutability is a tricky topic for audit logs. An Auditable Event is an Action 
+                        against a Target by an Actor at a given Time. We then layer on some additional
+                        information for readabaility, augmenting an Actors unique id with a human readable
+                        name, for instance.
+                    </p>
+                    <p>
+                        Most of the fields from a reported Event will be stored as an immutable part of the
+                        event. The primary exception is Actors. On the Event, we store the <abbr title="Universally Unique Identifier">UUID</abbr>
+                        for the actor, but store the Actor's name, email, or other provided information on
+                        a single unique record for the Actor. 
+                    </p>
+                    <p>
+                        Keeping a seperate Actor record enables a few key things:
+                        <ul>
+                            <li><u>Readability</u> - The Actor UUID is part of the immutable record, the mispelling in John's name 3 years ago when he first logged in is not</li>
+                            <li><u>Privacy</u> - These fields are potentially personally identifiable, this makes it easy to identify and redact them</li>
+                            <li><u>Immutable Log</u> - Separating these fields means there is no need for an Update operation on Events</li>
+                        </ul>
+                    </p>
+                    <h2>Warning: Personally Identifiable Data</h2>
+                    <p>
+                        Do not include personally identifiable data outside the fields for Actor and Target.
+                    </p>
+                    <p>
+                        Data for Actors and Targets submitted with Target Type of <code>User</code> will be stored beside
+                        the immutable record, where it can be reported back and redacted. No other Event fields currently
+                        support this reporting or redaction.
+                    </p>
+                </div>
+                <div class="alm-api-section-right alm-extra-top-margin">
+                    <blockquote class="alm-lang-curl">Example of an Actor record</blockquote>
+                    <pre class="highlight lang-json alm-lang-curl">
+                    {
+                        "uuid": "bd275099-e808-4c1a-bd32-57a589b7cf93",
+                        "name": "Roberta Wharton",
+                        "email": "rwharton@great-client.test",
+                        "isForgotten": false
+                    }
+                    </pre>
+                    <blockquote class="alm-lang-curl">Example after /actor/{UUID}/forget</blockquote>
+                    <pre class="highlight lang-json alm-lang-curl">
+                    {
+                        "uuid": "bd275099-e808-4c1a-bd32-57a589b7cf93",
+                        "name": "[forgotten]",
+                        "email": "[forgotten]",
+                        "isForgotten": true
+                    }
+                    </pre>
+                </div>
+            </div>
+            <div class="alm-api-section">
+                <div class="alm-api-section-left">
+                    <h1 id="versioning"><a href="#versioning">Versioning</a></h1>
+                    <p>
+                        When we make backwards-incompatible changes to the API, we release a new version.
+                        The current version is <strong>v1</strong>. 
+                    </p>
+                    <p>
+                        The API Version is provided as part of the URL for each endpoint. Responses return
+                        data structured for the provided version.
+                    </p>
+                </div>
+            </div>
+
+        <!-- <div class="alm-api-section">
+                <div class="alm-api-section-left">
+                    <h1 id="sample-section"><a href="#sample-section">Sample Section</a></h1>
+                    <p>
+                    Content goes in paragraph tags.
+                    </p>
+                </div>
+                <div class="alm-api-section-right alm-extra-top-margin">
+                    <blockquote class="alm-lang-curl">Example code label with per-language class</blockquote>
+                    <pre class="highlight lang-json alm-lang-curl">
+                    example code w/ alm-lang-* class for language selection and lang-* for highlight.js
+                    </pre>
+                </div>
+            </div> -->
         </div>
         <nav class="alm-api-lang-selector">
                 <a data-language="curl" href="javascript: void(0);">Curl</a>
@@ -178,14 +267,18 @@ function applySelectedLanguage(){
     $('a[data-language]').removeClass('selected');
     $('a[data-language="' + currentOptions.language + '"]').addClass('selected');
 
-    $('.alm-api-menu a').removeClass('selected');
-    $('.alm-api-menu a[href="#' + currentOptions.location + '"]').addClass('selected');
+    applyMenuHighlight();
 
     $('.alm-api-section-right blockquote').hide();
     $('.alm-api-section-right pre').hide();
     $('.alm-lang-' + currentOptions.language).show();
 
     history.pushState({}, "AuditLog.co - API: " + currentOptions.language, "?" + currentOptions.language + "#" + (currentOptions.location || ""));
+}
+
+function applyMenuHighlight(){
+    $('.alm-api-menu a').removeClass('selected');
+    $('.alm-api-menu a[href="#' + currentOptions.location + '"]').addClass('selected');
 }
 
 function applyWaypoints(){
@@ -211,6 +304,8 @@ function applyWaypoints(){
 function hashChanged(){
     var hash = location.hash.replace(/^#/, '');
     currentOptions.location = hash;
+
+    applyMenuHighlight();
 }
 
 $().ready(function(){
@@ -237,6 +332,18 @@ $().ready(function(){
     window.addEventListener("hashchange", hashChanged, false);
 
     $('pre.highlight').each(function(i, block) {
+        var lines = block.textContent.split('\n');
+        var matches;
+        var indentation = (matches = /^\s+/.exec(lines[0])) != null ? matches[0] : null;
+        if (!!indentation) {
+            lines = lines.map(function(line) {
+                return line.replace(indentation, '');
+            });
+            return block.textContent = lines.join('\n').trim();
+        }
+    });
+
+    $('pre.highlight').each(function(o, block){ 
         hljs.highlightBlock(block);
     });
 });
