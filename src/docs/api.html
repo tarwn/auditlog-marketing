@@ -178,6 +178,9 @@ function applySelectedLanguage(){
     $('a[data-language]').removeClass('selected');
     $('a[data-language="' + currentOptions.language + '"]').addClass('selected');
 
+    $('.alm-api-menu a').removeClass('selected');
+    $('.alm-api-menu a[href="#' + currentOptions.location + '"]').addClass('selected');
+
     $('.alm-api-section-right blockquote').hide();
     $('.alm-api-section-right pre').hide();
     $('.alm-lang-' + currentOptions.language).show();
