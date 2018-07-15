@@ -604,6 +604,7 @@
                 "tags": [
                     "Views"
                 ],
+                "summary": "Returns the entries for a given page of a customized View.",
                 "operationId": "ApiV1ViewsByViewIdByClientUUIdGet",
                 "consumes": [],
                 "produces": [
@@ -617,6 +618,7 @@
                     {
                         "name": "viewId",
                         "in": "path",
+                        "description": "View Id for your customized View",
                         "required": true,
                         "type": "string",
                         "format": "uuid"
@@ -624,12 +626,14 @@
                     {
                         "name": "clientUUId",
                         "in": "path",
+                        "description": "Your unique Id for your client",
                         "required": true,
                         "type": "string"
                     },
                     {
                         "name": "page",
                         "in": "query",
+                        "description": "Page name to retrieve (or empty for most recent)",
                         "required": false,
                         "type": "string"
                     }

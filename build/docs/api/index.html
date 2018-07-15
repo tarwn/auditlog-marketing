@@ -926,14 +926,14 @@
                             "_id": {
                                 "timestamp": "2018-07-14T22:34:06.7933405Z",
                                 "type": "GET",
-                                "href": "/api/v1/views/bcd2c22b-7e98-4155-b8ee-b91fc81da777/1234567890?page=201807",
+                                "href": "/api/v1/views/{viewId}/1234567890?page=201807",
                                 "label": "July 2018"
                             },
                             "_links": {
                                 "previous": {
                                     "label": "June 2018",
                                     "type": "GET",
-                                    "href": "/api/v1/views/bcd2c22b-7e98-4155-b8ee-b91fc81da777/1234567890?page=201806"
+                                    "href": "/api/v1/views/{viewId}/1234567890?page=201806"
                                 }
                             },
                             "entries": [ ... ]
@@ -1477,7 +1477,10 @@
                 <div class="alm-api-section-left">
                     <h2 id="views-api-get"><a href="#views-api-get">Views API - GET</a></h2>
                     <p>
-                        Description
+                        The <strong>Views API</strong> GET endpoint enables you to query for the
+                        same data the Drop-In display uses, to allow for deeper customization. The
+                        <code>viewId</code> is located on the <a href="https://app.auditlog.co/customize/view">View Customization</a>
+                        screen.
                     </p>
                     <h3>HTTP Request</h3>
                     <p>
@@ -1489,12 +1492,31 @@
                 <div class="alm-api-section-left">
                     <h3>HTTP GET Parameters</h3>
                     <p>
+                        <table>
+                            <tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
+                                <tr>
+                                    <td>viewId </td>
+                                    <td>string </td>
+                                    <td>View Id for your customized View</td>
+                                </tr>
+                                <tr>
+                                    <td>clientUUId </td>
+                                    <td>string </td>
+                                    <td>Your unique Id for your client</td>
+                                </tr>
+                                <tr>
+                                    <td>page  <br/><span class="alm-api-optional">optional</span></td>
+                                    <td>string </td>
+                                    <td>Page name to retrieve (or empty for most recent)</td>
+                                </tr>
+                        </table>
                     </p>
                 </div>
                 <div class="alm-api-section-right alm-extra-top-margin">
-                    <blockquote class="alm-lang-curl">Example POSTed Event with all optional fields</blockquote>
+                    <blockquote class="alm-lang-curl">Example Request</blockquote>
                     <pre class="highlight lang-bash alm-lang-curl">
-                        curl 'https://app.auditlog.co/api/v1/events'
+                        curl -X GET \
+                            'https://app.auditlog.co/api/v1/views/{ viewId }/1234567890?page=201806'
                     </pre>
                 </div>
             </div>
@@ -1506,12 +1528,240 @@
                             <tr><th>Code</th><th>Type</th><th>Description</th></tr>
                         </table>
                     </p>
+                    <h3>PagedViewResult</h3>
+                    <p>
+                        A search response with information about the current page, other available pages, and 
+                        an array of Entries that match the properties for an <a href="#types-event">Event</a>, 
+                        with additional properties for the AuditLog id, Event URL, and time it was received.
+                        
+                        <p>
+                            A paged set of events for a pre-configured View. The view is configured in the
+                        application to serve data to the drop-in component or your own custom
+                        component.
+                        </p>
+                        <p class="alm-api-note">
+                            Properties for child objects are shown with dot notation.
+                        </p>
+                        <p>
+                            <table>
+                                <tr>
+                                    <td class="alm-api-fieldName">
+                                        _id                                
+                                    </td>
+                                    <td class="alm-api-description">
+                                        <div>
+                                            <span class="alm-api-type">object</span>
+                                                <span class="alm-api-optional">optional</span>
+                                        </div>
+                                        <div>
+                                            A generated &quot;id&quot; that represents this unique response
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="alm-api-fieldName">
+                                        _id.timestamp                                
+                                    </td>
+                                    <td class="alm-api-description">
+                                        <div>
+                                            <span class="alm-api-type">string</span>
+                                                <span class="alm-api-optional">optional</span>
+                                        </div>
+                                        <div>
+                                            Timestamp that the results were put together
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="alm-api-fieldName">
+                                        _id.type                                
+                                    </td>
+                                    <td class="alm-api-description">
+                                        <div>
+                                            <span class="alm-api-type">string</span>
+                                                <span class="alm-api-optional">optional</span>
+                                        </div>
+                                        <div>
+                                            The type of request
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="alm-api-fieldName">
+                                        _id.href                                
+                                    </td>
+                                    <td class="alm-api-description">
+                                        <div>
+                                            <span class="alm-api-type">string</span>
+                                                <span class="alm-api-optional">optional</span>
+                                        </div>
+                                        <div>
+                                            The Href for this specific response
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="alm-api-fieldName">
+                                        _id.label                                
+                                    </td>
+                                    <td class="alm-api-description">
+                                        <div>
+                                            <span class="alm-api-type">string</span>
+                                                <span class="alm-api-optional">optional</span>
+                                        </div>
+                                        <div>
+                                            A human-readable label for an end user looking at this dataset
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="alm-api-fieldName">
+                                        _links                                
+                                    </td>
+                                    <td class="alm-api-description">
+                                        <div>
+                                            <span class="alm-api-type">object</span>
+                                                <span class="alm-api-optional">optional</span>
+                                        </div>
+                                        <div>
+                                            Links to other pages of data you can navigate to from this set.
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="alm-api-fieldName">
+                                        entries                                
+                                    </td>
+                                    <td class="alm-api-description">
+                                        <div>
+                                            <span class="alm-api-type">array</span>
+                                                <span class="alm-api-optional">optional</span>
+                                        </div>
+                                        <div>
+                                            The relevant Event Entries for this View
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </p>                    </p>
+                    <p>
+                        <strong>Links</strong>
+                        
+                        <p>
+                            
+                        </p>
+                        <p class="alm-api-note">
+                            Properties for child objects are shown with dot notation.
+                        </p>
+                        <p>
+                            <table>
+                                <tr>
+                                    <td class="alm-api-fieldName">
+                                        label                                
+                                    </td>
+                                    <td class="alm-api-description">
+                                        <div>
+                                            <span class="alm-api-type">string</span>
+                                                <span class="alm-api-optional">optional</span>
+                                        </div>
+                                        <div>
+                                            
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="alm-api-fieldName">
+                                        type                                
+                                    </td>
+                                    <td class="alm-api-description">
+                                        <div>
+                                            <span class="alm-api-type">string</span>
+                                                <span class="alm-api-optional">optional</span>
+                                        </div>
+                                        <div>
+                                            
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="alm-api-fieldName">
+                                        href                                
+                                    </td>
+                                    <td class="alm-api-description">
+                                        <div>
+                                            <span class="alm-api-type">string</span>
+                                                <span class="alm-api-optional">optional</span>
+                                        </div>
+                                        <div>
+                                            
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </p>                    </p>
                 </div>
                 <div class="alm-api-section-right alm-extra-top-margin">
                     <blockquote class="alm-lang-curl">Example Response</blockquote>
                     <pre class="highlight lang-json alm-lang-curl">
                         {
-                           
+                            "_id": {
+                                "timestamp": "2018-07-15T18:50:07.1337274Z",
+                                "type": "GET",
+                                "href": "/api/v1/views/{viewId}/1234567890?page=201806",
+                                "label": "June 2018"
+                            },
+                            "_links": {
+                                "previous": {
+                                    "label": "May 2018",
+                                    "type": "GET",
+                                    "href": "/api/v1/views/{viewId}/1234567890?page=201805"
+                                },
+                                "next": {
+                                    "label": "July 2018",
+                                    "type": "GET",
+                                    "href": "/api/v1/views/{viewId}/1234567890?page=201807"
+                                }
+                            },
+                            "entries": [
+                                {
+                                    "_links": {
+                                        "href": "/api/v1/events/b0db0eea-9a3f-4b86-8f5d-012617b14d0a"
+                                    },
+                                    "id": "b0db0eea-9a3f-4b86-8f5d-012617b14d0a",
+                                    "receptionTime": "2018-06-30T19:07:51.7733333",
+                                    "uuid": "sample-event-000",
+                                    "client": {
+                                        "uuid": "1234567890",
+                                        "name": "Great Client"
+                                    },
+                                    "time": "2018-06-30T16:35:52",
+                                    "action": "user.login",
+                                    "description": null,
+                                    "url": null,
+                                    "actor": {
+                                        "uuid": "bd275099-e808-4c1a-bd32-57a589b7cf93",
+                                        "name": "Roberta Wharton",
+                                        "email": "rwharton@great-client.test"
+                                    },
+                                    "context": {
+                                        "client": {
+                                            "ipAddress": "192.168.105.23",
+                                            "browserAgent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/20.0.1092.0 Safari/536.6"
+                                        },
+                                        "server": {
+                                            "serverId": "prod-01-us-appfarm",
+                                            "version": "20180325-01"
+                                        }
+                                    },
+                                    "target": {
+                                        "type": null,
+                                        "uuid": null,
+                                        "label": null,
+                                        "url": null
+                                    }
+                                },
+                                ...
+                            ]
                         }
                     </pre>
                 </div>
