@@ -1,0 +1,31 @@
+
+<p>
+    {{ description }}
+</p>
+<p class="alm-api-note">
+    Properties for child objects are shown with dot notation.
+</p>
+<p>
+    <table>
+        {{#each displayableProperties}}
+        <tr>
+            <td class="alm-api-fieldName">
+                {{ @key }}                                
+            </td>
+            <td class="alm-api-description">
+                <div>
+                    <span class="alm-api-type">{{ type }}</span>
+                    {{#if isRequired }}
+                        <span class="alm-api-required">required</span>
+                    {{else}}
+                        <span class="alm-api-optional">optional</span>
+                    {{/if}}
+                </div>
+                <div>
+                    {{ description }}
+                </div>
+            </td>
+        </tr>
+        {{/each}}
+    </table>
+</p>

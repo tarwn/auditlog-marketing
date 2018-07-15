@@ -36,29 +36,7 @@ handlebars.registerHelper("equals", function (lvalue, rvalue, options) {
 var helpers = require('handlebars-helpers')({
   handlebars: handlebars
 });
-
-handlebars.registerHelper("apiType", function (topTypeName, context, options) {
-  function injectChildObject(context, obj, typeName, prefix) {
-    var data = context.api.definitions[typeName].properties;
-    for (var key in context.api.definitions[typeName].properties) {
-      if (!data[key].$ref) {
-        obj[prefix + key] = data[key];
-      }
-      else {
-        obj[prefix + key] = data[key];
-        obj[prefix + key].type = 'object';
-        injectChildObject(context, obj, data[key].$ref.replace('#/definitions/', ''), prefix + key + ".");
-      }
-      obj[prefix + key].isRequired = context.api.definitions[typeName].required &&
-        context.api.definitions[typeName].required.indexOf(key) >= 0;
-    }
-  }
-  var newContext = context.api.definitions[topTypeName];
-  newContext.displayableProperties = {};
-  injectChildObject(context, newContext.displayableProperties, topTypeName, "");
-
-  return options.fn(newContext);
-});
+var helpers = require('./utility/apiHelpers')(handlebars);
 
 Metalsmith(__dirname)
   .metadata({
@@ -74,7 +52,16 @@ Metalsmith(__dirname)
       url: baseUrl
     },
 
-    apiTypes: ['EventEntry','Actor']
+    // email addresses
+    email: {
+      hello: 'hello@auditlog.co',
+      sales: 'eli@auditlog.co',
+      support: 'support@auditlog.co'
+    },
+
+    // api docs
+    apiTypes: ['EventEntry', 'Actor'],
+    exampleApiToken: '{consumer id}:{secret}'
   })
   .source('./src')
   .destination('./build')
@@ -160,7 +147,11 @@ Metalsmith(__dirname)
     //   }
     // }
   }))
-  
+
+  .use(layouts({
+    engine: 'handlebars',
+    partials: 'partials'
+  }))
   .use(markdown())
   .use(permalinks({
     relative: false
@@ -168,11 +159,7 @@ Metalsmith(__dirname)
   .use(hbtmd(handlebars, {
       pattern: '**/*.html'
   }))
-  .use(layouts({
-    engine: 'handlebars',
-    partials: 'partials'
-  }))
-
+  
   // Disqus Comments
   .use(disqus({
     siteurl: 'https://www.auditlog.co',

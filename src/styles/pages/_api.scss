@@ -37,6 +37,11 @@ $middle-column-width: 45%;
         margin-bottom: $h1-bottom-margin;
     }
 
+    h3{
+        font-size: 14px;
+        font-weight: bold;
+    }
+
     h1 > a,
     h2 > a{
         color: $text-color-normal;
@@ -190,16 +195,23 @@ $middle-column-width: 45%;
 
     & > p,
     & > h1,
-    & > h2 {
+    & > h2,
+    & > h3,
+    & > pre {
         padding: 0 28px;
     }
     
     & > table{
         margin: 0 28px;
+        
+        td{
+            vertical-align: top;
+        }
     }
 
-    & >  p + h1,
-    & > p + h2,{
+    & > p + h1,
+    & > p + h2,
+    & > p + h2 {
         // treat headers inside sections as top padded also
         padding-top: $left-top-padding;
     }

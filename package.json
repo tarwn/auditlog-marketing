@@ -9,7 +9,7 @@
     },
     "dependencies": {
         "handlebars": "4.0.x",
-        "handlebars-helpers": "0.8.x",
+        "handlebars-helpers": "^0.10.0",
         "metalsmith": "2.3.x",
         "metalsmith-collections": "0.9.x",
         "metalsmith-discover-partials": "0.1.x",

@@ -58,6 +58,7 @@ layout: api.html
         <div class="alm-api-background">
         </div>
         <div class="alm-api-sections" id="scrollable-main">
+            <!-- API Reference -->
             <div class="alm-api-section">
                 <div class="alm-api-section-left first">
                     <h1 id="api-reference"><a href="#api-reference">API Reference</a></h1>
@@ -77,6 +78,8 @@ layout: api.html
                 </div>
                 <div class="alm-api-section-right first"></div>
             </div>
+
+            <!-- Authentication -->
             <div class="alm-api-section">
                 <div class="alm-api-section-left first">
                     <h1 id="authentication"><a href="#authentication">Authentication</a></h1>
@@ -97,11 +100,13 @@ layout: api.html
                     <blockquote class="alm-lang-curl">Authentication using X-API-KEY HTTP Header.</blockquote>
                     <pre class="highlight lang-bash alm-lang-curl">
                     curl 'https://app.auditlog.co/api/v1/actors/{user uuid}' \
-                        -H 'x-api-key: {consumer id}:{secret}'
+                        -H 'x-api-key: {{ exampleApiToken }}'
                         -H 'accept: application/json'
                     </pre>
                 </div>
             </div>
+
+            <!-- Errors -->
             <div class="alm-api-section">
                 <div class="alm-api-section-left">
                     <h1 id="errors"><a href="#errors">Errors</a></h1>
@@ -152,6 +157,7 @@ layout: api.html
                 </div>
             </div>
 
+            <!-- Immutability and Events -->
             <div class="alm-api-section">
                 <div class="alm-api-section-left">
                     <h1 id="immutable"><a href="#immutable">Immutability and Events</a></h1>
@@ -206,6 +212,8 @@ layout: api.html
                     </pre>
                 </div>
             </div>
+
+            <!-- Versioning -->
             <div class="alm-api-section">
                 <div class="alm-api-section-left">
                     <h1 id="versioning"><a href="#versioning">Versioning</a></h1>
@@ -220,6 +228,7 @@ layout: api.html
                 </div>
             </div>
 
+            <!-- Core Types -->
             <div class="alm-api-section">
                 <div class="alm-api-section-left">
                     <h1 id="types"><a href="#types">Core Types</a></h1>
@@ -234,41 +243,10 @@ layout: api.html
             <div class="alm-api-section">
                 <div class="alm-api-section-left">
                     <h2 id="types-event"><a href="#types-event">Event</a></h2>
-                    {{#apiType 'EventEntry' this }}
-                    <p>
-                        {{ description }}
-                    </p>
-                    <p class="alm-api-note">
-                        Properties for child objects are shown with dot notation.
-                    </p>
-                    <p>
-                    <table>
-                        {{#each displayableProperties}}
-                        <tr>
-                            <td class="alm-api-fieldName">
-                                {{ @key }}                                
-                            </td>
-                            <td class="alm-api-description">
-                                <div>
-                                    <span class="alm-api-type">{{ type }}</span>
-                                    {{#if isRequired }}
-                                        <span class="alm-api-required">required</span>
-                                    {{else}}
-                                        <span class="alm-api-optional">optional</span>
-                                    {{/if}}
-                                </div>
-                                <div>
-                                    {{ description }}
-                                </div>
-                            </td>
-                        </tr>
-                        {{/each}}
-                    </table>
-                    </p>
-                    {{/apiType}}
+                    {{> apiTypeProperties (apiType 'EventEntry' this) }}
                 </div>
                 <div class="alm-api-section-right alm-extra-top-margin">
-                    <blockquote class="alm-lang-curl">Example Event with all optional fields</blockquote>
+                    <blockquote class="alm-lang-curl">Example POSTed Event with all optional fields</blockquote>
                     <pre class="highlight lang-json alm-lang-curl">
                         {
                             "uuid": "sample-event-001",
@@ -276,7 +254,7 @@ layout: api.html
                                 "uuid": "1234567890",
                                 "name": "Great Client"
                             },
-                            "time": 1522313782,
+                            "time": "2018-06-30T16:35:52",
                             "action": "user.invite",
                             "description": "Invited new user, 'QA' role",
                             "url": "http://blah.example.com/95c102ae-5930-413f-b794-8f0934fdb136",
@@ -309,38 +287,7 @@ layout: api.html
             <div class="alm-api-section">
                 <div class="alm-api-section-left">
                     <h2 id="types-actor"><a href="#types-actor">Actor</a></h2>
-                    {{#apiType 'Actor' this }}
-                    <p>
-                        {{ description }}
-                    </p>
-                    <p class="alm-api-note">
-                        Properties for child objects are shown with dot notation.
-                    </p>
-                    <p>
-                    <table>
-                        {{#each displayableProperties}}
-                        <tr>
-                            <td class="alm-api-fieldName">
-                                {{ @key }}                                
-                            </td>
-                            <td class="alm-api-description">
-                                <div>
-                                    <span class="alm-api-type">{{ type }}</span>
-                                    {{#if isRequired }}
-                                        <span class="alm-api-required">required</span>
-                                    {{else}}
-                                        <span class="alm-api-optional">optional</span>
-                                    {{/if}}
-                                </div>
-                                <div>
-                                    {{ description }}
-                                </div>
-                            </td>
-                        </tr>
-                        {{/each}}
-                    </table>
-                    </p>
-                    {{/apiType}}
+                    {{> apiTypeProperties (apiType 'Actor' this) }}
                 </div>
                 <div class="alm-api-section-right alm-extra-top-margin">
                     <blockquote class="alm-lang-curl">Example Actor</blockquote>
@@ -358,38 +305,7 @@ layout: api.html
             <div class="alm-api-section">
                 <div class="alm-api-section-left">
                     <h2 id="types-client"><a href="#types-client">Client</a></h2>
-                    {{#apiType 'EventEntryClient' this }}
-                    <p>
-                        {{ description }}
-                    </p>
-                    <p class="alm-api-note">
-                        Properties for child objects are shown with dot notation.
-                    </p>
-                    <p>
-                    <table>
-                        {{#each displayableProperties}}
-                        <tr>
-                            <td class="alm-api-fieldName">
-                                {{ @key }}                                
-                            </td>
-                            <td class="alm-api-description">
-                                <div>
-                                    <span class="alm-api-type">{{ type }}</span>
-                                    {{#if isRequired }}
-                                        <span class="alm-api-required">required</span>
-                                    {{else}}
-                                        <span class="alm-api-optional">optional</span>
-                                    {{/if}}
-                                </div>
-                                <div>
-                                    {{ description }}
-                                </div>
-                            </td>
-                        </tr>
-                        {{/each}}
-                    </table>
-                    </p>
-                    {{/apiType}}
+                    {{> apiTypeProperties (apiType 'EventEntryClient' this) }}
                 </div>
                 <div class="alm-api-section-right alm-extra-top-margin">
                     <blockquote class="alm-lang-curl">Example Client</blockquote>
@@ -405,38 +321,7 @@ layout: api.html
             <div class="alm-api-section">
                 <div class="alm-api-section-left">
                     <h2 id="types-view"><a href="#types-view">View</a></h2>
-                    {{#apiType 'PagedViewResult' this }}
-                    <p>
-                        {{ description }}
-                    </p>
-                    <p class="alm-api-note">
-                        Properties for child objects are shown with dot notation.
-                    </p>
-                    <p>
-                    <table>
-                        {{#each displayableProperties}}
-                        <tr>
-                            <td class="alm-api-fieldName">
-                                {{ @key }}                                
-                            </td>
-                            <td class="alm-api-description">
-                                <div>
-                                    <span class="alm-api-type">{{ type }}</span>
-                                    {{#if isRequired }}
-                                        <span class="alm-api-required">required</span>
-                                    {{else}}
-                                        <span class="alm-api-optional">optional</span>
-                                    {{/if}}
-                                </div>
-                                <div>
-                                    {{ description }}
-                                </div>
-                            </td>
-                        </tr>
-                        {{/each}}
-                    </table>
-                    </p>
-                    {{/apiType}}
+                    {{> apiTypeProperties (apiType 'PagedViewResult' this) }}
                 </div>
                 <div class="alm-api-section-right alm-extra-top-margin">
                     <blockquote class="alm-lang-curl">Example View Response (without Events)</blockquote>
@@ -461,29 +346,355 @@ layout: api.html
                 </div>
             </div>
 
-            <!-- {{#each api.definitions}}
-            {{#inArray ../apiTypes @key }}
-                <div class="alm-api-section">
-                    <div class="alm-api-section-left">
-                        <h2 id="types"><a href="#types">{{ @key }}</a></h2>
-                        <p>
-                            <table>
-                            {{#each properties}}
-                                <tr><td>{{ @key }}</td><td>{{ type }}</td><td>{{ description }}</td></tr>
-                                {{#if $ref}}
-                                    
-                                    <tr><td>{{ JSONstringify ../../api.definitions.[(replace $ref "#/definitions/" "")] }}</td></tr>
-                                    
-                                {{/if}}
-                            {{/each}}
-                            </table>
-                        </p>
-                    </div>
-                </div>                
-            {{/inArray}}
-            {{/each}} -->
+            <!-- Submitting Data -->
+            <div class="alm-api-section">
+                <div class="alm-api-section-left">
+                    <h1 id="event-reporting"><a href="#event-reporting">Submitting Data</a></h1>
+                    <p>
+                        Submitting <code>Events</code> to the API is the primary method of populating 
+                        your Audit Log. The API assumes you are submitting them relatively soon after 
+                        they happened in your system.
+                    </p>
+                    <p class="alm-api-note">
+                        Need to backfill historical data? <a href="mailto://{{ email.support }}">Send a request</a> and we'll work with you 
+                        to upload it.
+                    </p>
+                </div>
+            </div>
 
-        <!-- <div class="alm-api-section">
+            <div class="alm-api-section">
+                <div class="alm-api-section-left">
+                    <h2 id="events-api-post"><a href="#events-api-post">Events API - POST</a></h2>
+                    <p>
+                        The <strong>Events API</strong> allows you to submit <code>Events</code> from your system
+                        to be included in your Audit Log. <code>Events</code> have several fields that are required 
+                        for all entries in the Audit Log and several that are optional for your particular use case
+                        and the Action that has taken place.
+                    </p>
+                    <h3>HTTP Request</h3>
+                    <p>
+                        <pre>POST https://app.auditlog.co/api/v1/events</pre>
+                    </p>
+                </div>
+            </div>
+            <div class="alm-api-section">
+                <div class="alm-api-section-left">
+                    <h3>HTTP POST Payload</h3>
+                    <p>
+                        Post an array of <code>Event</code> entries, each with a unique identifier (UUID).
+                        {{> apiTypeProperties (apiType 'EventEntry' this) }}
+                    </p>
+                </div>
+                <div class="alm-api-section-right alm-extra-top-margin">
+                    <blockquote class="alm-lang-curl">Example POSTed Event with all optional fields</blockquote>
+                    <pre class="highlight lang-bash alm-lang-curl">
+                        curl 'https://app.auditlog.co/api/v1/events' \
+                            -X POST \
+                            -H 'x-api-key: {{ exampleApiToken }}' \
+                            -H 'content-type: application/json' \
+                            -d '[
+                                    {
+                                        "uuid": "sample-event-001",
+                                        "client": {
+                                            "uuid": "1234567890",
+                                            "name": "Great Client"
+                                        },
+                                        "time": "2018-06-30T16:35:52",
+                                        "action": "user.invite",
+                                        "description": "Invited new user, QA role",
+                                        "url": "http://blah.example.com/95c102ae-5930-413f-b794-8f0934fdb136",
+                                        "actor": {
+                                            "uuid": "bd275099-e808-4c1a-bd32-57a589b7cf93",
+                                            "name": "Roberta Wharton",
+                                            "email": "rwharton@great-client.test"
+                                        },
+                                        "context": {
+                                            "client": {
+                                                "ipAddress": "192.168.105.23",
+                                                "browserAgent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/20.0.1092.0 Safari/536.6"
+                                            },
+                                            "server": {
+                                                "serverId": "prod-01-us-appfarm",
+                                                "version": "20180325-01"
+                                            }
+                                        },
+                                        "target": {
+                                            "type": "user",
+                                            "uuid": "95c102ae-5930-413f-b794-8f0934fdb136",
+                                            "label": "Salman Randall",
+                                            "url": "http://blah.example.com/95c102ae-5930-413f-b794-8f0934fdb136"
+                                        }
+                                    },
+                                    {
+                                        "uuid": "sample-event-002",
+                                        "client": {
+                                            "uuid": "1234567890",
+                                            "name": "Great Client"
+                                        },
+                                        "time": "2018-06-30T16:36:34",
+                                        "action": "user.register",
+                                        "description": "Registering from invitation",
+                                        "url": null,
+                                        "actor": {
+                                            "uuid": "95c102ae-5930-413f-b794-8f0934fdb136",
+                                            "name": "Salman Randall",
+                                            "email": "srandall@great-client.test"
+                                        },
+                                        "context": {
+                                            "client": {
+                                                "ipAddress": "192.168.105.68",
+                                                "browserAgent": "Mozilla/5.0 (Windows NT 6.2; rv:20.0) Gecko/20121202 Firefox/20.0"
+                                            },
+                                            "server": {
+                                                "serverId": "prod-01-us-appfarm",
+                                                "version": "20180325-01"
+                                            }
+                                        },
+                                        "target": {
+                                            "type": "user",
+                                            "uuid": "95c102ae-5930-413f-b794-8f0934fdb136",
+                                            "label": "Salman Randall",
+                                            "url": null
+                                        }
+                                    }
+                            ]'
+                    </pre>
+                </div>
+            </div>
+            <div class="alm-api-section">
+                <div class="alm-api-section-left">
+                    <h3>HTTP Response</h3>
+                    <p>
+                        A successful response will provide an array of the UUIDs you POSTed with server-generated 
+                        id's to confirm the Events have been received and are being processed.
+
+                        {{#apiPath "/api/v1/events" this }}
+                        <table>
+                            <tr><th>Code</th><th>Type</th><th>Description</th></tr>
+                            {{#each post.responses}}
+                                <tr><td>{{ @key }}</td><td>{{ apiPathResponseType this }}</td><td>{{ description  }}</td></tr>
+                            {{/each}}
+                        </table>
+                        {{/apiPath}}
+                    </p>
+                </div>
+                <div class="alm-api-section-right alm-extra-top-margin">
+                    <blockquote class="alm-lang-curl">Example Response</blockquote>
+                    <pre class="highlight lang-json alm-lang-curl">
+                        {
+                            ReceivedEvents: [
+                                {
+                                    "id": "c61a728a-4dae-4e26-b884-8ba5caae892d",
+                                    "uuid": "sample-event-001"
+                                },
+                                {
+                                    "id": "4c9d8476-d80e-4d78-b791-53f1ccfa2842",
+                                    "uuid": "sample-event-002"
+                                }
+                            ]
+                        }
+                    </pre>
+
+                    <blockquote class="alm-lang-curl">Example 400 Error</blockquote>
+                    <pre class="highlight lang-json alm-lang-curl">
+                        {
+                            "statusCode": 400,
+                            "message": "Bad Request",
+                            "details": {
+                                "[0].client.uuid": "The UUID field is required."
+                            }
+                        }
+                    </pre>
+                </div>
+            </div>
+
+             <!-- Querying Data -->
+             <div class="alm-api-section">
+                <div class="alm-api-section-left">
+                    <h1 id="event-querying"><a href="#event-querying">Querying Data</a></h1>
+                    <p>
+                        Your Audit Log data is displayable using the <a href="/docs/drop-in">Drop-In display</a> as well as
+                        by directly querying the <strong>Events API</strong>. Stored <code>Events</code> are often called 
+                        <code>Entries</code> (seomthing that has been stored) and include several fields not present when 
+                        you submit the original <code>Event</code>:
+                        <ul>
+                            <li><code>id</code> - A unique AuditLog id for the entry</li>
+                            <li><code>receptionTime</code> - utc timestamp when the Event was received</li>
+                        </ul>
+                    </p>
+                </div>
+            </div>
+
+            <div class="alm-api-section">
+                <div class="alm-api-section-left">
+                    <h2 id="views-api-get"><a href="#views-api-get">Views API - GET</a></h2>
+                    <p>
+                        Description
+                    </p>
+                    <h3>HTTP Request</h3>
+                    <p>
+                        <pre>GET https://app.auditlog.co/api/v1/views/{viewId}/{clientUUId}</pre>
+                    </p>
+                </div>
+            </div>
+            <div class="alm-api-section">
+                <div class="alm-api-section-left">
+                    <h3>HTTP GET Parameters</h3>
+                    <p>
+                    </p>
+                </div>
+                <div class="alm-api-section-right alm-extra-top-margin">
+                    <blockquote class="alm-lang-curl">Example POSTed Event with all optional fields</blockquote>
+                    <pre class="highlight lang-bash alm-lang-curl">
+                        curl 'https://app.auditlog.co/api/v1/events'
+                    </pre>
+                </div>
+            </div>
+            <div class="alm-api-section">
+                <div class="alm-api-section-left">
+                    <h3>HTTP Response</h3>
+                    <p>
+                        {{#apiPath "/api/v1/views/{viewId}/{clientUUId}" this }}
+                        <table>
+                            <tr><th>Code</th><th>Type</th><th>Description</th></tr>
+                            {{#each post.responses}}
+                                <tr><td>{{ @key }}</td><td>{{ apiPathResponseType this }}</td><td>{{ description  }}</td></tr>
+                            {{/each}}
+                        </table>
+                        {{/apiPath}}
+                    </p>
+                </div>
+                <div class="alm-api-section-right alm-extra-top-margin">
+                    <blockquote class="alm-lang-curl">Example Response</blockquote>
+                    <pre class="highlight lang-json alm-lang-curl">
+                        {
+                           
+                        }
+                    </pre>
+                </div>
+            </div>
+
+
+            <div class="alm-api-section">
+                <div class="alm-api-section-left">
+                    <h2 id="events-api-get"><a href="#events-api-get">Events API - GET</a></h2>
+                    <p>
+                        The <strong>Events API</strong> GET endpoint enables you to query for a set
+                        of events, typically to enable you to enrich and provide directly to
+                        your clients or to download into a secondary data warehouse.
+                    </p>
+                    <p class="alm-api-note">
+                        The <strong>Events API</strong> currently allows you to filter your query
+                        by Client UUID, from date, and through date. <a href="mailto://{{ email.support }}">Send a
+                            message</a> if you're interested in more flexible capabilities.
+                    </p>
+                    <h3>HTTP Request</h3>
+                    <p>
+                        <pre>GET /api/v1/events</pre>
+                    </p>
+                </div>
+            </div>
+            <div class="alm-api-section">
+                <div class="alm-api-section-left">
+                    <h3>HTTP GET Parameters</h3>
+                    <p>
+                        {{#apiPath "/api/v1/events" this }}
+                        <table>
+                            <tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
+                            {{#each get.parameters}}
+                                <tr>
+                                    <td>{{ name }} {{#not required }} <br/><span class="alm-api-optional">optional</span>{{/not}}</td>
+                                    <td>{{ type }} </td>
+                                    <td>{{ description  }}</td>
+                                </tr>
+                            {{/each}}
+                        </table>
+                        {{/apiPath}}
+                    </p>
+                </div>
+                <div class="alm-api-section-right alm-extra-top-margin">
+                    <blockquote class="alm-lang-curl">Example query with all 3 optional filters</blockquote>
+                    <pre class="highlight lang-bash alm-lang-curl">
+                        curl -X GET \
+                            'https://app.auditlog.co/api/v1/events?clientID=1234567890&fromDate=2018-06-03T17%3A01%3A10&throughDate=2018-06-30'
+                    </pre>
+                </div>
+            </div>
+            <div class="alm-api-section">
+                <div class="alm-api-section-left">
+                    <h3>HTTP Response</h3>
+                    <p>
+                        {{#apiPath "/api/v1/events" this }}
+                        <table>
+                            <tr><th>Code</th><th>Type</th><th>Description</th></tr>
+                            {{#each get.responses}}
+                                <tr><td>{{ @key }}</td><td>{{ apiPathResponseType this }}</td><td>{{ description  }}</td></tr>
+                            {{/each}}
+                        </table>
+                        {{/apiPath}}
+                    </p>
+                    <h3>EventSearchResponse</h3>
+                    <p>
+                        A search response with an array of Entries that match the properties for an <a href="#types-event">Event</a>, 
+                        with additional properties for the AuditLog id, Event URL, and time it was received.
+                        {{> apiTypeProperties (apiType 'EventSearchResponse' this) }}
+                    </p>
+                </div>
+                <div class="alm-api-section-right alm-extra-top-margin">
+                    <blockquote class="alm-lang-curl">Example Response</blockquote>
+                    <pre class="highlight lang-json alm-lang-curl">
+                            {
+                                "_id": {
+                                    "timestamp": "2018-07-15T18:29:00.5701598Z",
+                                    "type": "GET",
+                                    "href": "/api/v1/events?clientID=1234567890&fromDate=2018-06-03T17:01:10&throughDate=2018-06-30",
+                                    "label": "Event Search"
+                                },
+                                "entries": [
+                                    {
+                                        "_links": {
+                                            "href": "/api/v1/events/b0db0eea-9a3f-4b86-8f5d-012617b14d0a"
+                                        },
+                                        "id": "b0db0eea-9a3f-4b86-8f5d-012617b14d0a",
+                                        "receptionTime": "2018-06-30T19:07:51.7733333",
+                                        "uuid": "sample-event-000",
+                                        "client": {
+                                            "uuid": "1234567890",
+                                            "name": "Great Client"
+                                        },
+                                        "time": "2018-06-30T16:35:52",
+                                        "action": "user.login",
+                                        "description": null,
+                                        "url": null,
+                                        "actor": {
+                                            "uuid": "bd275099-e808-4c1a-bd32-57a589b7cf93",
+                                            "name": "Roberta Wharton",
+                                            "email": "rwharton@great-client.test"
+                                        },
+                                        "context": {
+                                            "client": {
+                                                "ipAddress": "192.168.105.23",
+                                                "browserAgent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/20.0.1092.0 Safari/536.6"
+                                            },
+                                            "server": {
+                                                "serverId": "prod-01-us-appfarm",
+                                                "version": "20180325-01"
+                                            }
+                                        },
+                                        "target": {
+                                            "type": null,
+                                            "uuid": null,
+                                            "label": null,
+                                            "url": null
+                                        }
+                                    },
+                                    ...
+                                ]
+                            }
+                    </pre>
+                </div>
+            </div>
+            <!-- <div class="alm-api-section">
                 <div class="alm-api-section-left">
                     <h1 id="sample-section"><a href="#sample-section">Sample Section</a></h1>
                     <p>

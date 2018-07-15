@@ -206,6 +206,7 @@
                 "tags": [
                     "Events"
                 ],
+                "summary": "Query for a set of events.",
                 "operationId": "ApiV1EventsGet",
                 "consumes": [],
                 "produces": [
@@ -219,12 +220,14 @@
                     {
                         "name": "clientID",
                         "in": "query",
+                        "description": "UUID for one of your clients",
                         "required": false,
                         "type": "string"
                     },
                     {
                         "name": "fromDate",
                         "in": "query",
+                        "description": "Starting date to filter for",
                         "required": false,
                         "type": "string",
                         "format": "date-time"
@@ -232,6 +235,7 @@
                     {
                         "name": "throughDate",
                         "in": "query",
+                        "description": "End date to filter through",
                         "required": false,
                         "type": "string",
                         "format": "date-time"
