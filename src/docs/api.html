@@ -21,34 +21,38 @@ layout: api.html
                 <li><a href="#errors">Errors</a></li>
                 <li><a href="#immutable">Immutability and Events</a></li>
                 <li><a href="#versioning">API Versioning</a></li>
+            </ul>
+            <ul>
                 <li>
-                    <a href="#types">Core Types</a>
-                    <ul>
-                            <li><a href="#types-event">Event</a></li>
-                            <li><a href="#types-actor">Actor</a></li>
-                            <li><a href="#types-client">Client</a></li>
-                            <li><a href="#types-view">View</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#event-reporting">Submitting Data</a>
+                    <a href="#event-reporting">Send to Audit Log</a>
                     <ul>
                         <li><a href="#events-api-post">Events</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#event-querying">Querying Data</a>
+                    <a href="#event-querying">Query Audit Log</a>
                     <ul>
                         <li><a href="#views-api-get">Views</a></li>
                         <li><a href="#events-api-get">Events</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="actors-api">Users / Actors</a>
+                    <a href="#actors-api">Users / Actors (Privacy)</a>
                     <ul>
                         <li><a href="#actors-api-search">Search</a></li>
                         <li><a href="#actors-api-update">Update</a></li>
                         <li><a href="#actors-api-forget">Forget</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a href="#types">Core Type Reference</a>
+                    <ul>
+                            <li><a href="#types-event">Event</a></li>
+                            <li><a href="#types-actor">Actor</a></li>
+                            <li><a href="#types-client">Client</a></li>
+                            <li><a href="#types-view">View</a></li>
                     </ul>
                 </li>
             </ul>
@@ -75,6 +79,14 @@ layout: api.html
                     <p>
                         Authentication to the API is performed via a custom <code>X-API-KEY</code> header and is required for all requests.
                     </p>
+                    <div class="alm-api-redirect-note">
+                        <h2>Just getting started?</h2>
+                        <p>
+                            This may be more detail than you were looking for. Check out the 
+                            <a href="/docs/getting-started/first-time-through">First Time Through guide</a>
+                            if you're looking to get up and running quickly.                        
+                        </p>
+                    </div>
                 </div>
                 <div class="alm-api-section-right first"></div>
             </div>
@@ -228,125 +240,7 @@ layout: api.html
                 </div>
             </div>
 
-            <!-- Core Types -->
-            <div class="alm-api-section">
-                <div class="alm-api-section-left">
-                    <h1 id="types"><a href="#types">Core Types</a></h1>
-                    <p>
-                        There are 4 Core Types of objects used frequently with the AuditLog API. They cover the use
-                        cases of reporting Events from your system, querying for them either for adhoc use or a pre-defined 
-                        Custom View, and interacting with Actor records.
-                    </p>
-                </div>
-            </div>
-            
-            <div class="alm-api-section">
-                <div class="alm-api-section-left">
-                    <h2 id="types-event"><a href="#types-event">Event</a></h2>
-                    {{> apiTypeProperties (apiType 'EventEntry' this) }}
-                </div>
-                <div class="alm-api-section-right alm-extra-top-margin">
-                    <blockquote class="alm-lang-curl">Example POSTed Event with all optional fields</blockquote>
-                    <pre class="highlight lang-json alm-lang-curl">
-                        {
-                            "uuid": "sample-event-001",
-                            "client": {
-                                "uuid": "1234567890",
-                                "name": "Great Client"
-                            },
-                            "time": "2018-06-30T16:35:52",
-                            "action": "user.invite",
-                            "description": "Invited new user, 'QA' role",
-                            "url": "http://blah.example.com/95c102ae-5930-413f-b794-8f0934fdb136",
-                            "actor": {
-                                "uuid": "bd275099-e808-4c1a-bd32-57a589b7cf93",
-                                "name": "Roberta Wharton",
-                                "email": "rwharton@great-client.test"
-                            },
-                            "context": {
-                                "client": {
-                                    "ipAddress": "192.168.105.23",
-                                    "browserAgent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/20.0.1092.0 Safari/536.6"
-                                },
-                                "server": {
-                                    "serverId": "prod-01-us-appfarm",
-                                    "version": "20180325-01"
-                                }
-                            },
-                            "target": {
-                                "type": "user",
-                                "uuid": "95c102ae-5930-413f-b794-8f0934fdb136",
-                                "label": "Salman Randall",
-                                "url": "http://blah.example.com/95c102ae-5930-413f-b794-8f0934fdb136"
-                            }
-                        }
-                    </pre>
-                </div>
-            </div>                
-
-            <div class="alm-api-section">
-                <div class="alm-api-section-left">
-                    <h2 id="types-actor"><a href="#types-actor">Actor</a></h2>
-                    {{> apiTypeProperties (apiType 'Actor' this) }}
-                </div>
-                <div class="alm-api-section-right alm-extra-top-margin">
-                    <blockquote class="alm-lang-curl">Example Actor</blockquote>
-                    <pre class="highlight lang-json alm-lang-curl">
-                        {
-                            "uuid": "bd275099-e808-4c1a-bd32-57a589b7cf93",
-                            "name": "Roberta Wharton",
-                            "email": "rwharton@great-client.test",
-                            "isForgotten": false
-                        }
-                    </pre>
-                </div>
-            </div>
-
-            <div class="alm-api-section">
-                <div class="alm-api-section-left">
-                    <h2 id="types-client"><a href="#types-client">Client</a></h2>
-                    {{> apiTypeProperties (apiType 'EventEntryClient' this) }}
-                </div>
-                <div class="alm-api-section-right alm-extra-top-margin">
-                    <blockquote class="alm-lang-curl">Example Client</blockquote>
-                    <pre class="highlight lang-json alm-lang-curl">
-                        {
-                            "uuid": "1234567890",
-                            "name": "Great Client"
-                        }
-                    </pre>
-                </div>
-            </div>
-
-            <div class="alm-api-section">
-                <div class="alm-api-section-left">
-                    <h2 id="types-view"><a href="#types-view">View</a></h2>
-                    {{> apiTypeProperties (apiType 'PagedViewResult' this) }}
-                </div>
-                <div class="alm-api-section-right alm-extra-top-margin">
-                    <blockquote class="alm-lang-curl">Example View Response (without Events)</blockquote>
-                    <pre class="highlight lang-json alm-lang-curl">
-                        {
-                            "_id": {
-                                "timestamp": "2018-07-14T22:34:06.7933405Z",
-                                "type": "GET",
-                                "href": "/api/v1/views/{viewId}/1234567890?page=201807",
-                                "label": "July 2018"
-                            },
-                            "_links": {
-                                "previous": {
-                                    "label": "June 2018",
-                                    "type": "GET",
-                                    "href": "/api/v1/views/{viewId}/1234567890?page=201806"
-                                }
-                            },
-                            "entries": [ ... ]
-                        }
-                    </pre>
-                </div>
-            </div>
-
-            <!-- Submitting Data -->
+            <!-- Send to Audit Log -->
             <div class="alm-api-section">
                 <div class="alm-api-section-left">
                     <h1 id="event-reporting"><a href="#event-reporting">Submitting Data</a></h1>
@@ -508,7 +402,7 @@ layout: api.html
                 </div>
             </div>
 
-             <!-- Querying Data -->
+             <!-- Query Audit Log -->
              <div class="alm-api-section">
                 <div class="alm-api-section-left">
                     <h1 id="event-querying"><a href="#event-querying">Querying Data</a></h1>
@@ -562,8 +456,10 @@ layout: api.html
                     <blockquote class="alm-lang-curl">Example Request</blockquote>
                     <pre class="highlight lang-bash alm-lang-curl">
                         curl -X GET \
-                            'https://app.auditlog.co/api/v1/views/{ viewId }/1234567890?page=201806'
-                    </pre>
+                            'https://app.auditlog.co/api/v1/views/{ viewId }/1234567890?page=201806' \
+                            -H 'x-api-key: {{ exampleApiToken }}' \
+                            -H 'accept: application/json' 
+                        </pre>
                 </div>
             </div>
             <div class="alm-api-section">
@@ -701,7 +597,9 @@ layout: api.html
                     <pre class="highlight lang-bash alm-lang-curl">
                         curl -X GET \
                             'https://app.auditlog.co/api/v1/events?clientID=1234567890&fromDate=2018-06-03T17%3A01%3A10&throughDate=2018-06-30'
-                    </pre>
+                            -H 'x-api-key: {{ exampleApiToken }}' \
+                            -H 'accept: application/json' 
+                        </pre>
                 </div>
             </div>
             <div class="alm-api-section">
@@ -778,6 +676,281 @@ layout: api.html
                     </pre>
                 </div>
             </div>
+
+            <!-- Users / Actors -->
+            <div class="alm-api-section">
+                <div class="alm-api-section-left">
+                    <h1 id="actors-api"><a href="#actors-api">Users / Actors - Supporting Privacy</a></h1>
+                    <p>
+                       Personally identifiable information, like name and email address, make an AuditLog 
+                       a much friendlier and easier to use experience. However, you also need the freedom 
+                       to know specifically what you've stored and have the ability to redact it without
+                       dumping your entire log. This is where the <strong>Actor API</strong> comes in.
+                    </p>
+                    <p class="alm-api-note">
+                        Note: You aren't required to store personally identifiable information in the AuditLog,
+                        but should you do so our aim is to provide you the tools you need to easily comply 
+                        with internal and external regulations on this data.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Actors - Search -->
+            <div class="alm-api-section">
+                <div class="alm-api-section-left">
+                    <h2 id="actors-api-search"><a href="#actors-api-search">Actors API - Search - GET</a></h2>
+                    <p>
+                        The <strong>Actors API</strong> search assumes you are looking for a User / Actor
+                        that exists in your system. Use the <abbr title="Universally Unique Id">UUID</abbr>
+                        for a user to see what information is stored about that user in your AuditLog.
+                    </p>
+                    <h3>HTTP Request</h3>
+                    <p>
+                        <pre>GET https://app.auditlog.co/api/v1/actors/{uuid}</pre>
+                    </p>
+                </div>
+            </div>
+            <div class="alm-api-section">
+                <div class="alm-api-section-left">
+                    <h3>HTTP GET Parameters</h3>
+                    <p>
+                        {{#apiPath "/api/v1/Actors/{uuid}" this }}
+                        <table>
+                            <tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
+                            {{#each get.parameters}}
+                                <tr>
+                                    <td>{{ name }} {{#not required }} <br/><span class="alm-api-optional">optional</span>{{/not}}</td>
+                                    <td>{{ type }} </td>
+                                    <td>{{ description  }}</td>
+                                </tr>
+                            {{/each}}
+                        </table>
+                        {{/apiPath}}
+                    </p>
+                </div>
+                <div class="alm-api-section-right alm-extra-top-margin">
+                    <blockquote class="alm-lang-curl">Example GET Request</blockquote>
+                    <pre class="highlight lang-bash alm-lang-curl">
+                            curl -X GET \
+                                http://localhost:56110/api/v1/actors/{uuid} \
+                                -H 'accept: application/json' 
+                                -H 'x-api-key: {{ exampleApiToken }}' \
+                    </pre>
+                </div>
+            </div>
+            <div class="alm-api-section">
+                <div class="alm-api-section-left">
+                    <h3>HTTP Response</h3>
+                    <p>
+                        A successful response will provide an array of the UUIDs you POSTed with server-generated 
+                        id's to confirm the Events have been received and are being processed.
+
+                        {{#apiPath "/api/v1/Actors/{uuid}" this }}
+                        <table>
+                            <tr><th>Code</th><th>Type</th><th>Description</th></tr>
+                            {{#each get.responses}}
+                                <tr><td>{{ @key }}</td><td>{{ apiPathResponseType this }}</td><td>{{ description  }}</td></tr>
+                            {{/each}}
+                        </table>
+                        {{/apiPath}}
+                    </p>
+                </div>
+                <div class="alm-api-section-right alm-extra-top-margin">
+                    <blockquote class="alm-lang-curl">Example Response</blockquote>
+                    <pre class="highlight lang-json alm-lang-curl">
+                        {
+                            "actors": [
+                                {
+                                    "uuid": "{uuid}",
+                                    "name": "Roberta Wharton",
+                                    "email": "rwharton@great-client.test",
+                                    "isForgotten": false
+                                }
+                            ]
+                        }
+                    </pre>
+
+                    <blockquote class="alm-lang-curl">Example Not Found Response</blockquote>
+                    <pre class="highlight lang-json alm-lang-curl">
+                            {
+                                "actors": []
+                            }
+                    </pre>
+                </div>
+            </div>
+
+            <!-- Actors - Update -->
+            <div class="alm-api-section">
+                <div class="alm-api-section-left">
+                    <h2 id="actors-api-update"><a href="#actors-api-update">Actors API - Update - POST </a></h2>
+                    <p>
+                        People's names change, company email domains evolve, and mispellings happen. Use
+                        the <strong>Actors API</strong> to minimize confusion by keeping these records up
+                        to date. 
+                    </p>
+                    <h3>HTTP Request</h3>
+                    <p>
+                        <pre>POST https://app.auditlog.co/api/v1/actors/{uuid}</pre>
+                    </p>
+                </div>
+            </div>
+            <div class="alm-api-section">
+                <div class="alm-api-section-left">
+                    <h3>HTTP POST Payload</h3>
+                    <p>
+                        Post an updated <a href="#types-actor"><code>Actor</code></a> to update it's
+                        properties.
+                        {{> apiTypeProperties (apiType 'ActorUpdateRequest' this) }}
+                    </p>
+                </div>
+                <div class="alm-api-section-right alm-extra-top-margin">
+                    <blockquote class="alm-lang-curl">Example POST Request</blockquote>
+                    <pre class="highlight lang-bash alm-lang-curl">
+                            curl -X POST \
+                                http://localhost:56110/api/v1/actors/{uuid} \
+                                -H 'accept: application/json' \
+                                -H 'content-type: application/json' \
+                                -H 'x-api-key: {{ exampleApiToken }}' \
+                                -d '{
+                                    name: "test name",
+                                    email: "test@email.test"
+                                    }'
+                    </pre>
+                </div>
+            </div>
+            <div class="alm-api-section">
+                <div class="alm-api-section-left">
+                    <h3>HTTP Response</h3>
+                    <p>
+                        A successful response will return the updated Actor.
+                        {{#apiPath "/api/v1/Actors/{uuid}" this }}
+                        <table>
+                            <tr><th>Code</th><th>Type</th><th>Description</th></tr>
+                            {{#each post.responses}}
+                                <tr><td>{{ @key }}</td><td>{{ apiPathResponseType this }}</td><td>{{ description  }}</td></tr>
+                            {{/each}}
+                        </table>
+                        {{/apiPath}}
+                    </p>
+                </div>
+                <div class="alm-api-section-right alm-extra-top-margin">
+                    <blockquote class="alm-lang-curl">Example Response - 200</blockquote>
+                    <pre class="highlight lang-json alm-lang-curl">
+                        {
+                            "actors": [
+                                {
+                                    "uuid": "{uuid}",
+                                    "name": "test name",
+                                    "email": "test@email.test",
+                                    "isForgotten": false
+                                }
+                            ]
+                        }
+                    </pre>
+                </div>
+            </div>
+            <div class="alm-api-section">
+                <div class="alm-api-section-left">
+                    <p>
+                        Forgotten users are a special case. Once a user has been forgotten,
+                        attempts to update it will acknowledge the update without performing
+                        it.
+                    </p>
+                </div>
+                <div class="alm-api-section-right alm-extra-top-margin">
+                    <blockquote class="alm-lang-curl">Example Response - 204 - Forgotten User</blockquote>
+                    <pre class="highlight lang-json alm-lang-curl">
+                            {
+                                "actors": [
+                                    {
+                                        "uuid": "{uuid}",
+                                        "name": "[forgotten]",
+                                        "email": "[forgotten]",
+                                        "isForgotten": true
+                                    }
+                                ]
+                            }
+                    </pre>
+                </div>
+            </div>
+            
+
+            <!-- Actors - Forget -->
+            <div class="alm-api-section">
+                <div class="alm-api-section-left">
+                    <h2 id="actors-api-forget"><a href="#actors-api-forget">Actors API - Forget - POST </a></h2>
+                    <p>
+                        For privacy reasons, you need the ability to redact personal information 
+                        without impacting the AuditLog. The <code>Forget</code> operation redacts
+                        personal information from Actors / Users, leaving the non-personal audit
+                        informaiton untouched.
+                    </p>
+                    <h3>HTTP Request</h3>
+                    <p>
+                        <pre>POST https://app.auditlog.co/api/v1/actors/{uuid}/forget</pre>
+                    </p>
+                </div>
+            </div>
+            <div class="alm-api-section">
+                <div class="alm-api-section-left">
+                    <h3>HTTP POST Parameters</h3>
+                    <p>
+                        {{#apiPath "/api/v1/Actors/{uuid}/forget" this }}
+                        <table>
+                            <tr><th>Parameters</th><th>Type</th><th>Description</th></tr>
+                            {{#each post.parameters}}
+                                <tr>
+                                    <td>{{ name }} {{#not required }} <br/><span class="alm-api-optional">optional</span>{{/not}}</td>
+                                    <td>{{ type }} </td>
+                                    <td>{{ description  }}</td>
+                                </tr>
+                            {{/each}}
+                        </table>
+                        {{/apiPath}}
+                    </p>
+                </div>
+                <div class="alm-api-section-right alm-extra-top-margin">
+                    <blockquote class="alm-lang-curl">Example POST Request</blockquote>
+                    <pre class="highlight lang-bash alm-lang-curl">
+                            curl -X POST \
+                                http://localhost:56110/api/v1/actors/{uuid}/forget \
+                                -H 'accept: application/json' \
+                                -H 'x-api-key: {{ exampleApiToken }}'
+                    </pre>
+                </div>
+            </div>
+            <div class="alm-api-section">
+                <div class="alm-api-section-left">
+                    <h3>HTTP Response</h3>
+                    <p>
+                        A successful response will return the updated Actor with redacted fields, for confirmation.
+                        {{#apiPath "/api/v1/Actors/{uuid}/forget" this }}
+                        <table>
+                            <tr><th>Code</th><th>Type</th><th>Description</th></tr>
+                            {{#each post.responses}}
+                                <tr><td>{{ @key }}</td><td>{{ apiPathResponseType this }}</td><td>{{ description  }}</td></tr>
+                            {{/each}}
+                        </table>
+                        {{/apiPath}}
+                    </p>
+                </div>
+                <div class="alm-api-section-right alm-extra-top-margin">
+                    <blockquote class="alm-lang-curl">Example Response - 200</blockquote>
+                    <pre class="highlight lang-json alm-lang-curl">
+                        {
+                            "actors": [
+                                {
+                                    "uuid": "{uuid}",
+                                    "name": "[forgotten]",
+                                    "email": "[forgotten]",
+                                    "isForgotten": true
+                                }
+                            ]
+                        }
+                    </pre>
+                </div>
+            </div>
+            
             <!-- <div class="alm-api-section">
                 <div class="alm-api-section-left">
                     <h1 id="sample-section"><a href="#sample-section">Sample Section</a></h1>
@@ -792,6 +965,125 @@ layout: api.html
                     </pre>
                 </div>
             </div> -->
+
+            
+            <!-- Core Type Reference -->
+            <div class="alm-api-section">
+                <div class="alm-api-section-left">
+                    <h1 id="types"><a href="#types">Core Type Reference</a></h1>
+                    <p>
+                        There are 4 Core Types of objects used frequently with the AuditLog API. They cover the use
+                        cases of reporting Events from your system, querying for them either for adhoc use or a pre-defined 
+                        Custom View, and interacting with Actor records.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="alm-api-section">
+                <div class="alm-api-section-left">
+                    <h2 id="types-event"><a href="#types-event">Event</a></h2>
+                    {{> apiTypeProperties (apiType 'EventEntry' this) }}
+                </div>
+                <div class="alm-api-section-right alm-extra-top-margin">
+                    <blockquote class="alm-lang-curl">Example POSTed Event with all optional fields</blockquote>
+                    <pre class="highlight lang-json alm-lang-curl">
+                        {
+                            "uuid": "sample-event-001",
+                            "client": {
+                                "uuid": "1234567890",
+                                "name": "Great Client"
+                            },
+                            "time": "2018-06-30T16:35:52",
+                            "action": "user.invite",
+                            "description": "Invited new user, 'QA' role",
+                            "url": "http://blah.example.com/95c102ae-5930-413f-b794-8f0934fdb136",
+                            "actor": {
+                                "uuid": "bd275099-e808-4c1a-bd32-57a589b7cf93",
+                                "name": "Roberta Wharton",
+                                "email": "rwharton@great-client.test"
+                            },
+                            "context": {
+                                "client": {
+                                    "ipAddress": "192.168.105.23",
+                                    "browserAgent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/20.0.1092.0 Safari/536.6"
+                                },
+                                "server": {
+                                    "serverId": "prod-01-us-appfarm",
+                                    "version": "20180325-01"
+                                }
+                            },
+                            "target": {
+                                "type": "user",
+                                "uuid": "95c102ae-5930-413f-b794-8f0934fdb136",
+                                "label": "Salman Randall",
+                                "url": "http://blah.example.com/95c102ae-5930-413f-b794-8f0934fdb136"
+                            }
+                        }
+                    </pre>
+                </div>
+            </div>                
+
+            <div class="alm-api-section">
+                <div class="alm-api-section-left">
+                    <h2 id="types-actor"><a href="#types-actor">Actor</a></h2>
+                    {{> apiTypeProperties (apiType 'Actor' this) }}
+                </div>
+                <div class="alm-api-section-right alm-extra-top-margin">
+                    <blockquote class="alm-lang-curl">Example Actor</blockquote>
+                    <pre class="highlight lang-json alm-lang-curl">
+                        {
+                            "uuid": "bd275099-e808-4c1a-bd32-57a589b7cf93",
+                            "name": "Roberta Wharton",
+                            "email": "rwharton@great-client.test",
+                            "isForgotten": false
+                        }
+                    </pre>
+                </div>
+            </div>
+
+            <div class="alm-api-section">
+                <div class="alm-api-section-left">
+                    <h2 id="types-client"><a href="#types-client">Client</a></h2>
+                    {{> apiTypeProperties (apiType 'EventEntryClient' this) }}
+                </div>
+                <div class="alm-api-section-right alm-extra-top-margin">
+                    <blockquote class="alm-lang-curl">Example Client</blockquote>
+                    <pre class="highlight lang-json alm-lang-curl">
+                        {
+                            "uuid": "1234567890",
+                            "name": "Great Client"
+                        }
+                    </pre>
+                </div>
+            </div>
+
+            <div class="alm-api-section">
+                <div class="alm-api-section-left">
+                    <h2 id="types-view"><a href="#types-view">View</a></h2>
+                    {{> apiTypeProperties (apiType 'PagedViewResult' this) }}
+                </div>
+                <div class="alm-api-section-right alm-extra-top-margin">
+                    <blockquote class="alm-lang-curl">Example View Response (without Events)</blockquote>
+                    <pre class="highlight lang-json alm-lang-curl">
+                        {
+                            "_id": {
+                                "timestamp": "2018-07-14T22:34:06.7933405Z",
+                                "type": "GET",
+                                "href": "/api/v1/views/{viewId}/1234567890?page=201807",
+                                "label": "July 2018"
+                            },
+                            "_links": {
+                                "previous": {
+                                    "label": "June 2018",
+                                    "type": "GET",
+                                    "href": "/api/v1/views/{viewId}/1234567890?page=201806"
+                                }
+                            },
+                            "entries": [ ... ]
+                        }
+                    </pre>
+                </div>
+            </div>
         </div>
         <nav class="alm-api-lang-selector">
                 <a data-language="curl" href="javascript: void(0);">Curl</a>
