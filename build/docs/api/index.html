@@ -33,17 +33,17 @@
 
     <!-- <link rel="stylesheet" type="text/css" href="/styles/highlight/solarized-dark.css" /> -->
     <link rel="stylesheet" type="text/css" href="/styles/highlight/solarized-dark.css" />
-    <script src="/scripts/highlight.pack.js"></script>
 </head>
 <body>
   
 <div class="alm-api-area">
 
     <div class="alm-api-sidebar">
-        <header class="alm-api-header">
+        <header class="alm-docs-header">
             <a href="/" class="alm-logo">
-                <img src="/images/logo56.png" alt="AL" />
-                <span>auditlog</span>
+                <img src="/images/logo56.png" alt="AL" class="alm-docs-logo" />
+                <div class="alm-docs-logo-text">auditlog</div>
+                <div class="alm-docs-logo-subtext">docs</div>
             </a>
         </header>
         
@@ -1369,7 +1369,7 @@
                                 <tr>
                                     <td>uuid </td>
                                     <td>string </td>
-                                    <td></td>
+                                    <td>Your UUID for the given user</td>
                                 </tr>
                         </table>
                     </p>
@@ -1394,10 +1394,8 @@
                         <table>
                             <tr><th>Code</th><th>Type</th><th>Description</th></tr>
                                 <tr><td>200</td><td>ActorQueryResponse</td><td>Success</td></tr>
-                                <tr><td>400</td><td>ApiError</td><td>Bad Request</td></tr>
                                 <tr><td>401</td><td></td><td>Unauthorized</td></tr>
                                 <tr><td>403</td><td></td><td>Forbidden</td></tr>
-                                <tr><td>404</td><td>ApiError</td><td>Not Found</td></tr>
                         </table>
                     </p>
                 </div>

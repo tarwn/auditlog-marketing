@@ -1,0 +1,149 @@
+@import "../variables";
+
+$logo-area-height: 80px;
+$doc-area-max-width: 770px;
+$h1-height: 24px;
+$h1-bottom-margin: 12px;
+
+.alm-docs-area{
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+
+    font-size: 15px;
+
+    h1{
+        font-size: 24px;
+        line-height: $h1-height;
+        margin-bottom: $h1-bottom-margin;
+    }
+
+    h2{
+        font-size: 18px;
+        line-height: $h1-height;
+        margin-bottom: $h1-bottom-margin;
+    }
+
+    h3{
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+}
+
+.alm-docs-sidebar{
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    width: 240px;
+    border-right: 1px solid $ws_lightgrey;
+}
+
+.alm-docs-header{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: $logo-area-height - 10 - 10;    // subtract padding
+    width: 240px - 10 - 10;
+
+    text-align: center;
+    padding: 10px;
+
+    & > .alm-logo{
+        float: unset;
+    }
+
+    @include for-tablet-portrait-up{
+        .alm-docs-logo{
+            float: left;
+        }
+
+        .alm-docs-logo-text{
+            display: block;
+            font-size: 2em;
+            margin-left: .25em;
+            color: $text-color-grey;
+            line-height: 30px;
+            padding-top: 5px;
+        }
+        .alm-docs-logo-subtext{
+            display: block;
+            font-size: 1em;
+            margin-left: .25em;
+            color: $text-color-grey;
+        }
+    }
+}
+
+.alm-docs-navigation{
+    height: $logo-area-height;
+    line-height: $logo-area-height;
+    max-width: $doc-area-max-width;
+    border-bottom: 1px solid $ws_lightgrey;
+}
+
+.alm-docs-menu{
+    position: absolute;
+    overflow-y: auto;
+    top: $logo-area-height;
+    bottom: 0px;
+    left: 0px;
+    width: 240px;
+
+    margin-top: 20px;
+
+    & > span.alm-menu-header{
+        display: block;
+        color: $ws_medgrey;
+        padding: .25em 1em;
+
+    }
+
+    ul + .alm-menu-header{
+        margin-top: 1.5em;
+    }
+
+
+    & > ul {
+        margin: 0.5em 0 0 .5em;
+        padding: 0;
+        list-style-type: none;
+
+        ul {
+            padding: 0;
+            margin: 0 0 0 1em;
+            list-style-type: none;
+        }
+    }
+
+    a {
+        display: block;
+        padding: .25em 1em;
+        text-decoration: none;
+        font-size: 14px;
+        color: $text-color-normal;
+    }
+    a:hover{
+        text-decoration: underline;
+    }
+    a.selected{
+        color: $color-accent-1;
+        text-decoration: underline;
+    }
+}
+
+.alm-docs-main{
+    position: absolute;
+    left: 240px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+}
+
+.alm-docs-content{
+    max-width: $doc-area-max-width;
+    padding: 1em;
+}

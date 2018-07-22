@@ -27,45 +27,87 @@
     <link rel="manifest" href="/images/favicon/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/images/favicon/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff"></head>
+    <meta name="theme-color" content="#ffffff">
+    <script src="/scripts/jquery-3.3.1.min.js"></script>
+    <script src="/scripts/highlight.pack.js"></script>
+    <link rel="stylesheet" type="text/css" href="/styles/highlight/github.css" />
+</head>
 <body>
   <div class="alm-docs-area">
 
     <div class="alm-docs-sidebar">
         <header class="alm-docs-header">
             <a href="/" class="alm-logo">
-                <img src="/images/logo56.png" alt="AL" />
-                <span>auditlog</span>
+                <img src="/images/logo56.png" alt="AL" class="alm-docs-logo" />
+                <div class="alm-docs-logo-text">auditlog</div>
+                <div class="alm-docs-logo-subtext">docs</div>
             </a>
         </header>
         
         <div class="alm-docs-menu">
-            <span class="alm-menu-header">Getting Started</span>
+            <span class="alm-menu-header">General</span>
             <ul>
-                <li><a href="/docs/quickstart">Quickstart</a></li>
+                <li><a href="/docs">Getting Started</a></li>
                 <li><a href="#">Customizing the Drop-in</a></li>
                 <li><a href="#">Sending Events</a></li>
                 <li><a href="#">Supporting Privacy</a></li>
+            </ul>
+
+            <span class="alm-menu-header">API</span>
+            <ul>
+                <li><a href="api">API Reference</a></li>
             </ul>
         </div>
     </div>
 
     <div class="alm-docs-main">
+        <div class="alm-docs-navigation">
+            <div class="alm-nav-2">
+                <a href="https://app.auditlog.co/" class="alm-nav-link alm-login alm-only-large">Login</a>
+                <a href="https://app.auditlog.co/account/signup" class="alm-cta-light">Sign up</a>
+            </div>
+            <div class="alm-nav-1">
+                <a href="/features" class="alm-nav-link ">Features</a>
+                <a href="/pricing" class="alm-nav-link ">Pricing</a>
+                <a href="/blog" class="alm-nav-link alm-only-large ">Blog</a>
+                <a href="/docs" class="alm-nav-link alm-only-large ">Docs</a>
+            </div>
+        </div>
       <div class="alm-docs-content">
         
       </div>
     </div>
   </div>
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-101987909-2"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-  
-    gtag('config', 'UA-101987909-2');
-  </script>
+    <script type="text/javascript">
+    $().ready(function(){
+        $('pre.highlight').each(function(i, block) {
+            var lines = block.textContent.split('\n');
+            var matches;
+            var indentation = (matches = /^\s+/.exec(lines[0])) != null ? matches[0] : null;
+            if (!!indentation) {
+                lines = lines.map(function(line) {
+                    return line.replace(indentation, '');
+                });
+                return block.textContent = lines.join('\n').trim();
+            }
+        });
+
+        $('pre.highlight').each(function(o, block){ 
+            hljs.highlightBlock(block);
+        });
+    });
+    </script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-101987909-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-101987909-2');
+</script>
     
 </body>
 </html>

@@ -1,6 +1,5 @@
 ---
-title: Drop In Display
-moddate: 2018-05-16
+title: Quickstart
 layout: docs.html
 ---
 

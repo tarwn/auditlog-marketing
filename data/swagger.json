@@ -18,6 +18,7 @@
                 "tags": [
                     "Actors"
                 ],
+                "summary": "Query to see what User information is in your AuditLog\r\nfor the given User (by UUID).",
                 "operationId": "ApiV1ActorsByUuidGet",
                 "consumes": [],
                 "produces": [
@@ -31,6 +32,7 @@
                     {
                         "name": "uuid",
                         "in": "path",
+                        "description": "Your UUID for the given user",
                         "required": true,
                         "type": "string"
                     }
@@ -42,23 +44,11 @@
                             "$ref": "#/definitions/ActorQueryResponse"
                         }
                     },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
-                    },
                     "401": {
                         "description": "Unauthorized"
                     },
                     "403": {
                         "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {
-                            "$ref": "#/definitions/ApiError"
-                        }
                     }
                 },
                 "security": [
@@ -599,6 +589,66 @@
                 ]
             }
         },
+        "/api/v1/views/configuration/{viewId}": {
+            "get": {
+                "tags": [
+                    "Views"
+                ],
+                "summary": "Returns the customized view settings for this view.",
+                "operationId": "ApiV1ViewsConfigurationByViewIdGet",
+                "consumes": [],
+                "produces": [
+                    "text/plain",
+                    "application/json",
+                    "text/json",
+                    "application/xml",
+                    "text/xml"
+                ],
+                "parameters": [
+                    {
+                        "name": "viewId",
+                        "in": "path",
+                        "description": "View Id for your customized View",
+                        "required": true,
+                        "type": "string",
+                        "format": "uuid"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/ViewConfigurationModel"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/ApiError"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "APIKey": [
+                            "ViewAPIAccessOnly"
+                        ]
+                    }
+                ]
+            }
+        },
         "/api/v1/views/{viewId}/{clientUUId}": {
             "get": {
                 "tags": [
@@ -708,6 +758,17 @@
                 }
             }
         },
+        "ActorUpdateRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                }
+            }
+        },
         "ApiError": {
             "type": "object",
             "properties": {
@@ -723,17 +784,6 @@
                     "additionalProperties": {
                         "type": "string"
                     }
-                }
-            }
-        },
-        "ActorUpdateRequest": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string"
-                },
-                "email": {
-                    "type": "string"
                 }
             }
         },
@@ -1063,6 +1113,109 @@
                 "sampleNumber": {
                     "format": "int32",
                     "type": "integer"
+                }
+            }
+        },
+        "ViewConfigurationModel": {
+            "required": [
+                "custom",
+                "columns"
+            ],
+            "type": "object",
+            "properties": {
+                "id": {
+                    "format": "uuid",
+                    "type": "string"
+                },
+                "accessKey": {
+                    "type": "string"
+                },
+                "custom": {
+                    "$ref": "#/definitions/ViewCustomizationModel"
+                },
+                "columns": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ViewColumnConfigurationModel"
+                    }
+                }
+            }
+        },
+        "ViewCustomizationModel": {
+            "required": [
+                "headerLinks"
+            ],
+            "type": "object",
+            "properties": {
+                "url": {
+                    "maxLength": 400,
+                    "type": "string"
+                },
+                "logo": {
+                    "maxLength": 400,
+                    "type": "string"
+                },
+                "title": {
+                    "maxLength": 40,
+                    "type": "string"
+                },
+                "copyright": {
+                    "maxLength": 80,
+                    "type": "string"
+                },
+                "headerLinks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ViewCustomizationHeaderLink"
+                    }
+                }
+            }
+        },
+        "ViewColumnConfigurationModel": {
+            "required": [
+                "label",
+                "lines"
+            ],
+            "type": "object",
+            "properties": {
+                "order": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "label": {
+                    "maxLength": 40,
+                    "type": "string"
+                },
+                "lines": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ViewColumnConfigurationLineModel"
+                    }
+                }
+            }
+        },
+        "ViewCustomizationHeaderLink": {
+            "required": [
+                "label",
+                "url"
+            ],
+            "type": "object",
+            "properties": {
+                "label": {
+                    "maxLength": 40,
+                    "type": "string"
+                },
+                "url": {
+                    "maxLength": 400,
+                    "type": "string"
+                }
+            }
+        },
+        "ViewColumnConfigurationLineModel": {
+            "type": "object",
+            "properties": {
+                "field": {
+                    "type": "string"
                 }
             }
         },

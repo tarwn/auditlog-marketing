@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>auditlog</title>
+    <title>Documentation</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width">
     <meta name="description" content="Transparency that enables">
@@ -27,50 +27,240 @@
     <link rel="manifest" href="/images/favicon/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/images/favicon/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff"></head>
+    <meta name="theme-color" content="#ffffff">
+    <script src="/scripts/jquery-3.3.1.min.js"></script>
+    <script src="/scripts/highlight.pack.js"></script>
+    <link rel="stylesheet" type="text/css" href="/styles/highlight/github.css" />
+</head>
 <body>
   <div class="alm-docs-area">
 
     <div class="alm-docs-sidebar">
         <header class="alm-docs-header">
             <a href="/" class="alm-logo">
-                <img src="/images/logo56.png" alt="AL" />
-                <span>auditlog</span>
+                <img src="/images/logo56.png" alt="AL" class="alm-docs-logo" />
+                <div class="alm-docs-logo-text">auditlog</div>
+                <div class="alm-docs-logo-subtext">docs</div>
             </a>
         </header>
         
         <div class="alm-docs-menu">
-            <span class="alm-menu-header">Getting Started</span>
+            <span class="alm-menu-header">General</span>
             <ul>
-                <li><a href="/docs/quickstart">Quickstart</a></li>
+                <li><a href="/docs">Getting Started</a></li>
                 <li><a href="#">Customizing the Drop-in</a></li>
                 <li><a href="#">Sending Events</a></li>
                 <li><a href="#">Supporting Privacy</a></li>
+            </ul>
+
+            <span class="alm-menu-header">API</span>
+            <ul>
+                <li><a href="api">API Reference</a></li>
             </ul>
         </div>
     </div>
 
     <div class="alm-docs-main">
+        <div class="alm-docs-navigation">
+            <div class="alm-nav-2">
+                <a href="https://app.auditlog.co/" class="alm-nav-link alm-login alm-only-large">Login</a>
+                <a href="https://app.auditlog.co/account/signup" class="alm-cta-light">Sign up</a>
+            </div>
+            <div class="alm-nav-1">
+                <a href="/features" class="alm-nav-link ">Features</a>
+                <a href="/pricing" class="alm-nav-link ">Pricing</a>
+                <a href="/blog" class="alm-nav-link alm-only-large ">Blog</a>
+                <a href="/docs" class="alm-nav-link alm-only-large ">Docs</a>
+            </div>
+        </div>
       <div class="alm-docs-content">
-        
-<h1>Welcome to auditlog</h1>
+        <h1 id="documentation">Documentation</h1>
+<p>Welcome to AuditLog!</p>
+<p>Our goal is to make it easy and quick for your customers
+to transparently see the changes they&#39;ve made while using your
+system. The first step is to get you up and running quickly.</p>
+<h1 id="getting-started-">Getting Started </h1>
+<p>It only takes 3 steps to start providing an AuditLog to your customers:</p>
+<ol>
+<li>Customize the View</li>
+<li>Embed the AuditLog in your Application</li>
+<li>Send Events</li>
+</ol>
+<p>Let&#39;s go!</p>
+<h2 id="step-1-customize-the-view">Step 1: Customize the View</h2>
+<p>The first step is to <a href="https://app.auditlog.co/customize/view">login</a> and customize your
+View for your customers. </p>
+<div class="alm-docs-image">
+    <img src="/images/docs/customize-med.png" alt="Screenshot of the Customize screen" />
+</div>
 
-<h3>Getting Started</h3>
+<p>Changes you make in the tabs on the left are immediately reflected in the preview pane. The
+data in the preview pane is sample data, so once you have some data in the system you may want
+to come back and tweak this further.</p>
+<p>No changes will be saved until you explicitly press the &quot;Save Changes&quot; button.</p>
+<ul>
+<li><strong>Layout:</strong> Customize the logo, page title, copyright statement, and add custom links to the top of the page</li>
+<li><strong>Columns:</strong> Customize the columns displayed in the table</li>
+<li><strong>Security:</strong> Access the <code>View Id</code>, View and Reset your <code>Access Key</code></li>
+<li><strong>Embed Script:</strong> Sample script to embed the Audit Log View</li>
+</ul>
+<p>Once you&#39;ve customized the AuditLog view to your liking, the next step is to embed it in your site.</p>
+<h2 id="step-2-embed-the-auditlog-in-your-application">Step 2: Embed the AuditLog in your Application</h2>
+<p>The fourth tab of the Customize screen above has a sample script for embedding 
+the AuditLog in your application. Add an empty page to your application and
+paste this sample script in.</p>
+<pre class="highlight html">
+    &lt;!DOCTYPE html&gt;
+    &lt;html lang="en-US" dir="ltr"&gt;
+    &lt;head&gt;
+        &lt;meta charset="utf-8"&gt;
+        &lt;title&gt;View your audit log&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div id="audit-log"&gt;&lt;/div&gt;
+        &lt;script src="https://app.auditlog.co/dropin/dropin.js"&gt;&lt;/script&gt;
+        &lt;script&gt;
+            auditLog({
+                view: '{your-view-id}',
+                accessKey: '{your-view-access-key}',
+                clientId: '{your-client-id}',
+                target: 'audit-log',
+                host: 'https://app.auditlog.co'
+            });
+        &lt;/script&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;
+</pre>
 
-Test API: 
+<p>The Embed script will include the proper values for your View Id and Access Key,
+but you will need to provide the value for your client&#39;s individual Id&#39;s. </p>
+<p><strong>Client UUID:</strong> The value you pick for a client UUID should be one that you
+can map back to clients in your system, that uniquely identifies the client, and
+can be plugged into your Audit Log page and rpeorted to the AuditLog API.</p>
+<h2 id="step-3-send-events-to-auditlog-co">Step 3: Send Events to AuditLog.co</h2>
+<p>The last step is to wire up your application to forward event data to your
+AuditLog. We suggest you start with the following events:</p>
+<ul>
+<li>Security Access<ul>
+<li>User Created</li>
+<li>User Disabled/Deleted/etc</li>
+<li>User Rights Updated</li>
+<li>API Key Created</li>
+</ul>
+</li>
+<li>Security Failures<ul>
+<li>Successful User Logon</li>
+<li>Failed User Logon</li>
+</ul>
+</li>
+</ul>
+<p>Once you have some events flowing for standard security events, you can
+extend this easily to other notable events for your system.</p>
+<p><strong>Generate an API Key</strong></p>
+<p>First go to the <a href="https://ap.auditlog.co/configure/apikeys">API Keys screen</a> to 
+generate your first API Key. Press the &quot;Create API Key&quot; button to start the process and
+give it a memorable name. Copy the generated Consumer Id and Secret before returning to the
+API Keys list.</p>
+<div class="alm-docs-image">
+    <img src="/images/docs/apikeys-med.png" alt="Screenshot of the API Keys screen" />
+</div>
+
+<p><strong>Submit a sample event</strong></p>
+<p>Using <a href="/docs/api/?curl#events-api-post">the API</a>, you can submit your first event from the command-line:</p>
+<pre class="highlight bash">
+curl 'https://app.auditlog.co/api/v1/events' \
+    -X POST \
+    -H 'x-api-key: {consumer id}:{secret}' \
+    -H 'content-type: application/json' \
+    -d '[
+            {
+                "uuid": "sample-event-001",
+                "client": {
+                    "uuid": "1234567890",
+                    "name": "Great Client"
+                },
+                "time": "2018-06-30T16:35:52",
+                "action": "user.invite",
+                "description": "Invited new user, QA role",
+                "url": "http://blah.example.com/95c102ae-5930-413f-b794-8f0934fdb136",
+                "actor": {
+                    "uuid": "bd275099-e808-4c1a-bd32-57a589b7cf93",
+                    "name": "Roberta Wharton",
+                    "email": "rwharton@great-client.test"
+                },
+                "context": {
+                    "client": {
+                        "ipAddress": "192.168.105.23",
+                        "browserAgent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWeb..."
+                    },
+                    "server": {
+                        "serverId": "prod-01-us-appfarm",
+                        "version": "20180325-01"
+                    }
+                },
+                "target": {
+                    "type": "user",
+                    "uuid": "95c102ae-5930-413f-b794-8f0934fdb136",
+                    "label": "Salman Randall",
+                    "url": "http://blah.example.com/95c102ae-5930-413f-b794-8f0934fdb136"
+                }
+            }
+    ]'
+</pre>
+
+<p>Feel free to continue using the client id of &quot;1234567890&quot; while you&#39;re testing. </p>
+<p>You can see your submitted events on the embedded AuditLog you created in Step 2
+or on your <a href="https://app/auditlog.co">AuditLog.co dashboard</a>, which shows all of the events
+across all of your clients:</p>
+<div class="alm-docs-image">
+    <img src="/images/docs/dashboard-med.png" alt="Screenshot of the Dashboard" />
+</div>
+
+<p>This view is the same as your customized View, with the addition of the Client 
+column and charts.</p>
+<p><strong>Integrate your application</strong></p>
+<p>Finally, the last step is to connect your application to this API to send
+real events.</p>
+<p><a href="/docs/api/?curl#events-api-post">API Docs: Sending Events</a></p>
+<p>If you have any difficulties with this step, let us know!</p>
+<h1 id="success">Success</h1>
+<p>Success, you have a working AuditLog that will continue to get better
+without any additional development expense on your side. Let us
+know if there is anything more we can do!</p>
+
       </div>
     </div>
   </div>
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-101987909-2"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-  
-    gtag('config', 'UA-101987909-2');
-  </script>
+    <script type="text/javascript">
+    $().ready(function(){
+        $('pre.highlight').each(function(i, block) {
+            var lines = block.textContent.split('\n');
+            var matches;
+            var indentation = (matches = /^\s+/.exec(lines[0])) != null ? matches[0] : null;
+            if (!!indentation) {
+                lines = lines.map(function(line) {
+                    return line.replace(indentation, '');
+                });
+                return block.textContent = lines.join('\n').trim();
+            }
+        });
+
+        $('pre.highlight').each(function(o, block){ 
+            hljs.highlightBlock(block);
+        });
+    });
+    </script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-101987909-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-101987909-2');
+</script>
     
 </body>
 </html>
