@@ -5,55 +5,35 @@
     {{> head }}
 </head>
 <body>
-  {{> header }}
+  <div class="alm-docs-area">
 
-    <nav class="dm-docs-nav">
-
-        Getting Started
-        <ul>
-        {{#each collections.docs_gettingStarted}}
-        <li><a href="/{{ path }}" title="{{ title }}" class="{{#equals path ../path}}dm-docs-nav-selected{{/equals}}">{{ title }}</a> </li>
-        {{/each}}
-        </ul>
-
-        Using the Site
-        <ul>
-        {{#each collections.docs_usingTheService}}
-        <li><a href="/{{ path }}" title="{{ title }}" class="{{#equals path ../path}}dm-docs-nav-selected{{/equals}}">{{ title }}</a> </li>
-        {{/each}}
-        </ul>
-
-        Getting Things Done
-        <ul>
-        {{#each collections.docs_gettingThingsDone}}
-        <li><a href="/{{ path }}" title="{{ title }}" class="{{#equals path ../path}}dm-docs-nav-selected{{/equals}}">{{ title }}</a> </li>
-        {{/each}}
-        </ul>
-
-        Integration
-        <ul>
-        {{#each collections.docs_integration}}
-        <li><a href="/{{ path }}" title="{{ title }}" class="{{#equals path ../path}}dm-docs-nav-selected{{/equals}}">{{ title }}</a> </li>
-        {{/each}}
-        </ul>
-
-    </nav>
-
-    <div class="dm-docs-main">
-      <div class="dm-docs-main-content">
-      {{{ contents }}}
-      </div>
-
-      <footer class="dm-docs-footer">
-        <div class="dm-footer-copyright">
-          <span>&copy; {{ companyName }}</span>
-          <span><a href="/legal">Terms &amp; Privacy </a></span>
-          <span>Have an amazing day!</span>
+    <div class="alm-docs-sidebar">
+        <header class="alm-docs-header">
+            <a href="/" class="alm-logo">
+                <img src="/images/logo56.png" alt="AL" />
+                <span>auditlog</span>
+            </a>
+        </header>
+        
+        <div class="alm-docs-menu">
+            <span class="alm-menu-header">Getting Started</span>
+            <ul>
+                <li><a href="/docs/quickstart">Quickstart</a></li>
+                <li><a href="#">Customizing the Drop-in</a></li>
+                <li><a href="#">Sending Events</a></li>
+                <li><a href="#">Supporting Privacy</a></li>
+            </ul>
         </div>
-      </footer>
     </div>
 
-    {{> analytics }}
+    <div class="alm-docs-main">
+      <div class="alm-docs-content">
+        {{{ contents }}}
+      </div>
+    </div>
+  </div>
+
+  {{> analytics }}
     
 </body>
 </html>

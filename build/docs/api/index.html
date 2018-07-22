@@ -850,7 +850,7 @@
                             'https://app.auditlog.co/api/v1/views/{ viewId }/1234567890?page=201806' \
                             -H 'x-api-key: {consumer id}:{secret}' \
                             -H 'accept: application/json' 
-                        </pre>
+                    </pre>
                 </div>
             </div>
             <div class="alm-api-section">
@@ -859,6 +859,11 @@
                     <p>
                         <table>
                             <tr><th>Code</th><th>Type</th><th>Description</th></tr>
+                                <tr><td>200</td><td>PagedViewResult</td><td>Success</td></tr>
+                                <tr><td>400</td><td>ApiError</td><td>Bad Request</td></tr>
+                                <tr><td>401</td><td></td><td>Unauthorized</td></tr>
+                                <tr><td>403</td><td></td><td>Forbidden</td></tr>
+                                <tr><td>404</td><td>ApiError</td><td>Not Found</td></tr>
                         </table>
                     </p>
                     <h3>PagedViewResult</h3>

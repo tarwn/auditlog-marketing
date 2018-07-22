@@ -459,7 +459,7 @@ layout: api.html
                             'https://app.auditlog.co/api/v1/views/{ viewId }/1234567890?page=201806' \
                             -H 'x-api-key: {{ exampleApiToken }}' \
                             -H 'accept: application/json' 
-                        </pre>
+                    </pre>
                 </div>
             </div>
             <div class="alm-api-section">
@@ -469,7 +469,7 @@ layout: api.html
                         {{#apiPath "/api/v1/views/{viewId}/{clientUUId}" this }}
                         <table>
                             <tr><th>Code</th><th>Type</th><th>Description</th></tr>
-                            {{#each post.responses}}
+                            {{#each get.responses}}
                                 <tr><td>{{ @key }}</td><td>{{ apiPathResponseType this }}</td><td>{{ description  }}</td></tr>
                             {{/each}}
                         </table>

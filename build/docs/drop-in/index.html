@@ -1,4 +1,4 @@
-<p>&lt;!doctype html&gt;</p>
+<!doctype html>
 <html lang="en">
 <head>
     <title>Drop In Display</title>
@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width">
     <meta name="description" content="Transparency that enables">
     <link rel="alternate" type="application/rss+xml" title="RSS Feed for https://www.auditlog.co" href="/rss.xml" />
-
+    
     <link href="https://fonts.googleapis.com/css?family=Raleway|Oxygen" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/styles/lib/normalize.css" />
     <link rel="stylesheet" type="text/css" href="/styles/stylesheet.css" />
-
+    
     <link rel="apple-touch-icon" sizes="57x57" href="/images/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/images/favicon/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/images/favicon/apple-icon-72x72.png">
@@ -29,68 +29,43 @@
     <meta name="msapplication-TileImage" content="/images/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff"></head>
 <body>
-  <header class="alm-header">
-      <div class="alm-header-content">
-          <a href="/" class="alm-logo">
-              <img src="/images/logo56.png" alt="AL" />
-              <span>auditlog</span>
-          </a>
-          <div class="alm-nav-2">
-              <a href="https://app.auditlog.co/" class="alm-nav-link alm-login alm-only-large">Login</a>
-              <a href="https://app.auditlog.co/account/signup" class="alm-cta-light">Sign up</a>
-          </div>
-          <div class="alm-nav-1">
-              <a href="/features" class="alm-nav-link ">Features</a>
-              <a href="/pricing" class="alm-nav-link ">Pricing</a>
-              <a href="/blog" class="alm-nav-link alm-only-large ">Blog</a>
-              <a href="/docs" class="alm-nav-link alm-only-large ">Docs</a>
-          </div>
-          <div class="alm-header-spacer"></div>
-      </div>
-  </header>
-    <nav class="dm-docs-nav">
+  <div class="alm-docs-area">
 
-        Getting Started
-        <ul>
-        </ul>
-
-        Using the Site
-        <ul>
-        </ul>
-
-        Getting Things Done
-        <ul>
-        </ul>
-
-        Integration
-        <ul>
-        </ul>
-
-    </nav>
-
-    <div class="dm-docs-main">
-      <div class="dm-docs-main-content">
-
-      </div>
-
-      <footer class="dm-docs-footer">
-        <div class="dm-footer-copyright">
-          <span>&copy; LaunchReady Software, LLC</span>
-          <span><a href="/legal">Terms &amp; Privacy </a></span>
-          <span>Have an amazing day!</span>
+    <div class="alm-docs-sidebar">
+        <header class="alm-docs-header">
+            <a href="/" class="alm-logo">
+                <img src="/images/logo56.png" alt="AL" />
+                <span>auditlog</span>
+            </a>
+        </header>
+        
+        <div class="alm-docs-menu">
+            <span class="alm-menu-header">Getting Started</span>
+            <ul>
+                <li><a href="/docs/quickstart">Quickstart</a></li>
+                <li><a href="#">Customizing the Drop-in</a></li>
+                <li><a href="#">Sending Events</a></li>
+                <li><a href="#">Supporting Privacy</a></li>
+            </ul>
         </div>
-      </footer>
     </div>
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-101987909-2"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag(&#39;js&#39;, new Date());
+    <div class="alm-docs-main">
+      <div class="alm-docs-content">
+        
+      </div>
+    </div>
+  </div>
 
-      gtag(&#39;config&#39;, &#39;UA-101987909-2&#39;);
-    </script>
-
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-101987909-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-101987909-2');
+  </script>
+    
 </body>
 </html>

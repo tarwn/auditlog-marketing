@@ -148,11 +148,11 @@ Metalsmith(__dirname)
     // }
   }))
 
+  .use(markdown())
   .use(layouts({
     engine: 'handlebars',
     partials: 'partials'
   }))
-  .use(markdown())
   .use(permalinks({
     relative: false
   }))
