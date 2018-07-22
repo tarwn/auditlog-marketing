@@ -47,6 +47,6 @@ Here is an example of using the script:
 
 There are 3 key pieces to this:
 
-* The <code>audit-log</code> div, which will be used to render the Audit Log
+* The `audit-log` div, which will be used to render the Audit Log
 * The dropin.js script which includes all of the code
-* The <code>auditlog({})</code> options which provide the view id/access key and identify the client to display
+* The `auditlog({})` options which provide the view id/access key and identify the client to display

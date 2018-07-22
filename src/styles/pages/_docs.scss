@@ -1,7 +1,10 @@
 @import "../variables";
 
 .alm-docs-content{
-    p + h1{
+    p + h1,
+    div + h1,
+    p + h2,
+    div + h2{
         margin-top: 1.5em;
     }
 }

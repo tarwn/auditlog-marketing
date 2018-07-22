@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Embedding AuditLog</title>
+    <title>Sending Events</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width">
     <meta name="description" content="Transparency that enables">
@@ -75,47 +75,25 @@
             </div>
         </div>
       <div class="alm-docs-content">
-        <h1 id="embedding-the-auditlog">Embedding the AuditLog</h1>
-<p>AuditLog provides a drop-in you can embed in your own application, with customization
-available for things liek the logo, links, and columns that most make sense for your
-system.</p>
-<h1 id="customize-screen">Customize Screen</h1>
-<p>Open the <a href="https://app.auditlog.co/customize/view">Customize screen</a> and access 
-the &quot;Embed Script&quot; tab for an example:</p>
+        <h1 id="support-privacy-concerns">Support Privacy Concerns</h1>
+<p>With increasing privacy regulations, AuditLog has chosen to provide APIs to directly
+support the requirements you may fall under. </p>
+<h2 id="user-actor-api">User / Actor API</h2>
+<p>The <a href="/docs/api/?curl#actors-api">Actors / Users API</a> supports <code>Search</code>, <code>Update</code>, 
+and <code>Forget</code> capabilities out of the box.</p>
+<p>Personally identifiable information, like name and email address, make an AuditLog a much friendlier and easier to use experience. However, you also need the freedom to know specifically what you&#39;ve stored and have the ability to redact it without dumping your entire log. This is where the Actor API comes in.</p>
+<p><em>Note: You aren&#39;t required to store personally identifiable information in the AuditLog, but should you do so our aim is to provide you the tools you need to easily comply with internal and external regulations on this data.</em></p>
+<ul>
+<li><code>Search</code> - What information does AuditLog store for a given user?</li>
+<li><code>Update</code> - Update a User&#39;s information to the latest value</li>
+<li><code>Forget</code> - Redact a user&#39;s information from the system, without damaging AuditLog entries</li>
+</ul>
+<p>Check out the API Documentation for more details:</p>
 <div class="alm-docs-image">
-    <img src="/images/docs/customize-embed-med.png" alt="Screenshot of the Customize screen" />
+    <a href="/docs/api/?curl#events-api-post"><img src="/images/docs/api-med.png" alt="Screenshot of the Customize screen" /></a><br/>
+    <a href="/docs/api/?curl#events-api-post">AuditLog API Reference</a>
 </div>
 
-<p>Here is an example of using the script:</p>
-<pre class="highlight html">
-    &lt;!DOCTYPE html&gt;
-    &lt;html lang="en-US" dir="ltr"&gt;
-    &lt;head&gt;
-        &lt;meta charset="utf-8"&gt;
-        &lt;title&gt;View your audit log&lt;/title&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-        &lt;div id="audit-log"&gt;&lt;/div&gt;
-        &lt;script src="https://app.auditlog.co/dropin/dropin.js"&gt;&lt;/script&gt;
-        &lt;script&gt;
-            auditLog({
-                view: '{your-view-id}',
-                accessKey: '{your-view-access-key}',
-                clientId: '{your-client-id}',
-                target: 'audit-log',
-                host: 'https://app.auditlog.co'
-            });
-        &lt;/script&gt;
-    &lt;/body&gt;
-    &lt;/html&gt;
-</pre>
-
-<p>There are 3 key pieces to this:</p>
-<ul>
-<li>The <code>audit-log</code> div, which will be used to render the Audit Log</li>
-<li>The dropin.js script which includes all of the code</li>
-<li>The <code>auditlog({})</code> options which provide the view id/access key and identify the client to display</li>
-</ul>
 
       </div>
     </div>

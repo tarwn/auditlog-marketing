@@ -75,47 +75,74 @@
             </div>
         </div>
       <div class="alm-docs-content">
-        <h1 id="embedding-the-auditlog">Embedding the AuditLog</h1>
-<p>AuditLog provides a drop-in you can embed in your own application, with customization
-available for things liek the logo, links, and columns that most make sense for your
-system.</p>
-<h1 id="customize-screen">Customize Screen</h1>
-<p>Open the <a href="https://app.auditlog.co/customize/view">Customize screen</a> and access 
-the &quot;Embed Script&quot; tab for an example:</p>
+        <h1 id="customizing-the-auditlog">Customizing the AuditLog</h1>
+<p>The Embeddable AuditLog supports a number of customization options
+to help surface the best data to your customers.</p>
+<p>Head to the <a href="https://app.auditlog.co/customize/view">Customization screen</a> to access these options.</p>
+<h1 id="layout-customization">Layout Customization</h1>
+<p>From the <em>Layout</em> tab you can configure the header and footer
+of the AuditLog.</p>
+<ul>
+<li><strong>Logo</strong> - expects a full URL to an image</li>
+<li><strong>Title</strong> - displayed next to the logo in mobile + desktop view</li>
+<li><strong>Links</strong> - top right in desktop, below the logo/title in mobile</li>
+<li><strong>Copyright</strong> - displayed in the footer of the page</li>
+</ul>
+<div class="alm-docs-image">
+    <img src="/images/docs/customize-med.png" alt="Screenshot of the Customize screen" />
+</div>
+
+<h1 id="columns-customization">Columns Customization</h1>
+<p>The <em>Columns</em> tab allows you to customize which columns are displayed,
+with some limited options for formatting and support for single or two-row
+columns.</p>
+<div class="alm-docs-image">
+    <img src="/images/docs/customize-columns-med.png" alt="Screenshot of the Customize screen" />
+</div>
+
+<p>Each column has several options:</p>
+<ul>
+<li><strong>Label</strong> - Text shown for the column header, can be as similar or dissimilar to the actual context as you want</li>
+<li><strong>Fields</strong> - Each column must have a field in the first row and can, optionally, have a value in it&#39;s second row</li>
+<li><strong>Buttons</strong> - The arrows re-order columns, the X removes them</li>
+</ul>
+<h2 id="fields-in-more-detail">Fields, in more detail</h2>
+<p>The available fields list include not only the raw values you send in with the events, but formatted versions
+where they are appropriate. Many of the fields are optional, they will show empty values if you configure
+columns to display them.</p>
+<p><strong>Example:</strong></p>
+<div class="alm-docs-image">
+    <img src="/images/docs/customize-column-config.png" alt="Screenshot of the Customize screen" />
+</div>
+
+<p><strong>Displays as:</strong></p>
+<div class="alm-docs-image">
+    <img src="/images/docs/customize-column-view.png" alt="Screenshot of the Customize screen" />
+</div>
+
+<p>The fields also include some server-generated values, like the reception time:</p>
+<div class="alm-docs-image">
+    <img src="/images/docs/receptiontime.png" alt="Screenshot of the Customize screen" />
+</div>
+
+<h1 id="security">Security</h1>
+<p>The <em>Security</em> tab gives you access to the View Id and Access Key necessary to access
+the view data for a given client, plus the ability to rotate the Access Key. </p>
+<p><em>We don&#39;t have any requirements around you rotating the Access Key. Some customers have internal
+or regulatory requirements to rotate keys on some frequency and this allows that.</em></p>
+<div class="alm-docs-image">
+    <img src="/images/docs/customize-security-med.png" alt="Screenshot of the Customize screen" />
+</div>
+
+<h1 id="embed-script">Embed Script</h1>
+<p>The <em>Embed Script</em> tab is purely informational. It provides a sample script
+with updated View Id and Access keys that you can use to embed your AuditLog in
+your application.</p>
 <div class="alm-docs-image">
     <img src="/images/docs/customize-embed-med.png" alt="Screenshot of the Customize screen" />
 </div>
 
-<p>Here is an example of using the script:</p>
-<pre class="highlight html">
-    &lt;!DOCTYPE html&gt;
-    &lt;html lang="en-US" dir="ltr"&gt;
-    &lt;head&gt;
-        &lt;meta charset="utf-8"&gt;
-        &lt;title&gt;View your audit log&lt;/title&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-        &lt;div id="audit-log"&gt;&lt;/div&gt;
-        &lt;script src="https://app.auditlog.co/dropin/dropin.js"&gt;&lt;/script&gt;
-        &lt;script&gt;
-            auditLog({
-                view: '{your-view-id}',
-                accessKey: '{your-view-access-key}',
-                clientId: '{your-client-id}',
-                target: 'audit-log',
-                host: 'https://app.auditlog.co'
-            });
-        &lt;/script&gt;
-    &lt;/body&gt;
-    &lt;/html&gt;
-</pre>
-
-<p>There are 3 key pieces to this:</p>
-<ul>
-<li>The <code>audit-log</code> div, which will be used to render the Audit Log</li>
-<li>The dropin.js script which includes all of the code</li>
-<li>The <code>auditlog({})</code> options which provide the view id/access key and identify the client to display</li>
-</ul>
+<p>See <a href="/docs/embedding">Embedding you AuditLog</a> for more information.</p>
 
       </div>
     </div>
