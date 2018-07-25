@@ -840,7 +840,11 @@
                 },
                 "target": {
                     "$ref": "#/definitions/EventEntryTarget",
-                    "description": "The Target that the Actor performed the Action against."
+                    "description": "The Target that the Actor performed the Action against. Send a `TargetUser` if it is a User/Actor instead."
+                },
+                "targetUser": {
+                    "$ref": "#/definitions/EventEntryTargetUser",
+                    "description": "The Target User that the Actor performed the Action against. Send a `Target` if it is not a User/Actor instead."
                 }
             }
         },
@@ -915,7 +919,7 @@
             "type": "object",
             "properties": {
                 "type": {
-                    "description": "The Type of the Target being affected. There is only one special type 'User', all others can be defined custom by you.",
+                    "description": "The Type of the Target being affected.",
                     "maxLength": 40,
                     "minLength": 0,
                     "type": "string"
@@ -927,7 +931,7 @@
                     "type": "string"
                 },
                 "label": {
-                    "description": "A human-readable description of the target being affected, for at a glance information. Do not use for 'User'.",
+                    "description": "A human-readable description of the target being affected, for at a glance information.",
                     "maxLength": 120,
                     "minLength": 0,
                     "type": "string"
@@ -935,6 +939,33 @@
                 "url": {
                     "description": "A URL reference back to the target being affected, if useful.",
                     "maxLength": 400,
+                    "minLength": 0,
+                    "type": "string"
+                }
+            }
+        },
+        "EventEntryTargetUser": {
+            "description": "The User / Actor that has been altered / targeted",
+            "required": [
+                "uuid"
+            ],
+            "type": "object",
+            "properties": {
+                "uuid": {
+                    "description": "A universally unique ID you can use to identify the actor against your own records.",
+                    "maxLength": 80,
+                    "minLength": 0,
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for the Actor for easy identification at a glance.",
+                    "maxLength": 120,
+                    "minLength": 0,
+                    "type": "string"
+                },
+                "email": {
+                    "description": "A human-readable email address for the Actor for easy identification at a glance.",
+                    "maxLength": 120,
                     "minLength": 0,
                     "type": "string"
                 }

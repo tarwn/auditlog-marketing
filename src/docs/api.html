@@ -313,22 +313,21 @@ layout: api.html
                                                 "version": "20180325-01"
                                             }
                                         },
-                                        "target": {
-                                            "type": "user",
+                                        "targetUser": {
                                             "uuid": "95c102ae-5930-413f-b794-8f0934fdb136",
-                                            "label": "Salman Randall",
-                                            "url": "http://blah.example.com/95c102ae-5930-413f-b794-8f0934fdb136"
+                                            "name": "Salman Randall",
+                                            "email": "srandall@great-client.test"
                                         }
                                     },
                                     {
-                                        "uuid": "sample-event-002",
+                                        "uuid": "sample-event-004",
                                         "client": {
                                             "uuid": "1234567890",
                                             "name": "Great Client"
                                         },
-                                        "time": "2018-06-30T16:36:34",
-                                        "action": "user.register",
-                                        "description": "Registering from invitation",
+                                        "time": 1522315212,
+                                        "action": "batch.logSamples",
+                                        "description": "Entered QA samples for batch",
                                         "url": null,
                                         "actor": {
                                             "uuid": "95c102ae-5930-413f-b794-8f0934fdb136",
@@ -346,9 +345,9 @@ layout: api.html
                                             }
                                         },
                                         "target": {
-                                            "type": "user",
-                                            "uuid": "95c102ae-5930-413f-b794-8f0934fdb136",
-                                            "label": "Salman Randall",
+                                            "type": "batch",
+                                            "uuid": "5a61a8f0-1390-46bd-a4c7-d5381955d807",
+                                            "label": "Batch 20180329-003",
                                             "url": null
                                         }
                                     }
@@ -986,7 +985,7 @@ layout: api.html
                     {{> apiTypeProperties (apiType 'EventEntry' this) }}
                 </div>
                 <div class="alm-api-section-right alm-extra-top-margin">
-                    <blockquote class="alm-lang-curl">Example POSTed Event with all optional fields</blockquote>
+                    <blockquote class="alm-lang-curl">Example POSTed Event with most optional fields</blockquote>
                     <pre class="highlight lang-json alm-lang-curl">
                         {
                             "uuid": "sample-event-001",
@@ -1013,11 +1012,48 @@ layout: api.html
                                     "version": "20180325-01"
                                 }
                             },
+                            "targetUser": {
+                                "uuid": "95c102ae-5930-413f-b794-8f0934fdb136",
+                                "name": "Salman Randall",
+                                "email": "srandall@great-client.test"
+                            }
+                        }
+                    </pre>
+
+                    <blockquote class="alm-lang-curl">Example Queried Event: `targetUser` becomes `target`</blockquote>
+                    <pre class="highlight lang-json alm-lang-curl">
+                        {
+                            "id": "e4602584-95f1-4d9d-a4ec-c35a5d392510",
+                            "receptionTime": "2018-07-25T01:37:05.86",
+                            "uuid": "sample-event-001",
+                            "client": {
+                                "uuid": "1234567890",
+                                "name": "Great Client"
+                            },
+                            "time": "2018-06-30T16:35:52",
+                            "action": "user.invite",
+                            "description": "Invited new user, 'QA' role",
+                            "url": "http://blah.example.com/95c102ae-5930-413f-b794-8f0934fdb136",
+                            "actor": {
+                                "uuid": "bd275099-e808-4c1a-bd32-57a589b7cf93",
+                                "name": "Roberta Wharton",
+                                "email": "rwharton@great-client.test"
+                            },
+                            "context": {
+                                "client": {
+                                    "ipAddress": "192.168.105.23",
+                                    "browserAgent": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.6 (KHTML, like Gecko) Chrome/20.0.1092.0 Safari/536.6"
+                                },
+                                "server": {
+                                    "serverId": "prod-01-us-appfarm",
+                                    "version": "20180325-01"
+                                }
+                            },
                             "target": {
-                                "type": "user",
+                                "type": "User",
                                 "uuid": "95c102ae-5930-413f-b794-8f0934fdb136",
                                 "label": "Salman Randall",
-                                "url": "http://blah.example.com/95c102ae-5930-413f-b794-8f0934fdb136"
+                                "url": null
                             }
                         }
                     </pre>
