@@ -7,17 +7,16 @@
 <body>
   {{> header }}
 
-  <div class="dm-front-banner-light"></div>
-  <div class="dm-legal-menu">
-    <div class="dm-legal-menu-items">
-      <a href="/legal" {{#equals subcategory 'Terms'}}class="dm-selected"{{/equals}}>Service Agreement</a>
-      <a href="/legal/scheduleA" {{#equals subcategory 'Schedule A'}}class="dm-selected"{{/equals}}>Schedule A: Plans</a>
-      <a href="/legal/scheduleB" {{#equals subcategory 'Schedule B'}}class="dm-selected"{{/equals}}>Schedule B: SLA</a>
-    </div>
-  </div>
-  <div class="dm-legal-content">
+  <div class="alm-legal-area">
+    <h1 class="alm-legal-title">{{ title }}</h1>
+    <div class="alm-legal-updated">Last Updated {{ lastUpdated }}</div>
 
-    {{{ contents }}}
+    <div class="alm-legal-toc">
+      {{> toc }}
+    </div>
+    <div class="alm-legal-main">
+      {{{ contents }}}
+    </div>
 
   </div>
 

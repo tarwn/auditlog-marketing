@@ -11,6 +11,7 @@
         "handlebars": "4.0.x",
         "handlebars-helpers": "^0.10.0",
         "metalsmith": "2.3.x",
+        "metalsmith-autotoc": "^0.1.5",
         "metalsmith-collections": "0.9.x",
         "metalsmith-discover-partials": "0.1.x",
         "metalsmith-disqus": "1.2.x",

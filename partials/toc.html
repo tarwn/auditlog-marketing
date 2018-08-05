@@ -1,0 +1,13 @@
+<ul>
+{{#each toc}}
+    <li><a href="#{{ id }}">{{ text }}</a>
+        {{#if children}}
+            <ul>
+                {{#each children}}
+                    <li><a href="#{{ id }}">{{ text }}</a></li>
+                {{/each}}
+            </ul>
+        {{/if}}
+    </li>
+{{/each}}
+</ul>

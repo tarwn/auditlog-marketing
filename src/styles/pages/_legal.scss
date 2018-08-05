@@ -1,0 +1,21 @@
+@import "../variables";
+
+.alm-legal-area{
+    max-width: 800px;
+    margin: 1em;
+
+    @include for-tablet-portrait-up{
+        margin: 1em auto;
+    }
+}
+
+.alm-legal-toc{
+    margin: 2em 0;
+}
+
+.alm-legal-title{
+    margin-bottom: 0;
+}
+.alm-legal-updated{
+    margin-bottom: 2em;
+}

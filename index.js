@@ -14,8 +14,8 @@ var ignore = require('metalsmith-ignore');
 var watch = require('metalsmith-watch');
 var msIf = require('metalsmith-if');
 var serve = require('metalsmith-serve');
-var serve = require('metalsmith-serve');
 var disqus = require('metalsmith-disqus');
+var autotoc = require('metalsmith-autotoc');
 var argv = require('yargs').argv;
 
 var sorter = require('./utility/sorter');
@@ -56,7 +56,8 @@ Metalsmith(__dirname)
     email: {
       hello: 'hello@auditlog.co',
       sales: 'eli@auditlog.co',
-      support: 'support@auditlog.co'
+      support: 'support@auditlog.co',
+      privacy: 'support@auditlog.co'
     },
 
     // api docs
@@ -149,6 +150,7 @@ Metalsmith(__dirname)
   }))
 
   .use(markdown())
+  .use(autotoc({ selector: 'h2, h3'}))
   .use(layouts({
     engine: 'handlebars',
     partials: 'partials'
@@ -159,7 +161,7 @@ Metalsmith(__dirname)
   .use(hbtmd(handlebars, {
       pattern: '**/*.html'
   }))
-  
+
   // Disqus Comments
   .use(disqus({
     siteurl: 'https://www.auditlog.co',
