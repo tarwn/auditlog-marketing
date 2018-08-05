@@ -27,11 +27,9 @@
     <link rel="manifest" href="/images/favicon/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/images/favicon/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
-    <script src="/scripts/jquery-3.3.1.min.js"></script>
+    <meta name="theme-color" content="#ffffff">    <script src="/scripts/jquery-3.3.1.min.js"></script>
     <script src="/scripts/highlight.pack.js"></script>
-    <link rel="stylesheet" type="text/css" href="/styles/highlight/github.css" />
-</head>
+    <link rel="stylesheet" type="text/css" href="/styles/highlight/github.css" /></head>
 <body>
   <div class="alm-docs-area">
 
@@ -64,13 +62,13 @@
     <div class="alm-docs-main">
         <div class="alm-docs-navigation">
             <div class="alm-nav-2">
-                <a href="https://app.auditlog.co/" class="alm-nav-link alm-login alm-only-large">Login</a>
+                <a href="https://app.auditlog.co/account/login" class="alm-nav-link alm-login alm-only-large">Login</a>
                 <a href="https://app.auditlog.co/account/signup" class="alm-cta-light">Sign up</a>
             </div>
             <div class="alm-nav-1">
                 <a href="/features" class="alm-nav-link ">Features</a>
                 <a href="/pricing" class="alm-nav-link ">Pricing</a>
-                <a href="/blog" class="alm-nav-link alm-only-large ">Blog</a>
+                <!-- <a href="/blog" class="alm-nav-link alm-only-large ">Blog</a> -->
                 <a href="/docs" class="alm-nav-link alm-only-large ">Docs</a>
             </div>
         </div>
@@ -148,26 +146,25 @@ your application.</p>
     </div>
   </div>
 
-    <script type="text/javascript">
-    $().ready(function(){
-        $('pre.highlight').each(function(i, block) {
-            var lines = block.textContent.split('\n');
-            var matches;
-            var indentation = (matches = /^\s+/.exec(lines[0])) != null ? matches[0] : null;
-            if (!!indentation) {
-                lines = lines.map(function(line) {
-                    return line.replace(indentation, '');
-                });
-                return block.textContent = lines.join('\n').trim();
-            }
-        });
-
-        $('pre.highlight').each(function(o, block){ 
-            hljs.highlightBlock(block);
-        });
+<script type="text/javascript">
+$().ready(function(){
+    $('pre.highlight').each(function(i, block) {
+        var lines = block.textContent.split('\n');
+        var matches;
+        var indentation = (matches = /^\s+/.exec(lines[0])) != null ? matches[0] : null;
+        if (!!indentation) {
+            lines = lines.map(function(line) {
+                return line.replace(indentation, '');
+            });
+            return block.textContent = lines.join('\n').trim();
+        }
     });
-    </script>
 
+    $('pre.highlight').each(function(o, block){ 
+        hljs.highlightBlock(block);
+    });
+});
+</script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-101987909-2"></script>
 <script>

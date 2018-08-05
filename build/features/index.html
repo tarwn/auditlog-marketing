@@ -27,7 +27,9 @@
     <link rel="manifest" href="/images/favicon/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/images/favicon/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff"></head>
+    <meta name="theme-color" content="#ffffff">      <script src="/scripts/jquery-3.3.1.min.js"></script>
+      <script src="/scripts/highlight.pack.js"></script>
+      <link rel="stylesheet" type="text/css" href="/styles/highlight/github.css" /></head>
 <body>
   <header class="alm-header">
       <div class="alm-header-content">
@@ -36,13 +38,13 @@
               <span>auditlog</span>
           </a>
           <div class="alm-nav-2">
-              <a href="https://app.auditlog.co/" class="alm-nav-link alm-login alm-only-large">Login</a>
+              <a href="https://app.auditlog.co/account/login" class="alm-nav-link alm-login alm-only-large">Login</a>
               <a href="https://app.auditlog.co/account/signup" class="alm-cta-light">Sign up</a>
           </div>
           <div class="alm-nav-1">
               <a href="/features" class="alm-nav-link alm-nav-selected">Features</a>
               <a href="/pricing" class="alm-nav-link ">Pricing</a>
-              <a href="/blog" class="alm-nav-link alm-only-large ">Blog</a>
+              <!-- <a href="/blog" class="alm-nav-link alm-only-large ">Blog</a> -->
               <a href="/docs" class="alm-nav-link alm-only-large ">Docs</a>
           </div>
           <div class="alm-header-spacer"></div>
@@ -59,11 +61,23 @@
     <section class="alm-section alm-front-section">
         <div class="alm-row">
             <div class="alm-row-item-1 alm-front-33">
-                <h3>Drop-in Transparency</h3>
+                <h3>Drop-in Client Interface</h3>
                 <p>
-                    A drop-in Audit Table that can be customized to include the columns, sub-text, and 
-                    even external links that make the most sense for your clients. Configure the logo,
-                    navigation, and even copyright statement to provide a better experience.
+                    Add the customizable Audit Log to your application with a few
+                    lines of javascript:
+                    <pre class="highlight html" style="font-size: 65%">
+                    &lt;div id="audit-log"&gt;&lt;/div&gt;
+                    &lt;script src="https://app.auditlog.co/dropin/dropin.js"&gt;&lt;/script&gt;
+                    &lt;script&gt;
+                        auditLog({
+                            view: '{your-view-id}',
+                            accessKey: '{your-view-access-key}',
+                            clientId: '{your-client-id}',
+                            target: 'audit-log',
+                            host: 'https://app.auditlog.co'
+                        });
+                    &lt;/script&gt;
+                    </pre>
                 </p>
             </div>
             <div class="alm-row-item-1 alm-front-66 alm-mobile-center">
@@ -75,18 +89,15 @@
     <section class="alm-section alm-front-section">
         <div class="alm-row alm-row-reverse">
             <div class="alm-row-item-1 alm-front-33">
-            <h3>Quick Integration</h3>
+            <h3>Customizeable Without Code</h3>
                 <p>
-                    Send events via the REST API, we take care of the rest. Implement the API yourself 
-                    or use pre-built client libraries.
-                </p>
-                <p>
-                    Send events via the REST API, we take care of the rest. Implement the API yourself 
-                    or use pre-built client libraries.
+                    Use the Customization screen to set your own logo, add
+                    links, or update the footer. Add, Remove, Re-arrange, 
+                    and rename columns to fit your clients.
                 </p>
             </div>
             <div class="alm-row-item-1 alm-front-66 alm-mobile-center">
-            <img src="/images/front-demo-details.png" alt="Immutable, secure data storage" />
+            <img src="/images/front-demo-customize.png" alt="Customize your AuditLog" />
             </div>
         </div>
     </section>
@@ -94,7 +105,26 @@
     <section class="alm-section alm-front-section">
         <div class="alm-row">
             <div class="alm-row-item-1 alm-front-33">
-                <h3>Exports: From CSV to API</h3>
+                <h3>Clear API Documentation</h3>
+                <p>
+                    Send events via the REST API, we take care of the rest. Documentation
+                    includes detailed examples, instructions for common use cases, and
+                    depth for special cases.
+                </p>
+                <p>
+                    <a href="/docs/api">See the API docs</a>
+                </p>
+            </div>
+            <div class="alm-row-item-1 alm-front-66 alm-mobile-center">
+                <img src="/images/front-demo-docs.png" alt="Detailed docs with examples" />
+            </div>
+        </div>
+    </section>
+
+    <section class="alm-section alm-front-section">
+        <div class="alm-row alm-row-reverse">
+            <div class="alm-row-item-1 alm-front-33">
+                <h3>Built-in Exports</h3>
                 <p>
                     CSV exports are automatically available on-demand for your clients. Customize further using the Events
                     Reporting API to enrich the data further or embed it directly in your application.
@@ -106,30 +136,45 @@
         </div>
     </section>
 
+    <section class="alm-section alm-front-section">
+        <div class="alm-row">
+            <div class="alm-row-item-1 alm-front-33">
+                <h3>A 40,000 foot view</h3>
+                <p>
+                    A global view into your stored events, showing how your users are interacting with the system.
+                </p>
+            </div>
+            <div class="alm-row-item-1 alm-front-66 alm-mobile-center">
+                <img src="/images/front-demo-dashboard.png" alt="Enterprise Ready" />
+            </div>
+        </div>
+    </section>
+
     <section class="alm-section alm-more-features">
         <h1>And more...</h1>
         <div class="alm-more-features-list">
-
+<!-- 
             <div class="alm-more-features-item">
                 <h3>Global Audit Dashboard</h3>
                 <p>A <a href="/docs/dashboard">global view</a> of all of your audit log data, for faster troubleshooting and support.</p>
+            </div> -->
+<!-- 
+            <div class="alm-more-features-item">
+                <h3>Client Libraries</h3>
+                <p><a href="/docs/client-libraries">Client libraries</a> for common languages get you connected even faster.</p>
+            </div> -->
+
+            <div class="alm-more-features-item">
+                <h3>Immutable Events, Enabled Privacy</h3>
+                <p>AuditLog preserves Event data seperate from potential Personal Information, supporting <a href="/docs/supporting-privacy">Privacy API</a> endpoints to make it easy to search, update, or redact Personal Information you've stored with the service.</p>
             </div>
-            
+
+                        
             <div class="alm-more-features-item">
                 <h3>Client-Specific SIEM Integration</h3>
                 <p>With the Enterprise plan, you can configure client-specific <a href="/docs/SIEM">SIEM Exports</a> to feed data directly to your Enterprise clients.</p>
             </div>
-
-            <div class="alm-more-features-item">
-                <h3>Client Libraries</h3>
-                <p><a href="/docs/client-libraries">Client libraries</a> for common languages get you connected even faster.</p>
-            </div>
-
-            <div class="alm-more-features-item">
-                <h3>Immutable by Design</h3>
-                <p>Once published, Audit Log entries are retained unchanged and can only be modified by <a href="/docs/post-correction">posting a correction</a>, which annotates the original entry without actually modifying it.</p>
-            </div>
-
+    
         </div>
     </section>
 </section>
@@ -158,8 +203,11 @@
           <div class="alm-footer-column alm-row-item-1 alm-nonmobile">
               <h4>Categories</h4>
               <ul>
-                  <li><a href="/about">About</a></li>
-                  <li><a href="/blog">Blog</a></li>
+                  <!-- <li><a href="/about">About</a></li> -->
+                  <!-- <li><a href="/blog">Blog</a></li> -->
+                  <li><a href="/features">Features</a></li>
+                  <li><a href="/pricing">Pricing</a></li>
+                  <li><a href="/docs">Docs</a></li>
                   <li><a href="mailto://hello@auditlog.co" title="Send us a message!">Contact</a></li>
               </ul>
           </div>
@@ -170,12 +218,31 @@
               </ul>
           </div>
           <div class="alm-footer-column alm-row-item-1 alm-center alm-nonmobile">
-              <a class="alm-cta-primary" href="/sign-up">Sign Up</a><br/>
+              <a class="alm-cta-primary" href="https://app.auditlog.co/account/signup">Sign Up</a><br/>
               or <a href="/features">Learn More</a>
           </div>
       </div>
   </footer>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
+
+    <script type="text/javascript">
+    $().ready(function(){
+        $('pre.highlight').each(function(i, block) {
+            var lines = block.textContent.split('\n');
+            var matches;
+            var indentation = (matches = /^\s+/.exec(lines[0])) != null ? matches[0] : null;
+            if (!!indentation) {
+                lines = lines.map(function(line) {
+                    return line.replace(indentation, '');
+                });
+                return block.textContent = lines.join('\n').trim();
+            }
+        });
+    
+        $('pre.highlight').each(function(o, block){ 
+            hljs.highlightBlock(block);
+        });
+    });
+    </script>  <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-101987909-2"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -184,6 +251,5 @@
   
     gtag('config', 'UA-101987909-2');
   </script>
-  
 </body>
 </html>

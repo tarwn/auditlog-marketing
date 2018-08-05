@@ -60,6 +60,12 @@ Metalsmith(__dirname)
       privacy: 'support@auditlog.co'
     },
 
+    // links
+    links: {
+      login: 'https://app.auditlog.co/account/login',
+      signup: 'https://app.auditlog.co/account/signup'
+    },
+
     // api docs
     apiTypes: ['EventEntry', 'Actor'],
     exampleApiToken: '{consumer id}:{secret}'

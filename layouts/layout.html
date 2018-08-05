@@ -3,6 +3,9 @@
 <head>
     <title>{{ title }}</title>
     {{> head }}
+    {{#if includeHighlight }}
+      {{> highlight-head }}
+    {{/if}}
 </head>
 <body>
   {{> header }}
@@ -11,7 +14,10 @@
 
   {{> footer }}
 
-  {{> analytics }}
-  
+
+  {{#if includeHighlight }}
+    {{> highlight-scripts }}
+  {{/if}}
+  {{> analytics }}  
 </body>
 </html>

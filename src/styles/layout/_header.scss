@@ -87,6 +87,15 @@ $menu-item-height: 20px;
 
 .alm-nav-1{
     @include alm-nav-base(right, left);
+
+    @include for-small-phone-only{
+        width: 100%;
+        text-align: center;
+
+        a{
+            margin: 0 1em;
+        }
+    }
 }
 
 .alm-nav-2{

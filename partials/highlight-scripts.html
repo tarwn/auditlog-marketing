@@ -1,0 +1,19 @@
+<script type="text/javascript">
+$().ready(function(){
+    $('pre.highlight').each(function(i, block) {
+        var lines = block.textContent.split('\n');
+        var matches;
+        var indentation = (matches = /^\s+/.exec(lines[0])) != null ? matches[0] : null;
+        if (!!indentation) {
+            lines = lines.map(function(line) {
+                return line.replace(indentation, '');
+            });
+            return block.textContent = lines.join('\n').trim();
+        }
+    });
+
+    $('pre.highlight').each(function(o, block){ 
+        hljs.highlightBlock(block);
+    });
+});
+</script>

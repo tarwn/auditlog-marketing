@@ -19,6 +19,15 @@
 
 }
 
+.alm-features{
+    .alm-front-66{
+        text-align: right;
+    }
+    .alm-row-reverse > .alm-front-66{
+        text-align: left;
+    }
+}
+
 .alm-features > .alm-front-section:first-of-type {
     margin: 3em auto;
 }

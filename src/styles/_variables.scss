@@ -39,6 +39,9 @@ $text-color-inverse: $ws_white;
 
 // Device regions
 //  https://medium.freecodecamp.org/the-100-correct-way-to-do-css-breakpoints-88d6a5ba1862
+@mixin for-small-phone-only {
+    @media (max-width: 320px) { @content; }
+}
 @mixin for-phone-only {
     @media (max-width: 599px) { @content; }
 }
