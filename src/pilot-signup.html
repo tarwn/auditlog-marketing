@@ -1,0 +1,107 @@
+---
+layout: layout.html
+navmenu: pricing
+includeHighlight: true
+
+changefreq: monthly
+lastmod: 2018-08-11
+priority: 0.9
+---
+
+<section class="alm-hero">
+    <h1>Audit Log: Request early pilot access</h1>
+    <p>AuditLog.co is currently in early pilot access as we finish improving self-administration
+        capabilities and tune performance.</p>
+
+    <div class="alm-pilot-form-area">
+        <div id="contactFormError" style="display: none" class="alm-pilot-form-error">Sorry, an error occurred. Please reach out to us directly at <a href="mailto://{{ email.hello }}">{{ email.hello }}</a></div>
+        <div id="contactForm" class="alm-pilot-form">
+            <form>
+                <input type="hidden" name="message" value="{{ productName }} pilot access request form" />
+                <div class="alm-pilot-form-row">
+                    <label for="fromEmail" id="labelFromEmail">Your Email Address?</label><br/>
+                    <input type="text" name="fromEmail" id="fromEmail" placeholder="Email Address" class="dm-pilot-input" />
+                </div>
+                <div class="alm-pilot-form-row">
+                    <label for="customerCount" id="labelCustomerCount">How many customers do you currently serve?</label> <br/>
+                    <select id="customerCount" name="customerCount">
+                        <option>1-10</option>
+                        <option>10-50</option>
+                        <option>50-100</option>
+                        <option>100-500</option>
+                        <option>500-1000</option>
+                        <option>1000+</option>
+                    </select>
+                </div>
+                <div class="alm-pilot-form-row">
+                    <label for="timing">Can you share more about why you're looking? (optional)</label> <br/>
+                    <textarea cols="60" rows="5" name="timing" id="timing"></textarea>
+                </div>
+                <div class="alm-pilot-form-row" style="text-align: center;">
+                    <input type="submit" value="Request Early Access"  class="alm-cta-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+    var url = "https://auditlog-signup.azurewebsites.net/api/HttpTriggerCSharp1?code=557A1iF/2jFL4eGHgBsq1J/fYKy8QbR87IJl5gkw5aHYpuAFdYVvmg==";
+    $("form").on('submit', function (event) {
+        event.preventDefault();
+ 
+        // grab contact form data
+        var data = $(this).serialize();
+
+        // hide prior errors, disable inputs while we're submitting
+        $("#contactFormError").hide();
+ 
+        var errorCount = 0;
+        var emailInput = $("#fromEmail");
+        if(emailInput.val() == null || emailInput.val() == ""){
+            $("#labelFromEmail").addClass("error");
+            emailInput.addClass("error");
+            emailInput.attr("placeholder", "Email address is required");
+            errorCount++;
+        }
+        else{
+            $("#labelFromEmail").removeClass("error");
+            emailInput.removeClass("error");
+        }
+
+        if(errorCount > 0)
+            return;
+
+        submitForm(data);
+    });
+
+    function submitForm(data){
+        $("#contactForm input").prop('disabled', true);
+        $("#contactForm select").prop('disabled', true);
+        $("#contactForm textarea").prop('disabled', true);
+        $("#contactForm input[type=submit]").val('Sending...');
+        
+        // back in my day, we had to AJAX uphill both ways, in the snow, through cross-iframe scripts
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: data,
+            dataType: "text",
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            success: function (respData) {
+                // Yay, success!!
+                console.log("success");
+                $("#contactForm").hide();
+                $("#contactForm input[type=submit]").val('Request Early Access');
+                location.href = '/pilot-requested';
+            },
+            error: function (jqXHR) {
+                // Boo, error...
+                $("#contactFormError").show();
+                $("#contactForm input[type=submit]").val('Request Early Access');
+                $("#contactForm input").prop('disabled', false);
+            }
+        });
+    }
+
+</script>

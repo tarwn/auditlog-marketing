@@ -63,8 +63,11 @@ Metalsmith(__dirname)
     // links
     links: {
       login: 'https://app.auditlog.co/account/login',
-      signup: 'https://app.auditlog.co/account/signup'
+      //signup: 'https://app.auditlog.co/account/signup',
+      signup: '/pilot-signup'
     },
+    'faux-pilot-label-class': 'alm-pilot-label',
+
 
     // api docs
     apiTypes: ['EventEntry', 'Actor'],

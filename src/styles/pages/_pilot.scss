@@ -1,0 +1,24 @@
+@import "../variables";
+
+.alm-pilot-form-area{
+    max-width: 600px;
+    margin: 1em;
+
+    background-color: $ws_white;
+    border-radius: 6px;
+    border: 1px solid $ws_lightgrey;
+    color: $text-color-normal;
+
+    @include for-tablet-portrait-up{
+        margin: 2em auto 1em auto;
+    }
+}
+
+.alm-pilot-form{
+    text-align: left;
+    margin: 1em;
+}
+
+.alm-pilot-form-row{
+    margin: .5em 0;
+}

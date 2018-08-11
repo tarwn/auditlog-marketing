@@ -42,8 +42,8 @@
               <a href="/pilot-signup" class="alm-cta-light">Sign up</a>
           </div>
           <div class="alm-nav-1">
-              <a href="/features" class="alm-nav-link alm-nav-selected">Features</a>
-              <a href="/pricing" class="alm-nav-link ">Pricing</a>
+              <a href="/features" class="alm-nav-link ">Features</a>
+              <a href="/pricing" class="alm-nav-link alm-nav-selected">Pricing</a>
               <!-- <a href="/blog" class="alm-nav-link alm-only-large ">Blog</a> -->
               <a href="/docs" class="alm-nav-link alm-only-large ">Docs</a>
           </div>
@@ -51,140 +51,103 @@
       </div>
   </header>
   
-<section class="alm-hero-short">
-    <h1>A Polished, Enterprise-Ready Experience</h1>
-    <p>Fast response times, 3rd party data escrow, log retention, drop-in component.<br/>
-        The slick interface without the development time to build it yourself.</p>
-</section>
+<section class="alm-hero">
+    <h1>Audit Log: Request early pilot access</h1>
+    <p>AuditLog.co is currently in early pilot access as we finish improving self-administration
+        capabilities and tune performance.</p>
 
-<section class="alm-features">
-    <section class="alm-section alm-front-section">
-        <div class="alm-row">
-            <div class="alm-row-item-1 alm-front-33">
-                <h3>Drop-in Client Interface</h3>
-                <p>
-                    Add the customizable Audit Log to your application with a few
-                    lines of javascript:
-                    <pre class="highlight html" style="font-size: 65%">
-                    &lt;div id="audit-log"&gt;&lt;/div&gt;
-                    &lt;script src="https://app.auditlog.co/dropin/dropin.js"&gt;&lt;/script&gt;
-                    &lt;script&gt;
-                        auditLog({
-                            view: '{your-view-id}',
-                            accessKey: '{your-view-access-key}',
-                            clientId: '{your-client-id}',
-                            target: 'audit-log',
-                            host: 'https://app.auditlog.co'
-                        });
-                    &lt;/script&gt;
-                    </pre>
-                </p>
-            </div>
-            <div class="alm-row-item-1 alm-front-66 alm-mobile-center">
-                <img src="/images/front-demo.png" alt="Customizable Audit Table " />
-            </div>
+    <div class="alm-pilot-form-area">
+        <div id="contactFormError" style="display: none" class="alm-pilot-form-error">Sorry, an error occurred. Please reach out to us directly at <a href="mailto://hello@auditlog.co">hello@auditlog.co</a></div>
+        <div id="contactForm" class="alm-pilot-form">
+            <form>
+                <input type="hidden" name="message" value="auditlog pilot access request form" />
+                <div class="alm-pilot-form-row">
+                    <label for="fromEmail" id="labelFromEmail">Your Email Address?</label><br/>
+                    <input type="text" name="fromEmail" id="fromEmail" placeholder="Email Address" class="dm-pilot-input" />
+                </div>
+                <div class="alm-pilot-form-row">
+                    <label for="customerCount" id="labelCustomerCount">How many customers do you currently serve?</label> <br/>
+                    <select id="customerCount" name="customerCount">
+                        <option>1-10</option>
+                        <option>10-50</option>
+                        <option>50-100</option>
+                        <option>100-500</option>
+                        <option>500-1000</option>
+                        <option>1000+</option>
+                    </select>
+                </div>
+                <div class="alm-pilot-form-row">
+                    <label for="timing">Can you share more about why you're looking? (optional)</label> <br/>
+                    <textarea cols="60" rows="5" name="timing" id="timing"></textarea>
+                </div>
+                <div class="alm-pilot-form-row" style="text-align: center;">
+                    <input type="submit" value="Request Early Access"  class="alm-cta-primary" />
+                </div>
+            </form>
         </div>
-    </section>
-
-    <section class="alm-section alm-front-section">
-        <div class="alm-row alm-row-reverse">
-            <div class="alm-row-item-1 alm-front-33">
-            <h3>Customizeable Without Code</h3>
-                <p>
-                    Use the Customization screen to set your own logo, add
-                    links, or update the footer. Add, Remove, Re-arrange, 
-                    and rename columns to fit your clients.
-                </p>
-            </div>
-            <div class="alm-row-item-1 alm-front-66 alm-mobile-center">
-            <img src="/images/front-demo-customize.png" alt="Customize your AuditLog" />
-            </div>
-        </div>
-    </section>
-
-    <section class="alm-section alm-front-section">
-        <div class="alm-row">
-            <div class="alm-row-item-1 alm-front-33">
-                <h3>Clear API Documentation</h3>
-                <p>
-                    Send events via the REST API, we take care of the rest. Documentation
-                    includes detailed examples, instructions for common use cases, and
-                    depth for special cases.
-                </p>
-                <p>
-                    <a href="/docs/api">See the API docs</a>
-                </p>
-            </div>
-            <div class="alm-row-item-1 alm-front-66 alm-mobile-center">
-                <img src="/images/front-demo-docs.png" alt="Detailed docs with examples" />
-            </div>
-        </div>
-    </section>
-
-    <section class="alm-section alm-front-section">
-        <div class="alm-row alm-row-reverse">
-            <div class="alm-row-item-1 alm-front-33">
-                <h3>Built-in Exports</h3>
-                <p>
-                    CSV exports are automatically available on-demand for your clients. Customize further using the Events
-                    Reporting API to enrich the data further or embed it directly in your application.
-                </p>
-            </div>
-            <div class="alm-row-item-1 alm-front-66 alm-mobile-center">
-                <img src="/images/front-demo-ent.png" alt="Enterprise Ready" />
-            </div>
-        </div>
-    </section>
-
-    <section class="alm-section alm-front-section">
-        <div class="alm-row">
-            <div class="alm-row-item-1 alm-front-33">
-                <h3>A 40,000 foot view</h3>
-                <p>
-                    A global view into your stored events, showing how your users are interacting with the system.
-                </p>
-            </div>
-            <div class="alm-row-item-1 alm-front-66 alm-mobile-center">
-                <img src="/images/front-demo-dashboard.png" alt="Enterprise Ready" />
-            </div>
-        </div>
-    </section>
-
-    <section class="alm-section alm-more-features">
-        <h1>And more...</h1>
-        <div class="alm-more-features-list">
-<!-- 
-            <div class="alm-more-features-item">
-                <h3>Global Audit Dashboard</h3>
-                <p>A <a href="/docs/dashboard">global view</a> of all of your audit log data, for faster troubleshooting and support.</p>
-            </div> -->
-<!-- 
-            <div class="alm-more-features-item">
-                <h3>Client Libraries</h3>
-                <p><a href="/docs/client-libraries">Client libraries</a> for common languages get you connected even faster.</p>
-            </div> -->
-
-            <div class="alm-more-features-item">
-                <h3>Immutable Events, Enabled Privacy</h3>
-                <p>AuditLog preserves Event data seperate from potential Personal Information, supporting <a href="/docs/supporting-privacy">Privacy API</a> endpoints to make it easy to search, update, or redact Personal Information you've stored with the service.</p>
-            </div>
-
-                        
-            <div class="alm-more-features-item">
-                <h3>Client-Specific SIEM Integration</h3>
-                <p>With the Enterprise plan, you can configure client-specific <a href="/docs/SIEM">SIEM Exports</a> to feed data directly to your Enterprise clients.</p>
-            </div>
-    
-        </div>
-    </section>
-</section>
-
-<section class="alm-section alm-front-section">
-    <div style="text-align: center">
-        <a href="https://app.auditlog.co/account/signup?plan=tryit" class="alm-cta-primary">Get Started</a>
     </div>
 </section>
-    
+
+<script type="text/javascript">
+    var url = "https://auditlog-signup.azurewebsites.net/api/HttpTriggerCSharp1?code=557A1iF/2jFL4eGHgBsq1J/fYKy8QbR87IJl5gkw5aHYpuAFdYVvmg==";
+    $("form").on('submit', function (event) {
+        event.preventDefault();
+ 
+        // grab contact form data
+        var data = $(this).serialize();
+
+        // hide prior errors, disable inputs while we're submitting
+        $("#contactFormError").hide();
+ 
+        var errorCount = 0;
+        var emailInput = $("#fromEmail");
+        if(emailInput.val() == null || emailInput.val() == ""){
+            $("#labelFromEmail").addClass("error");
+            emailInput.addClass("error");
+            emailInput.attr("placeholder", "Email address is required");
+            errorCount++;
+        }
+        else{
+            $("#labelFromEmail").removeClass("error");
+            emailInput.removeClass("error");
+        }
+
+        if(errorCount > 0)
+            return;
+
+        submitForm(data);
+    });
+
+    function submitForm(data){
+        $("#contactForm input").prop('disabled', true);
+        $("#contactForm select").prop('disabled', true);
+        $("#contactForm textarea").prop('disabled', true);
+        $("#contactForm input[type=submit]").val('Sending...');
+        
+        // back in my day, we had to AJAX uphill both ways, in the snow, through cross-iframe scripts
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: data,
+            dataType: "text",
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            success: function (respData) {
+                // Yay, success!!
+                console.log("success");
+                $("#contactForm").hide();
+                $("#contactForm input[type=submit]").val('Request Early Access');
+                location.href = '/pilot-requested';
+            },
+            error: function (jqXHR) {
+                // Boo, error...
+                $("#contactFormError").show();
+                $("#contactForm input[type=submit]").val('Request Early Access');
+                $("#contactForm input").prop('disabled', false);
+            }
+        });
+    }
+
+</script>
 
   <footer class="alm-footer">
       <div class="alm-row">

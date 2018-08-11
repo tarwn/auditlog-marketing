@@ -17,6 +17,10 @@
     white-space: nowrap;
     transition: all 150ms ease-in-out;
 
+    &:visited{
+        color: $textColor;
+    }
+
     &:hover{
         color: $textColor;
         background-color: $hoverColor;
